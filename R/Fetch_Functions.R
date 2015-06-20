@@ -2,8 +2,9 @@
 #'
 #' Regresa Data.Frame con la serie de tiempo escogida, al buscar en el webservice del INEGI y parsear via RSDMX y ZOO. 
 #' Si parametro Metadata=TRUE, regresa además Región, Unidad, Indicador (# INEGI) y Frecuencia.
+#' Es una de las funciones primitivas del paquete.
 #'
-#' @param serie Vector en caracter de url de dirección. Este es un metódo directo (se requiere de URL con token)
+#' @param serie Vector en caracter de url de dirección. Este es un metódo directo (se requiere de URL en formato XML, con token)
 #' @param metadata Default = FALSE, si TRUE, trae columnas con Región, Unidad, Indicador (# INEGI) y Frecuencia.
 #'
 #' @return Dataframe
