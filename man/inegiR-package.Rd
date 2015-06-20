@@ -21,7 +21,6 @@ License: \tab What license is it under?\cr
 \author{
 Eduardo Flores
 <eduardo@enelmargen.org>
-~~ The author and/or maintainer of the package ~~
 }
 \references{
 ~~ Literature or other references for background information ~~
