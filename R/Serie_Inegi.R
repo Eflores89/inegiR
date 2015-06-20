@@ -18,6 +18,20 @@
 
 Serie_Inegi<-function(serie,metadata=FALSE)
 {
+  #### esto falta mejorar 
+  #revisar si es una url o un nombre
+  if(grepl(pattern = "http:", x = serie))
+    {} else {
+      #traer el url del catalogo
+      tryCatch(
+      {#ojo: hacerlo to_lower, para que no importe como esta en catalogo
+        serie<-subset(Catalogo_Series, Nombre == serie)['URL']}, 
+        warning=function(w){print("Warning")},
+        error=function(e){print("Error, no encontró serie en catálogo")}
+      )
+        #falta tokenizar catalogo!!
+    }
+  #########################
   library(plyr,quietly=TRUE)
   library(zoo,quietly=TRUE)
   
@@ -43,3 +57,4 @@ Serie_Inegi<-function(serie,metadata=FALSE)
     return(df)
   }
 }
+

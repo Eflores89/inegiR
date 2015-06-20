@@ -3,7 +3,7 @@
 \alias{inegiR}
 \docType{package}
 \title{
-Funciones para obtener datos de INEGI
+Funciones para API de INEGI
 }
 \description{
 Funciones para obtener, interactuar y gráficar datos del Instituto Nacional de Estadística y Geografía (México) via el servicio web de SDMX. La implementación se basa en wrappers de xml, rcurl y rsdmx. 
@@ -14,23 +14,19 @@ Package: \tab inegiR\cr
 Type: \tab Package\cr
 Version: \tab 1.0\cr
 Date: \tab 2015-06-19\cr
-License: \tab What license is it under?\cr
 }
-~~ An overview of how to use the package, including the most important functions ~~
+Para obtener una serie, la función más primitiva es Serie_Inegi()
 }
 \author{
 Eduardo Flores
 <eduardo@enelmargen.org>
 }
 \references{
-~~ Literature or other references for background information ~~
+Se puede encontrar más referencias sobre el API del INEGI, incluyendo generación de un token personal y rutas a más indicadores aquí: 
+http://www.inegi.org.mx/desarrolladores/indicadores/apiindicadores.aspx
 }
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R documentation directory ~~
 \keyword{ package }
-\seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
-}
 \examples{
-~~ simple examples of the most important functions ~~
+#traer el PIB real y guardar en un data frame
+PIB<-Serie_Inegi(PIB_real)
 }
