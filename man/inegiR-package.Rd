@@ -19,9 +19,8 @@ License: \tab What license is it under?\cr
 ~~ An overview of how to use the package, including the most important functions ~~
 }
 \author{
-Who wrote it
-
-Maintainer: Who to complain to <yourfault@somewhere.net>
+Eduardo Flores
+<eduardo@enelmargen.org>
 ~~ The author and/or maintainer of the package ~~
 }
 \references{
