@@ -4,7 +4,7 @@
 \alias{Serie_Inegi}
 \title{Obtiene serie de tiempo de INEGI}
 \usage{
-Serie_Inegi(serie, metadata = FALSE)
+Serie_Inegi(serie, token, metadata = FALSE)
 }
 \arguments{
 \item{serie}{Vector en caracter de url de dirección. Este es un metódo directo (se requiere de URL en formato XML, con token)}
@@ -22,7 +22,10 @@ Es una de las funciones primitivas del paquete.
 \examples{
 #Serie de INPC General
 token<-"tokenProporcionadoporWebservice"
-url <- paste0("http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216064/00000/es/false/xml/",token)
-Serie <- Serie_Unegi(url,metadata = TRUE)
+url <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216064/00000/es/false/xml/"
+Serie <- Serie_Inegi(url,token)
+}
+\author{
+Eduardo Flores
 }
 

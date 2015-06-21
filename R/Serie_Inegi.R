@@ -6,34 +6,37 @@
 #'
 #' @param serie Vector en caracter de url de dirección. Este es un metódo directo (se requiere de URL en formato XML, con token)
 #' @param metadata Default = FALSE, si TRUE, trae columnas con Región, Unidad, Indicador (# INEGI) y Frecuencia.
-#'
+#' 
 #' @return Dataframe
 #'
+#' @author Eduardo Flores 
+#' 
 #' @examples
 #' #Serie de INPC General 
 #' token<-"tokenProporcionadoporWebservice"
-#' url <- paste0("http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216064/00000/es/false/xml/",token)
-#' Serie <- Serie_Unegi(url,metadata = TRUE)
+#' url <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216064/00000/es/false/xml/"
+#' Serie <- Serie_Inegi(url,token)
 #' @export
 
-Serie_Inegi<-function(serie,metadata=FALSE)
+Serie_Inegi<-function(serie,token,metadata=FALSE)
 {
+  serie<-paste0(serie,token)
   #### esto falta mejorar 
   #revisar si es una url o un nombre
-  if(grepl(pattern = "http:", x = serie))
-    {} else {
-      #traer el url del catalogo
-      tryCatch(
-      {#ojo: hacerlo to_lower, para que no importe como esta en catalogo
-        serie<-subset(Catalogo_Series, Nombre == serie)['URL']}, 
-        warning=function(w){print("Warning")},
-        error=function(e){print("Error, no encontró serie en catálogo")}
-      )
+  #if(grepl(pattern = "http:", x = serie))
+   # {} else {
+    #  #traer el url del catalogo
+     # tryCatch(
+      #{#ojo: hacerlo to_lower, para que no importe como esta en catalogo
+       # serie<-subset(Catalogo_Series, Nombre == serie)['URL']}, 
+        #warning=function(w){print("Warning")},
+        #error=function(e){print("Error, no encontró serie en catálogo")}
+      #)
         #falta tokenizar catalogo!!
-    }
+  #  }
   #########################
-  library(plyr,quietly=TRUE)
-  library(zoo,quietly=TRUE)
+  ##library(dplyr,quietly=TRUE)
+  ##library(zoo,quietly=TRUE)
   
   s<-xmlToList(serie)  
   Valores<-as.numeric(ldply(s$Data$Serie,"[[",'CurrentValue')[,'[['])
