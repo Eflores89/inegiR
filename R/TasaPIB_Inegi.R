@@ -17,5 +17,7 @@ TasaPIB_Inegi<-function (token){
   #Serie de PIB;
   s<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/381016/00000/es/false/xml/"
   i<-Serie_Inegi(s,token)
-  return(YoY(serie = i$Valores,lapso = 12,decimal = FALSE))
+  t<-YoY(serie = i$Valores,lapso = 4,decimal = FALSE)
+  d<-cbind.data.frame(Fechas=i$Fechas,Valores=t)
+  return(d)
 }

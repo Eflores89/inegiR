@@ -39,12 +39,28 @@ Serie_Inegi<-function(serie,token,metadata=FALSE)
   ##library(zoo,quietly=TRUE)
   
   s<-xmlToList(serie)  
-  Valores<-as.numeric(ldply(s$Data$Serie,"[[",'CurrentValue')[,'[['])
   Fechas<-ldply(s$Data$Serie,"[[",'TimePeriod')[,'[[']
-  Fechas_Date<-as.Date(as.yearmon(Fechas, "%Y/%m"))
+  
+    if(s$MetaData$Freq=="Anual" | s$MetaData$Freq=="Yearly" | s$MetaData$Freq=="Annual")
+      {Fechas_Date<-as.Date(as.yearmon(x = paste0("01/",Fechas),format = "%m/%Y"))
+      } 
+  else {
+    if(s$MetaData$Freq=="Trimestral" | s$MetaData$Freq=="Quarterly" )
+      {
+      Fechas<-gsub(pattern = "/02",replacement = "/04",x = Fechas)
+      Fechas<-gsub(pattern = "/03",replacement = "/07",x = Fechas)
+      Fechas<-gsub(pattern = "/04",replacement = "/10",x = Fechas)
+      Fechas_Date<-as.Date(as.yearmon(Fechas, "%Y/%m"))
+        } else {Fechas_Date<-as.Date(as.yearmon(Fechas, "%Y/%m"))}
+      }
+  
+  #Values
+  Valores<-as.numeric(ldply(s$Data$Serie,"[[",'CurrentValue')[,'[['])
+  
   #df
   df<-cbind.data.frame(as.numeric(Valores),Fechas_Date)
-  # asegurar nombres y classes
+  
+  # Asegurar nombres y classes
   names(df)<-c("Valores","Fechas")
   class(df[,'Valores'])<-"numeric"
   
@@ -55,9 +71,6 @@ Serie_Inegi<-function(serie,token,metadata=FALSE)
     Frecuencia<-s$MetaData$Freq
     df_meta<-cbind.data.frame(Valores,Fechas,Region,Unidad,Indicador,Frecuencia)
     return(df_meta)
-  }
-  else{
-    return(df)
-  }
+    } else{return(df)} 
 }
 
