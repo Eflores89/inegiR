@@ -47,9 +47,9 @@ Serie_Inegi<-function(serie,token,metadata=FALSE)
   else {
     if(s$MetaData$Freq=="Trimestral" | s$MetaData$Freq=="Quarterly" )
       {
-      Fechas<-gsub(pattern = "/02",replacement = "/04",x = Fechas)
-      Fechas<-gsub(pattern = "/03",replacement = "/07",x = Fechas)
       Fechas<-gsub(pattern = "/04",replacement = "/10",x = Fechas)
+      Fechas<-gsub(pattern = "/03",replacement = "/07",x = Fechas)
+      Fechas<-gsub(pattern = "/02",replacement = "/04",x = Fechas)
       Fechas_Date<-as.Date(as.yearmon(Fechas, "%Y/%m"))
         } else {Fechas_Date<-as.Date(as.yearmon(Fechas, "%Y/%m"))}
       }
