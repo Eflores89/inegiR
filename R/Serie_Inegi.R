@@ -41,7 +41,7 @@ Serie_Inegi<-function(serie,token,metadata=FALSE)
   s<-xmlToList(serie)  
   Fechas<-ldply(s$Data$Serie,"[[",'TimePeriod')[,'[[']
   
-    if(s$MetaData$Freq=="Anual" | s$MetaData$Freq=="Yearly" | s$MetaData$Freq=="Annual")
+    if(s$MetaData$Freq=="Anual" | s$MetaData$Freq=="Yearly" | s$MetaData$Freq=="Annual" | s$MetaData$Freq=="Quinquenal")
       {Fechas_Date<-as.Date(as.yearmon(x = paste0("01/",Fechas),format = "%m/%Y"))
       } 
   else {

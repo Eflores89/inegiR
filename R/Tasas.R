@@ -9,11 +9,11 @@
 #' @note Ruta tematica BIE: Indicadores económicos de coyuntura ... Producto interno bruto trimestral, base 2008 ... Series originales ... Valores a precios de 2008 ... Producto interno bruto, a precios de mercado 
 #'
 #' @examples
-#' CrecimientoMex<-TasaPIB_Inegi(token)
+#' CrecimientoMex<-Tasa_PIB(token)
 #' @export
 #' 
 
-TasaPIB_Inegi<-function (token){
+Tasa_PIB<-function (token){
   #Serie de PIB;
   s<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/381016/00000/es/false/xml/"
   i<-Serie_Inegi(s,token)
