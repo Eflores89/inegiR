@@ -54,10 +54,10 @@ Serie_Inegi<-function(serie,token,metadata=FALSE)
         } else {Fechas_Date<-as.Date(as.yearmon(Fechas, "%Y/%m"))}
       }
   
-  #Values
+  # Values
   Valores<-as.numeric(ldply(s$Data$Serie,"[[",'CurrentValue')[,'[['])
   
-  #df
+  # df
   df<-cbind.data.frame(as.numeric(Valores),Fechas_Date)
   
   # Asegurar nombres y classes
