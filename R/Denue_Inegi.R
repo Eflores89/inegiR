@@ -45,12 +45,7 @@ Denue_Inegi<-function(latitud,longitud,token, metros = 250, keyword = "todos")
       
       # dividir
       l_split<-split(x = l_limpia, f = 1:18)
-      names(l_split)<-c("Id","Nombre","Razon",
-                        "Actividad","Estrato","Vialidad",
-                        "Calle","Exterior","Interior",
-                        "Colonia","CP","Ubicacion",
-                        "Tel","Mail","Sitio",
-                        "Tipo","Longitud","Latitud")
+  
       # Hacer en un data.frame 
       LimpiarRapido<-function(pat,elemento)
         {
