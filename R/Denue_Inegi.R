@@ -40,7 +40,7 @@ Denue_Inegi<-function(latitud,longitud,token, metros = 250, keyword = "todos")
       l_limpia<-gsub(pattern = "{",replacement = "",l_limpia,perl=TRUE)
     
       # Revisar que sea divisible
-        if(length(l_split)%%18==0) {} else {
+        if(length(l_limpia)%%18==0) {} else {
           stop(print("Error en definición de datos: uno o más de los negocios traen más o menos de 18 campos"))}
       
       # dividir
