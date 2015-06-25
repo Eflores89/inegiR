@@ -17,7 +17,7 @@
 #' #Traer todos los establecimientos a 1 km de la macro plaza en Monterrey
 #' token<-"tokenProporcionadoporWebservice"
 #' latitud<-"25.669194"
-#' longitud<-"-100.309901"
+#' longitud<-"-100.30990"
 #' Negocios <- Denue_Inegi(latitud,longitud,token,metros = 1000)
 #' @export
 

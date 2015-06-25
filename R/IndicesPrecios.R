@@ -60,3 +60,33 @@ Inflacion_Estudiantes<-function (token){
   d<-cbind.data.frame(Fechas=df$Fechas,Valores=st)
   return(d)
 }
+#' Obtener términos de intercambio
+#'
+#' Obtiene la razón de términos de intercambio para México (ToT). Es un wrapper de las funciones Serie_Inegi() y YoY(). 
+#' La razón se define como el índice de precios de exportaciones entre el índice de precios de importaciones. 
+#'
+#' @param token token personal emitido por el INEGI para acceder al API.
+#' @author Eduardo Flores 
+#' @return Data.frame con dos columnas: Fechas y Valores. 
+#'
+#' @examples
+#' TerminosIntercambio<-Inflacion_ToT(token)
+#' @export
+#'
+
+Inflacion_ToT<-function(token)
+{ #calcular terminos de intercambio (Terms-Of-Trade)
+  x<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/37502/00000/es/false/xml/"
+  m<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/37503/00000/es/false/xml/"
+  
+  x_val<-Serie_Inegi(x,token)
+  names(x_val)<-c("x","Fechas")
+  m_val<-Serie_Inegi(m,token)
+  names(m_val)<-c("m","Fechas")
+  
+  df<-Reduce(function(...) merge(...,all=T),list(m_val,x_val))
+  df$ToT<-df$x/df$m
+  
+  d<-cbind.data.frame(Fechas=df$Fechas,Valores=df$ToT)
+  return(d)
+}
