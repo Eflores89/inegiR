@@ -65,11 +65,14 @@ Serie_Inegi<-function(serie,token,metadata=FALSE)
   class(df[,'Valores'])<-"numeric"
   
   if(metadata){
-    Region<-s$MetaData$Region
-    Unidad<-s$MetaData$Unit
-    Indicador<-s$MetaData$Indicator
-    Frecuencia<-s$MetaData$Freq
-    df_meta<-cbind.data.frame(Valores,Fechas,Region,Unidad,Indicador,Frecuencia)
-    return(df_meta)
+    
+    MetaData<-list(
+          Region=s$MetaData$Region,
+          Unidad=s$MetaData$Unit,
+          Indicador=s$MetaData$Indicator,
+          Frecuencia=s$MetaData$Freq)
+    Obj<-list(MetaData=MetaData,Datos=df)
+    
+    return(Obj)
     } else{return(df)} 
 }
