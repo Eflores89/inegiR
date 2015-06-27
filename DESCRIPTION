@@ -1,9 +1,9 @@
 Package: inegiR
 Type: Package
-Title: What the package does (short line)
+Title: Integrar API’s de INEGI con R
 Version: 1.0
 Date: 2015-06-19
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: Eduardo Flores
+Maintainer: Eduardo Flores <eduardo@enelmargen.org>
+Description: Paquete para interactuar con el API de Indicadores y DENUE del INEGI.
+Encoding: UTF-8
