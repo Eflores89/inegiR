@@ -65,8 +65,9 @@ Serie_Inegi<-function(serie,token,metadata=FALSE)
   class(df[,'Valores'])<-"numeric"
   
   if(metadata){
-    
     MetaData<-list(
+          Nombre=s$MetaData$Name,
+          UltimaActualizacion=s$MetaData$LastUpdate,
           Region=s$MetaData$Region,
           Unidad=s$MetaData$Unit,
           Indicador=s$MetaData$Indicator,
