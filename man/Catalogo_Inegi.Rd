@@ -4,7 +4,7 @@
 \name{Catalogo_Inegi}
 \alias{Catalogo_Inegi}
 \title{Catalogo de algunos indicadores del INEGI}
-\format{data.frame with 53940 rows and 10 variables:
+\format{data.frame con 4 variables:
 \describe{
   \item{ShortName}{Nombre corto de indicador, en minusculas siempre}
   \item{Entidad}{Nacional o Estado}
