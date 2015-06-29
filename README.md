@@ -1,7 +1,7 @@
 # inegiR
 _______
 Paquete de R para interactuar con dos API's de datos de INEGI (Instituto de estadísticas oficiales de México). Las dos funciones principales, `Serie_Inegi()` y `Denue_Inegi()` son *wrappers* de los paquetes "xml", "zoo" y transformaciones usando "plyr". 
-- `Serie_Inegi()` - Obtiene una serie de datos del API de indicadores, parsea y retorna un data.frame con valores y fechas. También tiene opciones para metadatos disponibles.
+- `Serie_Inegi()` - Obtiene una serie de datos del API de indicadores, parsea y retorna un data.frame con valores y fechas o una lista con un data.frame y valores de metadatos.
 - `Denue_Inegi()` - Obtiene negocios registrados en el DENUE (Registro de unidades económicas) en un radio específico de coordenadas. 
 
 A grandes razgos, el paquete se divide en 4:
@@ -15,7 +15,7 @@ __________
 
 # inegiR (English)
 R Package to interact with two API's from INEGI (Oficial statistics agency of Mexico). Both main functions `Serie_Inegi()` and `Denue_Inegi()` are wrappers of functions in packages "xml", "zoo" and some tidy data transformations using "plyr"
-- `Serie_Inegi()` - Queries a data series from the INEGI API and returns the values with date and metadata in a data.frame object.
+- `Serie_Inegi()` - Queries a data series from the INEGI API and returns the values with date and metadata in a data.frame object or a list with data.frame and corresponding metadata information.
 - `Denue_Inegi()` - Queries the DENUE API (National economic unit database) and returns businesses in a circle around a given coordinate
 
 The entire package can be summarized in 4:
