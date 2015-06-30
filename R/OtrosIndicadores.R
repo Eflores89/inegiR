@@ -1,10 +1,10 @@
 #' Obtener balanza comercial
 #'
 #' Obtiene exportaciones, importaciones y balance de los dos en un mismo data.frame por mes.
-#' Todos los productos y todos los países 
+#' Todos los productos y todos los países. 
 #' Es un wrapper de las funciones \code{Serie_Inegi()} y \code{YoY()}. 
 #'
-#' @param token token persona emitido por el INEGI para acceder al API.
+#' @param token token personal emitido por el INEGI para acceder al API.
 #' @author Eduardo Flores 
 #' @return Data.frame
 #' 
@@ -36,7 +36,7 @@ Balanza_Comercial<-function(token)
 #' Obtiene exportaciones de principales socios comerciales.
 #' Todos los productos y Estados Unidos, Canadá, China, CentroAmerica y América del Sur. 
 #' Es un wrapper de las funciones \code{Serie_Inegi()} y \code{YoY()}. 
-#' @param token token persona emitido por el INEGI para acceder al API.
+#' @param token token personal emitido por el INEGI para acceder al API.
 #' @author Eduardo Flores 
 #' @return Data.frame
 #'
