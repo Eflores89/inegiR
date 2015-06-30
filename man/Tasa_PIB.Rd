@@ -10,10 +10,11 @@ Tasa_PIB(token)
 \item{token}{token persona emitido por el INEGI para acceder al API.}
 }
 \value{
-Vector numerico
+Data.frame
 }
 \description{
-Obtiene tasa de crecimiento vs. mismo periodo de un año antes en porcentaje. Es un wrapper de las funciones Serie_Inegi() y YoY().
+Obtiene tasa de crecimiento vs. mismo periodo de un año antes en porcentaje.
+Es un wrapper de las funciones \code{Serie_Inegi()} y \code{YoY()}.
 }
 \note{
 Ruta tematica BIE: Indicadores económicos de coyuntura ... Producto interno bruto trimestral, base 2008 ... Series originales ... Valores a precios de 2008 ... Producto interno bruto, a precios de mercado

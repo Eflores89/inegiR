@@ -1,13 +1,16 @@
-#' Obtener tasa de inflac
+#' Obtener tasa de inflacion
 #'
-#' Obtiene tasa de inflación inter anual en porcentaje. Es un wrapper de las funciones Serie_Inegi() y YoY(). 
+#' Obtiene tasa de inflación inter anual en porcentaje.
+#' La inflación se define como el cambio porcentual en el INPC. 
+#' Es un wrapper de las funciones \code{Serie_Inegi()} y \code{YoY()}. 
 #'
 #' @param token token persona emitido por el INEGI para acceder al API de indicadores.
 #' @author Eduardo Flores 
-#' @return Vector numerico
+#' @return Data.frame
 #'
 #' @examples
 #' Inflacion<-Inflacion_General(token)
+#' @note Encoding no permite acentos en titulo de descripción
 #' @export
 #' 
 
@@ -20,17 +23,19 @@ Inflacion_General<-function (token){
   return(d)
 }
 
-#' Obtener tasa de infla de Estudiantes
+#' Obtener tasa de inflacion de Estudiantes
 #'
 #' Obtiene tasa de inflación de estudiantes, inter anual en porcentaje. Es un wrapper de las funciones Serie_Inegi() y YoY(). 
-#' La metodología del índice se puede encontrar aquí: http://www.enelmargen.org/2011/04/indice-de-precios-estudiantes.html
+#' La metodología del índice se puede encontrar aquí: \url{http://www.enelmargen.org/2011/04/indice-de-precios-estudiantes.html}
+#' Es un wrapper de las funciones \code{Serie_Inegi()} y \code{YoY()}. 
 #'
 #' @param token token persona emitido por el INEGI para acceder al API.
 #' @author Eduardo Flores 
-#' @return Data.frame con dos columnas: fechas y valores. 
+#' @return Data.frame
 #'
 #' @examples
 #' InflacionEstudiantes<-Inflacion_Estudiantes(token)
+#' @note Encoding no permite acentos en titulo de descripción
 #' @export
 #' 
 
@@ -60,17 +65,19 @@ Inflacion_Estudiantes<-function (token){
   d<-cbind.data.frame(Fechas=df$Fechas,Valores=st)
   return(d)
 }
-#' Obtener tminos de intercambio
+#' Obtener terminos de intercambio
 #'
 #' Obtiene la razón de términos de intercambio para México (ToT). Es un wrapper de las funciones Serie_Inegi() y YoY(). 
 #' La razón se define como el índice de precios de exportaciones entre el índice de precios de importaciones. 
+#' Es un wrapper de las funciones \code{Serie_Inegi()} y \code{YoY()}. 
 #'
 #' @param token token personal emitido por el INEGI para acceder al API.
 #' @author Eduardo Flores 
-#' @return Data.frame con dos columnas: Fechas y Valores. 
+#' @return Data.frame 
 #'
 #' @examples
 #' TerminosIntercambio<-Inflacion_ToT(token)
+#' @note Encoding no permite acentos en titulo de descripción
 #' @export
 #'
 

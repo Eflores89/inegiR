@@ -2,7 +2,7 @@
 % Please edit documentation in R/IndicesPrecios.R
 \name{Inflacion_General}
 \alias{Inflacion_General}
-\title{Obtener tasa de inflac}
+\title{Obtener tasa de inflacion}
 \usage{
 Inflacion_General(token)
 }
@@ -10,10 +10,15 @@ Inflacion_General(token)
 \item{token}{token persona emitido por el INEGI para acceder al API de indicadores.}
 }
 \value{
-Vector numerico
+Data.frame
 }
 \description{
-Obtiene tasa de inflación inter anual en porcentaje. Es un wrapper de las funciones Serie_Inegi() y YoY().
+Obtiene tasa de inflación inter anual en porcentaje.
+La inflación se define como el cambio porcentual en el INPC.
+Es un wrapper de las funciones \code{Serie_Inegi()} y \code{YoY()}.
+}
+\note{
+Encoding no permite acentos en titulo de descripción
 }
 \examples{
 Inflacion<-Inflacion_General(token)

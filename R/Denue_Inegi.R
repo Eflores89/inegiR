@@ -9,7 +9,7 @@
 #' @param metros Distancia en metros a la redonda para buscar establecimientos. Default = 250 
 #' @param keyword Palabra clave de establecimiento para buscar. Por default busca todos. 
 #' 
-#' @return Dataframe
+#' @return Data.frame
 #'
 #' @author Eduardo Flores 
 #' 

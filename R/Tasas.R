@@ -1,10 +1,11 @@
 #' Obtener tasa de crecimiento del PIB
 #'
-#' Obtiene tasa de crecimiento vs. mismo periodo de un año antes en porcentaje. Es un wrapper de las funciones Serie_Inegi() y YoY(). 
+#' Obtiene tasa de crecimiento vs. mismo periodo de un año antes en porcentaje. 
+#' Es un wrapper de las funciones \code{Serie_Inegi()} y \code{YoY()}. 
 #'
 #' @param token token persona emitido por el INEGI para acceder al API.
 #' @author Eduardo Flores 
-#' @return Vector numerico
+#' @return Data.frame
 #'
 #' @note Ruta tematica BIE: Indicadores económicos de coyuntura ... Producto interno bruto trimestral, base 2008 ... Series originales ... Valores a precios de 2008 ... Producto interno bruto, a precios de mercado 
 #'
@@ -25,14 +26,15 @@ Tasa_PIB<-function (token){
 #' Obtener Desempleo Urbano
 #'
 #' Obtiene tasa de desocupación (serie unificada) urbana (agregado de 32 ciudades)
-#'
+#' Es un wrapper de las funciones \code{Serie_Inegi()} y \code{YoY()}. 
 #'
 #' @param token token personal emitido por el INEGI para acceder al API.
 #' @author Eduardo Flores
-#' @return Data.frame con 2 columnas
+#' @return Data.frame
 #'
 #' @examples
 #' Desempleo<-Tasa_Desempleo(token)
+#' @note Encoding no permite acentos en titulo de descripción
 #' @export
 #'
 

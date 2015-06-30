@@ -1,6 +1,6 @@
 #' Calcular tasas de crecimiento
 #'
-#' Calcula tasas de crecimiento de una serie en un data.frame. 
+#' Calcula tasas de crecimiento de una serie. 
 #'
 #' @param serie vector o serie de tiempo con datos númericos
 #' @param lapso separaciones por año a contemplar (12 = datos mensuales, 4 = datos trimestrales)

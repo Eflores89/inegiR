@@ -7,14 +7,15 @@
 Balanza_Comercial(token)
 }
 \arguments{
-\item{token}{token persona emitido por el INEGI para acceder al API de indicadores.}
+\item{token}{token persona emitido por el INEGI para acceder al API.}
 }
 \value{
-data.frame con 4 columnas
+Data.frame
 }
 \description{
 Obtiene exportaciones, importaciones y balance de los dos en un mismo data.frame por mes.
 Todos los productos y todos los países
+Es un wrapper de las funciones \code{Serie_Inegi()} y \code{YoY()}.
 }
 \examples{
 ComercioExterior<-Balanza_Comercial(token)

@@ -17,7 +17,7 @@ YoY(serie, lapso, decimal = TRUE)
 Vector numerico
 }
 \description{
-Calcula tasas de crecimiento de una serie en un data.frame.
+Calcula tasas de crecimiento de una serie.
 }
 \note{
 La serie debe estar en orden asciendiente (Posición inicial es la más antigua). La función de Serie_Inegi() guarda en ese orden.

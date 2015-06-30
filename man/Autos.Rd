@@ -2,7 +2,7 @@
 % Please edit documentation in R/OtrosIndicadores.R
 \name{Autos}
 \alias{Autos}
-\title{Obtener Producción de Autos}
+\title{Obtener Produccion de Autos}
 \usage{
 Autos(token)
 }
@@ -10,10 +10,14 @@ Autos(token)
 \item{token}{token personal emitido por el INEGI para acceder al API.}
 }
 \value{
-Data.frame con 3 columnas
+Data.frame
 }
 \description{
 Obtiene producción automotriz en México y cambio porcentual anual.
+Es un wrapper de las funciones \code{Serie_Inegi()} y \code{YoY()}.
+}
+\note{
+Encoding no permite acentos en titulo de descripción
 }
 \examples{
 ProduccionAutos<-Autos(token)

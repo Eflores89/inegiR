@@ -2,10 +2,11 @@
 #'
 #' Obtiene exportaciones, importaciones y balance de los dos en un mismo data.frame por mes.
 #' Todos los productos y todos los países 
+#' Es un wrapper de las funciones \code{Serie_Inegi()} y \code{YoY()}. 
 #'
-#' @param token token persona emitido por el INEGI para acceder al API de indicadores.
+#' @param token token persona emitido por el INEGI para acceder al API.
 #' @author Eduardo Flores 
-#' @return data.frame con 4 columnas
+#' @return Data.frame
 #' 
 #' @examples
 #' ComercioExterior<-Balanza_Comercial(token)
@@ -30,17 +31,18 @@ Balanza_Comercial<-function(token)
   
   return(d)
 }
-#' Obtener exportaciones por principal país
+#' Obtener exportaciones por paises
 #'
 #' Obtiene exportaciones de principales socios comerciales.
 #' Todos los productos y Estados Unidos, Canadá, China, CentroAmerica y América del Sur. 
-#'
-#' @param token token persona emitido por el INEGI para acceder al API de indicadores.
+#' Es un wrapper de las funciones \code{Serie_Inegi()} y \code{YoY()}. 
+#' @param token token persona emitido por el INEGI para acceder al API.
 #' @author Eduardo Flores 
-#' @return data.frame con 6 columnas
+#' @return Data.frame
 #'
 #' @examples
 #' ExportacionesMx<-Exportaciones_Pais(token)
+#' @note Encoding no permite acentos en titulo de descripción
 #' @export
 #' 
 Exportaciones_Pais<-function(token)
@@ -66,17 +68,18 @@ Exportaciones_Pais<-function(token)
   return(df)
 }
 
-#' Obtener Producción de Autos
+#' Obtener Produccion de Autos
 #'
 #' Obtiene producción automotriz en México y cambio porcentual anual.
-#'
+#' Es un wrapper de las funciones \code{Serie_Inegi()} y \code{YoY()}. 
 #'
 #' @param token token personal emitido por el INEGI para acceder al API.
 #' @author Eduardo Flores
-#' @return Data.frame con 3 columnas
+#' @return Data.frame
 #'
 #' @examples
 #' ProduccionAutos<-Autos(token)
+#' @note Encoding no permite acentos en titulo de descripción
 #' @export
 #'
 

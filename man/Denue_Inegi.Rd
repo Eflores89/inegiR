@@ -18,7 +18,7 @@ Denue_Inegi(latitud, longitud, token, metros = 250, keyword = "todos")
 \item{keyword}{Palabra clave de establecimiento para buscar. Por default busca todos.}
 }
 \value{
-Dataframe
+Data.frame
 }
 \description{
 Regresa Data.Frame datos de establecimientos registrados en el DENUE en zona aledaña a las coordenadas.

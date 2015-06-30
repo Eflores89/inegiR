@@ -10,10 +10,14 @@ Tasa_Desempleo(token)
 \item{token}{token personal emitido por el INEGI para acceder al API.}
 }
 \value{
-Data.frame con 2 columnas
+Data.frame
 }
 \description{
 Obtiene tasa de desocupación (serie unificada) urbana (agregado de 32 ciudades)
+Es un wrapper de las funciones \code{Serie_Inegi()} y \code{YoY()}.
+}
+\note{
+Encoding no permite acentos en titulo de descripción
 }
 \examples{
 Desempleo<-Tasa_Desempleo(token)

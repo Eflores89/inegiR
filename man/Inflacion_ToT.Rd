@@ -2,7 +2,7 @@
 % Please edit documentation in R/IndicesPrecios.R
 \name{Inflacion_ToT}
 \alias{Inflacion_ToT}
-\title{Obtener tminos de intercambio}
+\title{Obtener terminos de intercambio}
 \usage{
 Inflacion_ToT(token)
 }
@@ -10,11 +10,15 @@ Inflacion_ToT(token)
 \item{token}{token personal emitido por el INEGI para acceder al API.}
 }
 \value{
-Data.frame con dos columnas: Fechas y Valores.
+Data.frame
 }
 \description{
 Obtiene la razón de términos de intercambio para México (ToT). Es un wrapper de las funciones Serie_Inegi() y YoY().
 La razón se define como el índice de precios de exportaciones entre el índice de precios de importaciones.
+Es un wrapper de las funciones \code{Serie_Inegi()} y \code{YoY()}.
+}
+\note{
+Encoding no permite acentos en titulo de descripción
 }
 \examples{
 TerminosIntercambio<-Inflacion_ToT(token)

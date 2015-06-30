@@ -2,19 +2,23 @@
 % Please edit documentation in R/OtrosIndicadores.R
 \name{Exportaciones_Pais}
 \alias{Exportaciones_Pais}
-\title{Obtener exportaciones por principal país}
+\title{Obtener exportaciones por paises}
 \usage{
 Exportaciones_Pais(token)
 }
 \arguments{
-\item{token}{token persona emitido por el INEGI para acceder al API de indicadores.}
+\item{token}{token persona emitido por el INEGI para acceder al API.}
 }
 \value{
-data.frame con 6 columnas
+Data.frame
 }
 \description{
 Obtiene exportaciones de principales socios comerciales.
 Todos los productos y Estados Unidos, Canadá, China, CentroAmerica y América del Sur.
+Es un wrapper de las funciones \code{Serie_Inegi()} y \code{YoY()}.
+}
+\note{
+Encoding no permite acentos en titulo de descripción
 }
 \examples{
 ExportacionesMx<-Exportaciones_Pais(token)
