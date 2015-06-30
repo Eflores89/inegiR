@@ -1,15 +1,15 @@
 #' Obtiene serie de tiempo de INEGI
 #'
-#' Regresa Data.Frame con la serie de tiempo escogida, al buscar en el webservice del INEGI y parsear via RSDMX y ZOO. 
-#' Si parametro Metadata=TRUE, regresa además Región, Unidad, Indicador (# INEGI) y Frecuencia.
+#' Regresa Data.Frame con la serie de tiempo escogida, al buscar en el webservice del INEGI y parsear via XML y ZOO. 
+#' Si parametro Metadata=TRUE, regresa lista con indicadores meta y datos.
 #' Es una de las funciones primitivas del paquete.
 #'
 #' @param serie Vector en caracter de url de dirección. Este es un metódo directo (se requiere de URL en formato XML, con token)
 #' @param token token personal emitido por el INEGI para acceder al API.
-#' @param metadata Default = FALSE, si TRUE, trae columnas con Región, Unidad, Indicador (# INEGI) y Frecuencia.
+#' @param metadata Default = FALSE, si TRUE, parsea una lista con metadatos de serie.
 #' @param coercionar Por default (TRUE), los indicadores quincenales serán coercionados a mensuales. Aparecerán todas las observaciones pero en el mismo día del mes a pesar de estar en diferentes quincenas. Para usar días = FALSE.
 #' 
-#' @return Dataframe
+#' @return Dataframe o lista
 #'
 #' @author Eduardo Flores 
 #' 
