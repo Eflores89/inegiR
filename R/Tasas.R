@@ -94,11 +94,11 @@ Tasa_IGAE<-function(token)
   i2<-Serie_Inegi(s2,token)
   
   t1<-YoY(serie = i1$Valores, lapso = 12, decimal=FALSE)
-  t1<-cbind.data.frame(Fechas=i1$Fechas, "Serie Original (YoY)"=t1)
+    t1<-cbind.data.frame(Fechas=i1$Fechas, "Serie Original (YoY)"=t1)
   t2<-YoY(serie = i2$Valores, lapso = 12, decimal=FALSE)
-  t2<-cbind.data.frame(Fechas=i1$Fechas, "Serie Desest. (YoY)"=t2)
+    t2<-cbind.data.frame(Fechas=i1$Fechas, "Serie Desest. (YoY)"=t2)
   t3<-YoY(serie = i2$Valores, lapso = 1, decimal=FALSE)
-  t3<-cbind.data.frame(Fechas=i1$Fechas, "Serie Desest. (MoM)"=t3)
+    t3<-cbind.data.frame(Fechas=i1$Fechas, "Serie Desest. (MoM)"=t3)
   
   #union
   df<-Reduce(function(...) merge(...,all=T),list(t1,
@@ -106,3 +106,45 @@ Tasa_IGAE<-function(token)
                                                  t3))
   return(df)
 }
+
+#' Obtener cambios porcentuales por sector
+#'
+#' Obtiene Tasas de Crecimiento de Indicador Global de Actividad Económica por subsector. 
+#' Todas las tasas son con series originales. Cambio porcentual anual. 
+#'
+#' @param token token personal emitido por el INEGI para acceder al API.
+#' @author Eduardo Flores
+#' @return Data.frame
+#'
+#' @examples
+#' Sectores<-Tasa_SectoresYoY(token)
+#' @export
+#'
+
+Tasa_SectoresYoY<-function(token)
+{#traer sectores
+  #primarios
+  s1<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/383153/00000/en/false/xml/"
+  #secundarios
+  s2<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/383154/00000/en/false/xml/"
+  #terciarios
+  s3<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/383159/00000/en/false/xml/"
+  
+  i1<-Serie_Inegi(s1,token)
+  i2<-Serie_Inegi(s2,token)
+  i3<-Serie_Inegi(s3,token)
+  
+  t1<-YoY(serie = i1$Valores, lapso = 12, decimal=FALSE)
+    t1<-cbind.data.frame(Fechas=i1$Fechas, "Primarios (YoY)"=t1)
+  t2<-YoY(serie = i2$Valores, lapso = 12, decimal=FALSE)
+    t2<-cbind.data.frame(Fechas=i1$Fechas, "Secundarios (YoY)"=t2)
+  t3<-YoY(serie = i3$Valores, lapso = 12, decimal=FALSE)
+    t3<-cbind.data.frame(Fechas=i1$Fechas, "Terciarios (YoY)"=t3)
+  
+  #union
+  df<-Reduce(function(...) merge(...,all=T),list(t1,
+                                                 t2,
+                                                 t3))
+  return(df)
+}
+
