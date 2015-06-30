@@ -5,7 +5,9 @@
 #' Es una de las funciones primitivas del paquete.
 #'
 #' @param serie Vector en caracter de url de dirección. Este es un metódo directo (se requiere de URL en formato XML, con token)
+#' @param token token personal emitido por el INEGI para acceder al API.
 #' @param metadata Default = FALSE, si TRUE, trae columnas con Región, Unidad, Indicador (# INEGI) y Frecuencia.
+#' @param coercionar Por default (TRUE), los indicadores quincenales serán coercionados a mensuales. Aparecerán todas las observaciones pero en el mismo día del mes a pesar de estar en diferentes quincenas. Para usar días = FALSE.
 #' 
 #' @return Dataframe
 #'
@@ -18,25 +20,9 @@
 #' Serie <- Serie_Inegi(url,token)
 #' @export
 
-Serie_Inegi<-function(serie,token,metadata=FALSE)
+Serie_Inegi<-function(serie,token,metadata=FALSE,coercionar=TRUE)
 {
   serie<-paste0(serie,token)
-  #### esto falta mejorar 
-  #revisar si es una url o un nombre
-  #if(grepl(pattern = "http:", x = serie))
-   # {} else {
-    #  #traer el url del catalogo
-     # tryCatch(
-      #{#ojo: hacerlo to_lower, para que no importe como esta en catalogo
-       # serie<-subset(Catalogo_Series, Nombre == serie)['URL']}, 
-        #warning=function(w){print("Warning")},
-        #error=function(e){print("Error, no encontró serie en catálogo")}
-      #)
-        #falta tokenizar catalogo!!
-  #  }
-  #########################
-  ##library(dplyr,quietly=TRUE)
-  ##library(zoo,quietly=TRUE)
   
   s<-xmlToList(serie)  
   Fechas<-ldply(.data = s$Data$Serie, .fun = "[[",'TimePeriod')[,'[[']
@@ -51,9 +37,18 @@ Serie_Inegi<-function(serie,token,metadata=FALSE)
       Fechas<-gsub(pattern = "/03", replacement = "/07", x = Fechas)
       Fechas<-gsub(pattern = "/02", replacement = "/04", x = Fechas)
       Fechas_Date<-as.Date(as.yearmon(Fechas, "%Y/%m"))
-        } else {Fechas_Date<-as.Date(as.yearmon(Fechas, "%Y/%m"))}
-      }
-  
+        } else {
+          if(s$MetaData$Freq=="Quincenal")
+            {if(coercionar){
+              Mensaje<-"Importante: El indicador quincenal fue coercionado a meses - para evitar, correr con opción coercionar=FALSE"
+              Fechas_Date<-as.Date(as.yearmon(Fechas, "%Y/%m"))
+                            } else {
+                              FechasN<-gsub(pattern="/02$",replacement="/15",x = Fechas)
+                              Fechas_Date<-as.Date(x = FechasN,format = "%Y/%m/%d")}
+            } else {
+              Fechas_Date<-as.Date(as.yearmon(Fechas, "%Y/%m"))
+            }
+        }}
   # Values
   Valores<-as.numeric(ldply(s$Data$Serie,"[[",'CurrentValue')[,'[['])
   
@@ -73,7 +68,16 @@ Serie_Inegi<-function(serie,token,metadata=FALSE)
           Indicador=s$MetaData$Indicator,
           Frecuencia=s$MetaData$Freq)
     Obj<-list(MetaData=MetaData,Datos=df)
-    
+    #warn-on-quincenal
+    if(exists("Mensaje"))
+      { warning(print(Mensaje))
+      }
     return(Obj)
-    } else{return(df)} 
+    } else{
+      #warn-on-quincenal
+      if(exists("Mensaje"))
+      { warning(print(Mensaje))
+      }
+      return(df)
+    } 
 }

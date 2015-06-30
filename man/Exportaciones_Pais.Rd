@@ -18,7 +18,7 @@ Todos los productos y Estados Unidos, Canadá, China, CentroAmerica y América d
 Es un wrapper de las funciones \code{Serie_Inegi()} y \code{YoY()}.
 }
 \note{
-Encoding no permite acentos en titulo de descripción
+Encoding no permite acéntos en título de descripción
 }
 \examples{
 ExportacionesMx<-Exportaciones_Pais(token)

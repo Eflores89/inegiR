@@ -4,12 +4,16 @@
 \alias{Serie_Inegi}
 \title{Obtiene serie de tiempo de INEGI}
 \usage{
-Serie_Inegi(serie, token, metadata = FALSE)
+Serie_Inegi(serie, token, metadata = FALSE, coercionar = TRUE)
 }
 \arguments{
 \item{serie}{Vector en caracter de url de dirección. Este es un metódo directo (se requiere de URL en formato XML, con token)}
 
+\item{token}{token personal emitido por el INEGI para acceder al API.}
+
 \item{metadata}{Default = FALSE, si TRUE, trae columnas con Región, Unidad, Indicador (# INEGI) y Frecuencia.}
+
+\item{coercionar}{Por default (TRUE), los indicadores quincenales serán coercionados a mensuales. Aparecerán todas las observaciones pero en el mismo día del mes a pesar de estar en diferentes quincenas. Para usar días = FALSE.}
 }
 \value{
 Dataframe
