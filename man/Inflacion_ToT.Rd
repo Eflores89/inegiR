@@ -2,7 +2,7 @@
 % Please edit documentation in R/IndicesPrecios.R
 \name{Inflacion_ToT}
 \alias{Inflacion_ToT}
-\title{Obtener términos de intercambio}
+\title{Obtener tminos de intercambio}
 \usage{
 Inflacion_ToT(token)
 }

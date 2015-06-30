@@ -2,7 +2,7 @@
 % Please edit documentation in R/IndicesPrecios.R
 \name{Inflacion_General}
 \alias{Inflacion_General}
-\title{Obtener tasa de inflación}
+\title{Obtener tasa de inflac}
 \usage{
 Inflacion_General(token)
 }

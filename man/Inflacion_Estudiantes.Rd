@@ -2,7 +2,7 @@
 % Please edit documentation in R/IndicesPrecios.R
 \name{Inflacion_Estudiantes}
 \alias{Inflacion_Estudiantes}
-\title{Obtener tasa de inflación de Estudiantes}
+\title{Obtener tasa de infla de Estudiantes}
 \usage{
 Inflacion_Estudiantes(token)
 }

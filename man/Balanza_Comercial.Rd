@@ -2,7 +2,7 @@
 % Please edit documentation in R/OtrosIndicadores.R
 \name{Balanza_Comercial}
 \alias{Balanza_Comercial}
-\title{Obtener balanza comercial de México}
+\title{Obtener balanza comercial}
 \usage{
 Balanza_Comercial(token)
 }

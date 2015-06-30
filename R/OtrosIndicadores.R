@@ -1,4 +1,4 @@
-#' Obtener balanza comercial de México
+#' Obtener balanza comercial
 #'
 #' Obtiene exportaciones, importaciones y balance de los dos en un mismo data.frame por mes.
 #' Todos los productos y todos los países 
@@ -6,7 +6,7 @@
 #' @param token token persona emitido por el INEGI para acceder al API de indicadores.
 #' @author Eduardo Flores 
 #' @return data.frame con 4 columnas
-#'
+#' 
 #' @examples
 #' ComercioExterior<-Balanza_Comercial(token)
 #' @export
@@ -64,4 +64,29 @@ Exportaciones_Pais<-function(token)
   
   df<-Reduce(function(...) merge(...,all=T),list(usa_v,can_v,chn_v,cam_v,sur_v))
   return(df)
+}
+
+#' Obtener Producción de Autos
+#'
+#' Obtiene producción automotriz en México y cambio porcentual anual.
+#'
+#'
+#' @param token token personal emitido por el INEGI para acceder al API.
+#' @author Eduardo Flores
+#' @return Data.frame con 3 columnas
+#'
+#' @examples
+#' ProduccionAutos<-Autos(token)
+#' @export
+#'
+
+Autos<-function(token)
+{ #Retornar la producción automotriz
+  s<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/15166/00000/en/false/xml/"
+  
+  i<-Serie_Inegi(s,token)
+  t<-YoY(serie=i$Valores, lapso=12, decimal=FALSE)
+  d<-cbind.data.frame(Fechas=i$Fechas,"Autos"=i$Valores,"YoY"=t)
+  
+  return(d)
 }

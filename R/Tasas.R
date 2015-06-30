@@ -21,3 +21,25 @@ Tasa_PIB<-function (token){
   d<-cbind.data.frame(Fechas=i$Fechas,Valores=t)
   return(d)
 }
+
+#' Obtener Desempleo Urbano
+#'
+#' Obtiene tasa de desocupación (serie unificada) urbana (agregado de 32 ciudades)
+#'
+#'
+#' @param token token personal emitido por el INEGI para acceder al API.
+#' @author Eduardo Flores
+#' @return Data.frame con 2 columnas
+#'
+#' @examples
+#' Desempleo<-Tasa_Desempleo(token)
+#' @export
+#'
+
+Tasa_Desempleo<-function(token)
+{ #Retornar el desempleo
+  s<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/444612/00000/en/false/xml/"
+  d<-Serie_Inegi(s,token)
+  
+  return(d)
+}

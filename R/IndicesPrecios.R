@@ -1,4 +1,4 @@
-#' Obtener tasa de inflación
+#' Obtener tasa de inflac
 #'
 #' Obtiene tasa de inflación inter anual en porcentaje. Es un wrapper de las funciones Serie_Inegi() y YoY(). 
 #'
@@ -20,7 +20,7 @@ Inflacion_General<-function (token){
   return(d)
 }
 
-#' Obtener tasa de inflación de Estudiantes
+#' Obtener tasa de infla de Estudiantes
 #'
 #' Obtiene tasa de inflación de estudiantes, inter anual en porcentaje. Es un wrapper de las funciones Serie_Inegi() y YoY(). 
 #' La metodología del índice se puede encontrar aquí: http://www.enelmargen.org/2011/04/indice-de-precios-estudiantes.html
@@ -60,7 +60,7 @@ Inflacion_Estudiantes<-function (token){
   d<-cbind.data.frame(Fechas=df$Fechas,Valores=st)
   return(d)
 }
-#' Obtener términos de intercambio
+#' Obtener tminos de intercambio
 #'
 #' Obtiene la razón de términos de intercambio para México (ToT). Es un wrapper de las funciones Serie_Inegi() y YoY(). 
 #' La razón se define como el índice de precios de exportaciones entre el índice de precios de importaciones. 
