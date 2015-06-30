@@ -6,7 +6,7 @@
 Funciones para API de INEGI
 }
 \description{
-Funciones para obtener, interactuar y gráficar datos del Instituto Nacional de Estadística y Geografía (México) via el servicio web de SDMX. La implementación se basa en wrappers de xml, rcurl y rsdmx. 
+Funciones para obtener, interactuar y gráficar datos del Instituto Nacional de Estadística y Geografía (México) via el servicio web. La implementación se basa en wrappers de xml, zoo y plyr. 
 }
 \details{
 \tabular{ll}{

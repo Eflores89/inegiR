@@ -11,16 +11,16 @@ Serie_Inegi(serie, token, metadata = FALSE, coercionar = TRUE)
 
 \item{token}{token personal emitido por el INEGI para acceder al API.}
 
-\item{metadata}{Default = FALSE, si TRUE, trae columnas con Región, Unidad, Indicador (# INEGI) y Frecuencia.}
+\item{metadata}{Default = FALSE, si TRUE, parsea una lista con metadatos de serie.}
 
 \item{coercionar}{Por default (TRUE), los indicadores quincenales serán coercionados a mensuales. Aparecerán todas las observaciones pero en el mismo día del mes a pesar de estar en diferentes quincenas. Para usar días = FALSE.}
 }
 \value{
-Dataframe
+Dataframe o lista
 }
 \description{
-Regresa Data.Frame con la serie de tiempo escogida, al buscar en el webservice del INEGI y parsear via RSDMX y ZOO.
-Si parametro Metadata=TRUE, regresa además Región, Unidad, Indicador (# INEGI) y Frecuencia.
+Regresa Data.Frame con la serie de tiempo escogida, al buscar en el webservice del INEGI y parsear via XML y ZOO.
+Si parametro Metadata=TRUE, regresa lista con indicadores meta y datos.
 Es una de las funciones primitivas del paquete.
 }
 \examples{

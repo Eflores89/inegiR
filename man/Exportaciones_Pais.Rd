@@ -7,7 +7,7 @@
 Exportaciones_Pais(token)
 }
 \arguments{
-\item{token}{token persona emitido por el INEGI para acceder al API.}
+\item{token}{token personal emitido por el INEGI para acceder al API.}
 }
 \value{
 Data.frame
