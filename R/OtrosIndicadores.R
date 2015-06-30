@@ -137,18 +137,18 @@ Tasa_Confianza<-function(token)
 #' Obtener Balanza de Pagos
 #'
 #' Obtiene principales componentes de la Balanza de Pagos: 2 de la Cuenta Corriente, 3 de la Cuenta Financiera y sus 2 resultados.
-#'
+#' Es un wrapper de las funciones \code{Serie_Inegi()} y \code{YoY()}. 
 #'
 #' @param token token personal emitido por el INEGI para acceder al API.
 #' @author Eduardo Flores
-#' @return Data.frame con 8 columnas
+#' @return Data.frame
 #'
 #' @examples
-#' BalanzadePagosMexico<-BoP(token)
+#' BalanzadePagosMexico<-Balanza_Pagos(token)
 #' @export
 #'
 
-BoP<-function(token)
+Balanza_Pagos<-function(token)
 { #Retornar la Balanza de Pagos de México
   
   #with_all
@@ -157,21 +157,21 @@ BoP<-function(token)
   
   #Cuenta Corriente
   cc_ing<-Serie_Inegi(paste0(pre,"214053",last),token)
-  names(cc_ing)<-c("Cuenta Corriente - Ingresos","Fechas")
+    names(cc_ing)<-c("Cuenta Corriente - Ingresos","Fechas")
   cc_egr<-Serie_Inegi(paste0(pre,"214069",last),token)
-  names(cc_egr)<-c("Cuenta Corriente - Egresos","Fechas")
+    names(cc_egr)<-c("Cuenta Corriente - Egresos","Fechas")
   cc_tot<-Serie_Inegi(paste0(pre,"214052",last),token)
-  names(cc_tot)<-c("Cuenta Corriente (Total)","Fechas")
+    names(cc_tot)<-c("Cuenta Corriente (Total)","Fechas")
   
   #Cuenta Financiera
   cf_tot<-Serie_Inegi(paste0(pre,"214088",last),token)
-  names(cf_tot)<-c("Cuenta Financiera (Total)","Fechas")
+    names(cf_tot)<-c("Cuenta Financiera (Total)","Fechas")
   cf_eyo<-Serie_Inegi(paste0(pre,"214113",last),token)
-  names(cf_eyo)<-c("Cuenta Financiera - Errores y Omisiones","Fechas")
+    names(cf_eyo)<-c("Cuenta Financiera - Errores y Omisiones","Fechas")
   cf_res<-Serie_Inegi(paste0(pre,"214114",last),token)
-  names(cf_res)<-c("Cuenta Financiera - Cambio en Reservas","Fechas")
+    names(cf_res)<-c("Cuenta Financiera - Cambio en Reservas","Fechas")
   cf_ajv<-Serie_Inegi(paste0(pre,"214115",last),token)
-  names(cf_ajv)<-c("Cuenta Financiera - Ajustes en Valoración","Fechas")
+    names(cf_ajv)<-c("Cuenta Financiera - Ajustes en Valoración","Fechas")
   
   #union
   df<-Reduce(function(...) merge(...,all=T),list(cc_tot,
@@ -184,4 +184,39 @@ BoP<-function(token)
   return(df)
 }
 
+#' Obtener opiniones empresariales por sector
+#'
+#' Obtiene principales componentes de encuestas de Opinión Empresarial del INEGI dividido en 3 sectores: Comercio, Manufacturas y Construcción.
+#' Es un wrapper de las funciones \code{Serie_Inegi()} y \code{YoY()}. 
+#'
+#' @param token token personal emitido por el INEGI para acceder al API.
+#' @author Eduardo Flores
+#' @return Data.frame 
+#'
+#' @examples
+#' OpinionMexicanos<-Opiniones(token)
+#' @export
+#'
+
+Opiniones<-function(token)
+{ #traer opinión empresarial por subsector
+  #comercio
+  s1<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/437473/00000/en/false/xml/"
+  #manuf
+  s2<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/289075/00000/en/false/xml/"
+  #construccion
+  s3<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/437459/00000/en/false/xml/"
   
+  i1<-Serie_Inegi(s1,token)
+  i2<-Serie_Inegi(s2,token)
+  i3<-Serie_Inegi(s3,token)
+  
+  t1<-cbind.data.frame(Fechas=i1$Fechas,"Comercio (YoY)"=YoY(i1$Valores,lapso=12,decimal=FALSE), "Comercio"= i1$Valores)
+  t2<-cbind.data.frame(Fechas=i2$Fechas,"Manufacturas (YoY)"=YoY(i2$Valores,lapso=12,decimal=FALSE), "Manufacturas"= i2$Valores)
+  t3<-cbind.data.frame(Fechas=i3$Fechas,"Construcción (YoY)"=YoY(i3$Valores,lapso=12,decimal=FALSE), "Construcción"= i3$Valores)
+  
+  df<-Reduce(function(...) merge(...,all=T),list(t1,
+                                                 t2,
+                                                 t3))
+  return(df)  
+}
