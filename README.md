@@ -43,7 +43,7 @@ Para traer la inflación general, existen dos métodos (el más general y el *sh
 
 Primero, el más general, que sirve para todas las series...
 
-Se debe obtener un token del API del INEGI que se otorga mediante un registro gratis de tu correo en esta liga: http://www.inegi.org.mx/desarrolladores/indicadores/apiindicadores.aspx.
+Se debe obtener un token del API del INEGI que se otorga mediante un registro gratis de tu correo en esta liga: http://www.inegi.org.mx/desarrolladores/indicadores/apiindicadores.aspx. *En esa liga también están todos los indicadores y su url correspondiente*
 ```{r}
 token<-"abc123"
 ```
