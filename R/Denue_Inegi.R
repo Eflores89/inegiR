@@ -19,6 +19,10 @@
 #' latitud<-"25.669194"
 #' longitud<-"-100.30990"
 #' Negocios <- Denue_Inegi(latitud,longitud,token,metros = 1000)
+#' @importFrom XML xmlToList
+#' @importFrom zoo as.yearmon
+#' @importFrom zoo as.Date
+#' @importFrom plyr ldply
 #' @export
 
 Denue_Inegi<-function(latitud,longitud,token, metros = 250, keyword = "todos")
