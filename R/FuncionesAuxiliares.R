@@ -71,4 +71,9 @@ df<-Reduce(function(...) merge(...,all=T),lista)
 return(df)
 }
 
+# imports de paquetes
+#' @importFrom XML xmlToList
+#' @importFrom zoo as.yearmon
+#' @importFrom zoo as.Date
+#' @importFrom plyr ldply
 

@@ -18,8 +18,3 @@ export(Tasa_PIB)
 export(Tasa_SectoresYoY)
 export(UnirFechas)
 export(YoY)
-
-@importFrom XML xmlToList
-@importFrom zoo as.yearmon
-@importFrom zoo as.Date
-@importFrom plyr ldply
