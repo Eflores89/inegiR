@@ -126,3 +126,6 @@ head(NegociosMacro)[,1:2]
 # 2974215      SOTANO RECURSOS HUMANOS Y ADQUISICIONES
 ```
 La función acepta cambios en el tamaño de la redonda mediante el argumento `metros = 250` y en el tipo de establecimiento, haciendo un match en la descripción del negocio, cambiando el argumento `keyword = todos`.
+
+#Desarrollo a Futuro
+Bienvenidas las sugerencias, issues o reporte de bugs, así como extensiones en funcionalidad en: eduardo@enelmargen.org.
