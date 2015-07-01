@@ -13,6 +13,10 @@
 #'
 #' @author Eduardo Flores 
 #' 
+#' @importFrom XML xmlToList
+#' @importFrom zoo as.yearmon
+#' @importFrom zoo as.Date
+#' @importFrom plyr ldply
 #' @examples
 #' #Serie de INPC General 
 #' token<-"tokenProporcionadoporWebservice"
