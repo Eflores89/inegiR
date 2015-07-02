@@ -21,10 +21,10 @@
 #' #Serie de INPC General 
 #' token<-"tokenProporcionadoporWebservice"
 #' url <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216064/00000/es/false/xml/"
-#' Serie <- Serie_Inegi(url,token)
+#' Serie <- serie_inegi(url,token)
 #' @export
 
-Serie_Inegi<-function(serie,token,metadata=FALSE,coercionar=TRUE)
+serie_inegi<-function(serie,token,metadata=FALSE,coercionar=TRUE)
 {
   serie<-paste0(serie,token)
   
