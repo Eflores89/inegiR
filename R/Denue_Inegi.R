@@ -20,6 +20,7 @@
 #' longitud<-"-100.30990"
 #' Negocios <- denue_inegi(latitud,longitud,token,metros = 1000)
 #' @importFrom XML xmlToList
+#' @importFrom XML xmlParse
 #' @importFrom zoo as.yearmon
 #' @importFrom zoo as.Date
 #' @importFrom plyr ldply

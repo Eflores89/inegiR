@@ -9,11 +9,11 @@
 #' @return Data.frame
 #' 
 #' @examples
-#' ComercioExterior<-balanza_comercial(token)
+#' ComercioExterior<-series_balanza_comercial(token)
 #' @export
 #' 
 #' 
-balanza_comercial<-function(token)
+series_balanza_comercial<-function(token)
 { #balanza comercial as-is (no YoY)
   x<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/33223/00000/en/false/xml/"
   m<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/33226/00000/en/false/xml//"
@@ -41,11 +41,11 @@ balanza_comercial<-function(token)
 #' @return Data.frame
 #'
 #' @examples
-#' ExportacionesMx<-exportaciones_pais(token)
+#' ExportacionesMx<-series_exportaciones_pais(token)
 #' @note Encoding no permite acéntos en título de descripción
 #' @export
 #' 
-exportaciones_pais<-function(token)
+series_exportaciones_pais<-function(token)
 { #exports por pais
   usa<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/133172/00000/en/false/xml/"
   can<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/133171/00000/en/false/xml/"
@@ -78,12 +78,12 @@ exportaciones_pais<-function(token)
 #' @return Data.frame
 #'
 #' @examples
-#' ProduccionAutos<-produccion_autos(token)
+#' ProduccionAutos<-series_produccion_autos(token)
 #' @note Encoding no permite acentos en título de descripción
 #' @export
 #'
 
-produccion_autos<-function(token)
+series_produccion_autos<-function(token)
 { #Retornar la producción automotriz
   s<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/15166/00000/en/false/xml/"
   
@@ -105,11 +105,11 @@ produccion_autos<-function(token)
 #' @return Data.frame
 #'
 #' @examples
-#' BalanzadePagosMexico<-balanza_pagos(token)
+#' BalanzadePagosMexico<-series_balanza_pagos(token)
 #' @export
 #'
 
-balanza_pagos<-function(token)
+series_balanza_pagos<-function(token)
 { #Retornar la Balanza de Pagos de México
   
   #with_all
@@ -155,11 +155,11 @@ balanza_pagos<-function(token)
 #' @return Data.frame 
 #'
 #' @examples
-#' OpinionMexicanos<-opiniones(token)
+#' OpinionMexicanos<-series_opiniones(token)
 #' @export
 #'
 
-opiniones<-function(token)
+series_opiniones<-function(token)
 { #traer opinión empresarial por subsector
   #comercio
   s1<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/437473/00000/en/false/xml/"

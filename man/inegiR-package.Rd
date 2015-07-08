@@ -15,7 +15,7 @@ Type: \tab Package\cr
 Version: \tab 1.0\cr
 Date: \tab 2015-06-19\cr
 }
-Para obtener una serie, la función más primitiva es Serie_Inegi()
+Para obtener una serie, la función más primitiva es serie_inegi()
 }
 \author{
 Eduardo Flores
