@@ -53,7 +53,7 @@ denue_varios_stats<-function(data,col_lat, col_long, token, metros = 250, keywor
   { tryCatch({
    
     #crear matriz por negocio
-    m<-denue_inegi(latitud  = data[,col_lat][i],
+    m<-inegiR::denue_inegi(latitud  = data[,col_lat][i],
                    longitud = data[,col_long][i],
                    token    = token,
                    metros   = metros,
