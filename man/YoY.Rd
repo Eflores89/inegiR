@@ -24,7 +24,7 @@ La serie debe estar en orden asciendiente (Posición inicial es la más antigua)
 }
 \examples{
 #Calcular la inflación (Ver Inflacion_Inegi() para un método más directo)
-INPC<-Serie_Inegi(INPC,token)
+INPC<-serie_inegi(INPC,token)
 Inflacion<-YoY(INPC$Valores,12)
 }
 \author{
