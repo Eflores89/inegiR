@@ -17,12 +17,12 @@
 #' @examples
 #' #indicadores de 2 lugares
 #' token<-"tokenProporcionadoporWebservice"
-#' df<-as.data.frame(latitud=c(25.669194,25.121194),
-#'                   longitud=c(-100.30990,-99.81923))
-#' stats<-denue_varios_stats(data = df,
-#'                           col_lat = 1,
+#' df<-as.data.frame(latitud  = c(25.669194,25.121194),
+#'                   longitud = c(-100.30990,-99.81923))
+#' stats<-denue_varios_stats(data     = df,
+#'                           col_lat  = 1,
 #'                           col_long = 2,
-#'                           metros = 500)
+#'                           metros   = 500)
 #' @export
 
 denue_varios_stats<-function(data,col_lat, col_long, token, metros = 250, keyword = "todos")
@@ -36,15 +36,15 @@ denue_varios_stats<-function(data,col_lat, col_long, token, metros = 250, keywor
   # poblar data frame inicial
   d<-data.frame(
     NEGOCIOS = 1:n,
-    CALLES = 1:n,
-    ACTIVIDADES = 1:n,
+    CALLES   = 1:n,
+    ACTIVIDADES    = 1:n,
     NEGOCIOS_FIJOS = 1:n,
     NEGOCIOS_RAZON = 1:n,
-    NEGOCIOS_TEL = 1:n,
+    NEGOCIOS_TEL   = 1:n,
     NEGOCIOS_WEBSITE = 1:n,
     NEGOCIOS_SOBRE_AVENIDA = 1:n,
     EMPLEADOS_EST = 1:n,
-    EMPLEADOS_SD = 1:n,
+    EMPLEADOS_SD  = 1:n,
     ACTIVIDAD_PRINCIPAL = 1:n
   )
  
@@ -55,9 +55,9 @@ denue_varios_stats<-function(data,col_lat, col_long, token, metros = 250, keywor
     #crear matriz por negocio
     m<-denue_inegi(latitud  = data[,col_lat][i],
                    longitud = data[,col_long][i],
-                   token = token,
-                   metros = metros,
-                   keyword = keyword
+                   token    = token,
+                   metros   = metros,
+                   keyword  = keyword
     )
    
     #agregar numero empleados
@@ -102,21 +102,19 @@ denue_varios_stats<-function(data,col_lat, col_long, token, metros = 250, keywor
     }
   #fin trycatch
   )
- 
   }
- 
+  
   #calculos sobres data frame
   d$NEGOCIOSXCALLE <- d$NEGOCIOS/d$CALLES
   d$NEGOCIOSXMETRO <- d$NEGOCIOS/metros
- 
+
   d$EMPLEADOSXNEGOCIO <- d$EMPLEADOS_EST/d$NEGOCIOS
-  d$EMPLEADOSXMETRO <- d$EMPLEADOS_EST/metros
+  d$EMPLEADOSXMETRO   <- d$EMPLEADOS_EST/metros
  
   #OJO - revisar las divisiones por errores.
-  d$PORCENTAJE_NEGOCIOS_FIJOS <-d$NEGOCIOS_FIJOS/d$NEGOCIOS
-  d$PORCENTAJE_NEGOCIOS_AVENIDA<-d$NEGOCIOS_SOBRE_AVENIDA/d$NEGOCIOS
-  d$PORCENTAJE_NEGOCIOS_WEBSITE<-d$NEGOCIOS_WEBSITE/d$NEGOCIOS
- 
+  d$PORCENTAJE_NEGOCIOS_FIJOS   <- d$NEGOCIOS_FIJOS/d$NEGOCIOS
+  d$PORCENTAJE_NEGOCIOS_AVENIDA <- d$NEGOCIOS_SOBRE_AVENIDA/d$NEGOCIOS
+  d$PORCENTAJE_NEGOCIOS_WEBSITE <- d$NEGOCIOS_WEBSITE/d$NEGOCIOS
   
   #exportar
   return(d)
