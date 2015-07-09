@@ -28,48 +28,95 @@
 denue_varios_stats<-function(data,col_lat, col_long, token, metros = 250, keyword = "todos")
 { #cuantas coordenadas a revisar
   n<-length(data[,col_lat])
-  
+ 
   #antes de correr, revisar datos de columnas
   if(class(data[,col_lat][1])=="numeric"){} else {stop(print("Columna de Latitud no es númerica"))}
   if(class(data[,col_long][1])=="numeric"){} else {stop(print("Columna de Longitud no es númerica"))}
-  
+ 
   # poblar data frame inicial
   d<-data.frame(
     NEGOCIOS = 1:n,
     CALLES = 1:n,
     ACTIVIDADES = 1:n,
-    SOBRE_AVENIDA = 1:n,
     NEGOCIOS_FIJOS = 1:n,
-    NEGOCIOS_WEBSITE = 1:n
+    NEGOCIOS_RAZON = 1:n,
+    NEGOCIOS_TEL = 1:n,
+    NEGOCIOS_WEBSITE = 1:n,
+    NEGOCIOS_SOBRE_AVENIDA = 1:n,
+    EMPLEADOS_EST = 1:n,
+    EMPLEADOS_SD = 1:n,
+    ACTIVIDAD_PRINCIPAL = 1:n
   )
-  
+ 
   #loop
   for (i in 1:n)
-  { #crear matriz por negocio
+  { tryCatch({
+   
+    #crear matriz por negocio
     m<-denue_inegi(latitud  = data[,col_lat][i],
                    longitud = data[,col_long][i],
                    token = token,
                    metros = metros,
                    keyword = keyword
     )
+   
+    #agregar numero empleados
+    for (j in 1:length(m[,1]))
+                        {
+      m$Empleados[j]<-if(grepl(x = m["Estrato"][j,],pattern = "^11")){as.numeric(20)} else {
+                      if(grepl(x = m["Estrato"][j,],pattern = "^0")){as.numeric(3)} else {
+                      if(grepl(x = m["Estrato"][j,],pattern = "^6")){as.numeric(8)} else {
+                      if(grepl(x = m["Estrato"][j,],pattern = "^31")){as.numeric(40)} else {
+                      if(grepl(x = m["Estrato"][j,],pattern = "^101")){as.numeric(220)} else {
+                      if(grepl(x = m["Estrato"][j,],pattern = "^51")){as.numeric(75)}  else {
+                        #mas de 250
+                        as.numeric(300)
+                      } } } } } } }
+   
     #cantidad de negocios
-    d[i,]$NEGOCIOS<-length(m[,1])
+    d[i,]$NEGOCIOS<-if(is.null(length(m[,1]))){0} else {length(m[,1])}
     #cantidad de calles diferentes
-    d[i,]$CALLES<-length(unique(m[,"Calle"]))
+    d[i,]$CALLES<-if(is.null(length(unique(m[,"Calle"])))){0} else {length(unique(m[,"Calle"]))}
     #cantidad de actividades diferentes
-    d[i,]$ACTIVIDADES<-length(unique(m[,"Actividad"]))
+    d[i,]$ACTIVIDADES<-if(is.null(length(unique(m[,"Actividad"])))){0} else {length(unique(m[,"Actividad"]))}
+    #negocios con telefono
+    d[i,]$NEGOCIOS_TEL<-if(is.null(length(m[!grepl(pat= "^$",m["Tel"][,1]),][,1]))){0} else {length(m[!grepl(pat= "^$",m["Tel"][,1]),][,1])}
     #negocios con sitios de internet - no WWW, parse:""
-    d[i,]$NEGOCIOS_WEBSITE<-length(m[!grepl(pat= "^$",m["SitioWeb"][,1]),][,1])
+    d[i,]$NEGOCIOS_WEBSITE<-if(is.null(length(m[!grepl(pat= "^$",m["SitioWeb"][,1]),][,1]))) {0} else {length(m[!grepl(pat= "^$",m["SitioWeb"][,1]),][,1])}
+    #negocios con razón social (la que sea)
+    d[i,]$NEGOCIOS_RAZON<-if(is.null(length(m[!grepl(pat= "^$",m["Razon"][,1]),][,1]))){0} else {length(m[!grepl(pat= "^$",m["Razon"][,1]),][,1])}
     #negocios ubicados en avenida
-    d[i,]$SOBRE_AVENIDA<-if(is.null(length(subset(m,m$Vialidad == "AVENIDA")[,1]))){0} else {length(subset(m,m$Vialidad == "AVENIDA")[,1])}
+    d[i,]$NEGOCIOS_SOBRE_AVENIDA<-if(is.null(length(subset(m,m$Vialidad == "AVENIDA")[,1]))){0} else {length(subset(m,m$Vialidad == "AVENIDA")[,1])}
     #negocios fijos
     d[i,]$NEGOCIOS_FIJOS<-if(is.null(length(subset(m,m$Tipo == "Fijo")[,1]))){0} else {length(subset(m,m$Tipo == "Fijo")[,1])}
+    #estimacion de empleados en base a columna de estrato
+    d[i,]$EMPLEADOS_EST<-if(is.null(sum(as.numeric((m[,"Empleados"]))))){0} else {sum(as.numeric((m[,"Empleados"])))}
+    #desviacion standar de empleados en comercios
+    d[i,]$EMPLEADOS_SD<-if(is.null(sd(x = as.numeric((m[,"Empleados"]))))) {0} else {sd(x = as.numeric((m[,"Empleados"])))}
+    #actividad principal más importante - usa otra función de este paquete.
+    d[i,]$ACTIVIDAD_PRINCIPAL<-if(is.null(inegiR::ordenar_porconteo(m,Actividad)[1,1])){"Ninguna"} else {inegiR::ordenar_porconteo(m,Actividad)[1,1]}
+    
+    #termina instancia de tryCatch
+  }, error = function(e){
+    #continuar en caso de error en una de las coordenadas
+    }
+  #fin trycatch
+  )
+ 
   }
-  
+ 
   #calculos sobres data frame
   d$NEGOCIOSXCALLE <- d$NEGOCIOS/d$CALLES
+  d$NEGOCIOSXMETRO <- d$NEGOCIOS/metros
+ 
+  d$EMPLEADOSXNEGOCIO <- d$EMPLEADOS_EST/d$NEGOCIOS
+  d$EMPLEADOSXMETRO <- d$EMPLEADOS_EST/metros
+ 
   #OJO - revisar las divisiones por errores.
   d$PORCENTAJE_NEGOCIOS_FIJOS <-d$NEGOCIOS_FIJOS/d$NEGOCIOS
+  d$PORCENTAJE_NEGOCIOS_AVENIDA<-d$NEGOCIOS_SOBRE_AVENIDA/d$NEGOCIOS
+  d$PORCENTAJE_NEGOCIOS_WEBSITE<-d$NEGOCIOS_WEBSITE/d$NEGOCIOS
+ 
   
   #exportar
   return(d)
