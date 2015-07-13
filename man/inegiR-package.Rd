@@ -28,5 +28,5 @@ http://www.inegi.org.mx/desarrolladores/indicadores/apiindicadores.aspx
 \keyword{ package }
 \examples{
 #traer el PIB real y guardar en un data frame
-PIB<-Serie_Inegi(PIB_real)
+PIB<-serie_inegi(PIB_real,token)
 }

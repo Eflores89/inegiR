@@ -66,3 +66,44 @@ ordenar_porconteo<-function(df,col)
   # export
   return(ordenado)
 }
+
+#' Traer n datos mas recientes
+#'
+#' Wrapper para ordenar de mayor a menor serie y traer solamente últimos 13 periodos. Prefente para series mensuales.
+#' 
+#' 
+#' @param serie serie en data.frame
+#' @param col Columna con fechas
+#' @param n cantidad de periodos a traer
+#'
+#' @author Eduardo Flores 
+#' @return Data.frame
+#' @seealso denue_varios_stats 
+#' @examples
+#' #Ver solamente ultimos 13 meses
+#' Ultimos<-ultimos(Inflacion)
+#' 
+#' @export
+#' 
+
+ultimos<-function(serie, col = "Fechas", n = 12)
+{ #para poner solamente el nombre de columna
+  if(col=="Fechas")
+  {columna<-"Fechas"} else {
+  columna<-as.character(eval(substitute(col),serie, parent.frame()))
+  }
+  
+  if(class(serie[,columna])=="Date"){} else {stop(print("Columna no es fecha"))}
+  
+  #ordenar tiempos
+  orden<-order(serie[,columna])
+  ordenado<-serie[orden,]
+
+  # ultimas 13
+  n_1<-length(ordenado[,1])
+  n_2<-n_1-n
+    if(n_2<1){stop(print("Serie es más corta que 13 observaciones"))} else {}
+  set<-ordenado[n_2:n_1,]
+  # export
+  return(set)
+}

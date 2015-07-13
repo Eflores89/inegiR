@@ -17,8 +17,8 @@
 tasa_PIB<-function (token){
   #Serie de PIB;
   s<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/381016/00000/es/false/xml/"
-  i<-serie_inegi(s,token)
-  t<-YoY(serie = i$Valores,lapso = 4,decimal = FALSE)
+  i<-inegiR::serie_inegi(s,token)
+  t<-inegiR::YoY(serie = i$Valores,lapso = 4,decimal = FALSE)
   d<-cbind.data.frame(Fechas=i$Fechas,Valores=t)
   return(d)
 }
@@ -41,7 +41,7 @@ tasa_PIB<-function (token){
 tasa_desempleo<-function(token)
 { #Retornar el desempleo
   s<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/444612/00000/en/false/xml/"
-  d<-serie_inegi(s,token)
+  d<-inegiR::serie_inegi(s,token)
   
   return(d)
 }
@@ -63,7 +63,7 @@ tasa_desempleo<-function(token)
 tasa_comercio<-function(token)
 { #traer tasa de actividad terciaria - comercio.
   s<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/383160/00000/en/false/xml/"
-  d<-serie_inegi(s,token)
+  d<-inegiR::serie_inegi(s,token)
     d<-cbind.data.frame(Fechas=d$Fechas,Valores=d$Valores,"YoY"=YoY(serie = d$Valores,lapso = 12, decimal=FALSE))
 return(d)
 }
@@ -90,14 +90,14 @@ tasa_IGAE<-function(token)
   #serie desest.
   s2<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/405698/00000/en/false/xml/"
   
-  i1<-serie_inegi(s1,token)
-  i2<-serie_inegi(s2,token)
+  i1<-inegiR::serie_inegi(s1,token)
+  i2<-inegiR::serie_inegi(s2,token)
   
-  t1<-YoY(serie = i1$Valores, lapso = 12, decimal=FALSE)
+  t1<-inegiR::YoY(serie = i1$Valores, lapso = 12, decimal=FALSE)
     t1<-cbind.data.frame(Fechas=i1$Fechas, "Serie Original (YoY)"=t1)
-  t2<-YoY(serie = i2$Valores, lapso = 12, decimal=FALSE)
+  t2<-inegiR::YoY(serie = i2$Valores, lapso = 12, decimal=FALSE)
     t2<-cbind.data.frame(Fechas=i1$Fechas, "Serie Desest. (YoY)"=t2)
-  t3<-YoY(serie = i2$Valores, lapso = 1, decimal=FALSE)
+  t3<-inegiR::YoY(serie = i2$Valores, lapso = 1, decimal=FALSE)
     t3<-cbind.data.frame(Fechas=i1$Fechas, "Serie Desest. (MoM)"=t3)
   
   #union
@@ -130,15 +130,15 @@ tasa_sectoresYoY<-function(token)
   #terciarios
   s3<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/383159/00000/en/false/xml/"
   
-  i1<-serie_inegi(s1,token)
-  i2<-serie_inegi(s2,token)
-  i3<-serie_inegi(s3,token)
+  i1<-inegiR::serie_inegi(s1,token)
+  i2<-inegiR::serie_inegi(s2,token)
+  i3<-inegiR::serie_inegi(s3,token)
   
-  t1<-YoY(serie = i1$Valores, lapso = 12, decimal=FALSE)
+  t1<-inegiR::YoY(serie = i1$Valores, lapso = 12, decimal=FALSE)
     t1<-cbind.data.frame(Fechas=i1$Fechas, "Primarios (YoY)"=t1)
-  t2<-YoY(serie = i2$Valores, lapso = 12, decimal=FALSE)
+  t2<-inegiR::YoY(serie = i2$Valores, lapso = 12, decimal=FALSE)
     t2<-cbind.data.frame(Fechas=i1$Fechas, "Secundarios (YoY)"=t2)
-  t3<-YoY(serie = i3$Valores, lapso = 12, decimal=FALSE)
+  t3<-inegiR::YoY(serie = i3$Valores, lapso = 12, decimal=FALSE)
     t3<-cbind.data.frame(Fechas=i1$Fechas, "Terciarios (YoY)"=t3)
   
   #union
@@ -171,14 +171,14 @@ tasa_confianza<-function(token)
   #serie desest.
   s2<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/132944/00000/en/false/xml/"
   
-  i1<-serie_inegi(s1,token)
-  i2<-serie_inegi(s2,token)
+  i1<-inegiR::serie_inegi(s1,token)
+  i2<-inegiR::serie_inegi(s2,token)
   
-  t1<-YoY(serie = i1$Valores, lapso = 12, decimal=FALSE)
+  t1<-inegiR::YoY(serie = i1$Valores, lapso = 12, decimal=FALSE)
   t1<-cbind.data.frame(Fechas=i1$Fechas, "Serie Original (YoY)"=t1)
-  t2<-YoY(serie = i2$Valores, lapso = 12, decimal=FALSE)
+  t2<-inegiR::YoY(serie = i2$Valores, lapso = 12, decimal=FALSE)
   t2<-cbind.data.frame(Fechas=i1$Fechas, "Serie Desest. (YoY)"=t2)
-  t3<-YoY(serie = i2$Valores, lapso = 1, decimal=FALSE)
+  t3<-inegiR::YoY(serie = i2$Valores, lapso = 1, decimal=FALSE)
   t3<-cbind.data.frame(Fechas=i1$Fechas, "Serie Desest. (MoM)"=t3)
   
   #union

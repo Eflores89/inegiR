@@ -18,9 +18,9 @@ series_balanza_comercial<-function(token)
   x<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/33223/00000/en/false/xml/"
   m<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/33226/00000/en/false/xml//"
   
-  x_val<-serie_inegi(x,token)
+  x_val<-inegiR::serie_inegi(x,token)
     names(x_val)<-c("Exportaciones","Fechas")
-  m_val<-serie_inegi(m,token)
+  m_val<-inegiR::serie_inegi(m,token)
     names(m_val)<-c("Importaciones","Fechas")
   
   df<-Reduce(function(...) merge(...,all=T),list(m_val,x_val))
@@ -53,15 +53,15 @@ series_exportaciones_pais<-function(token)
   cam<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/133173/00000/en/false/xml/"
   sur<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/133183/00000/en/false/xml/"
     
-  usa_v<-serie_inegi(usa,token)
+  usa_v<-inegiR::serie_inegi(usa,token)
     names(usa_v)<-c("Estados Unidos","Fechas")
-  can_v<-serie_inegi(can,token)
+  can_v<-inegiR::serie_inegi(can,token)
     names(can_v)<-c("Canadá","Fechas")
-  chn_v<-serie_inegi(chn,token)
+  chn_v<-inegiR::serie_inegi(chn,token)
     names(chn_v)<-c("China","Fechas")
-  cam_v<-serie_inegi(cam,token)
+  cam_v<-inegiR::serie_inegi(cam,token)
     names(cam_v)<-c("Centro América","Fechas") 
-  sur_v<-serie_inegi(sur,token)
+  sur_v<-inegiR::serie_inegi(sur,token)
     names(sur_v)<-c("América del Sur","Fechas") 
   
   df<-Reduce(function(...) merge(...,all=T),list(usa_v,can_v,chn_v,cam_v,sur_v))
@@ -87,8 +87,8 @@ series_produccion_autos<-function(token)
 { #Retornar la producción automotriz
   s<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/15166/00000/en/false/xml/"
   
-  i<-serie_inegi(s,token)
-  t<-YoY(serie=i$Valores, lapso=12, decimal=FALSE)
+  i<-inegiR::serie_inegi(s,token)
+  t<-inegiR::YoY(serie=i$Valores, lapso=12, decimal=FALSE)
   d<-cbind.data.frame(Fechas=i$Fechas,"Autos"=i$Valores,"YoY"=t)
   
   return(d)
@@ -117,21 +117,21 @@ series_balanza_pagos<-function(token)
   last<-"/00000/en/false/xml/"
   
   #Cuenta Corriente
-  cc_ing<-serie_inegi(paste0(pre,"214053",last),token)
+  cc_ing<-inegiR::serie_inegi(paste0(pre,"214053",last),token)
     names(cc_ing)<-c("Cuenta Corriente - Ingresos","Fechas")
-  cc_egr<-serie_inegi(paste0(pre,"214069",last),token)
+  cc_egr<-inegiR::serie_inegi(paste0(pre,"214069",last),token)
     names(cc_egr)<-c("Cuenta Corriente - Egresos","Fechas")
-  cc_tot<-serie_inegi(paste0(pre,"214052",last),token)
+  cc_tot<-inegiR::serie_inegi(paste0(pre,"214052",last),token)
     names(cc_tot)<-c("Cuenta Corriente (Total)","Fechas")
   
   #Cuenta Financiera
-  cf_tot<-serie_inegi(paste0(pre,"214088",last),token)
+  cf_tot<-inegiR::serie_inegi(paste0(pre,"214088",last),token)
     names(cf_tot)<-c("Cuenta Financiera (Total)","Fechas")
-  cf_eyo<-serie_inegi(paste0(pre,"214113",last),token)
+  cf_eyo<-inegiR::serie_inegi(paste0(pre,"214113",last),token)
     names(cf_eyo)<-c("Cuenta Financiera - Errores y Omisiones","Fechas")
-  cf_res<-serie_inegi(paste0(pre,"214114",last),token)
+  cf_res<-inegiR::serie_inegi(paste0(pre,"214114",last),token)
     names(cf_res)<-c("Cuenta Financiera - Cambio en Reservas","Fechas")
-  cf_ajv<-serie_inegi(paste0(pre,"214115",last),token)
+  cf_ajv<-inegiR::serie_inegi(paste0(pre,"214115",last),token)
     names(cf_ajv)<-c("Cuenta Financiera - Ajustes en Valoración","Fechas")
   
   #union
@@ -168,16 +168,64 @@ series_opiniones<-function(token)
   #construccion
   s3<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/437459/00000/en/false/xml/"
   
-  i1<-serie_inegi(s1,token)
-  i2<-serie_inegi(s2,token)
-  i3<-serie_inegi(s3,token)
+  i1<-inegiR::serie_inegi(s1,token)
+  i2<-inegiR::serie_inegi(s2,token)
+  i3<-inegiR::serie_inegi(s3,token)
   
-  t1<-cbind.data.frame(Fechas=i1$Fechas,"Comercio (YoY)"=YoY(i1$Valores,lapso=12,decimal=FALSE), "Comercio"= i1$Valores)
-  t2<-cbind.data.frame(Fechas=i2$Fechas,"Manufacturas (YoY)"=YoY(i2$Valores,lapso=12,decimal=FALSE), "Manufacturas"= i2$Valores)
-  t3<-cbind.data.frame(Fechas=i3$Fechas,"Construcción (YoY)"=YoY(i3$Valores,lapso=12,decimal=FALSE), "Construcción"= i3$Valores)
+  t1<-cbind.data.frame(Fechas=i1$Fechas,"Comercio (YoY)"=inegiR::YoY(i1$Valores,lapso=12,decimal=FALSE), "Comercio"= i1$Valores)
+  t2<-cbind.data.frame(Fechas=i2$Fechas,"Manufacturas (YoY)"=inegiR::YoY(i2$Valores,lapso=12,decimal=FALSE), "Manufacturas"= i2$Valores)
+  t3<-cbind.data.frame(Fechas=i3$Fechas,"Construcción (YoY)"=inegiR::YoY(i3$Valores,lapso=12,decimal=FALSE), "Construcción"= i3$Valores)
   
   df<-Reduce(function(...) merge(...,all=T),list(t1,
                                                  t2,
                                                  t3))
+  return(df)  
+}
+
+#' Obtener crecimientos de actividad industrial
+#'
+#' Obtiene principales tasas de crecimiento YoY de componentes de Actividad Industrial (series originales): Construcción, Manufacturas, Minería y Generación de Luz y Agua.
+#' Aun y cuando son las mismas series reportadas en el IGAE unas semanas después, estas pueden sufrir ajustes (ver documentación del INEGI así como número de indicador mediante metadata = TRUE).
+#' Es un wrapper de las funciones \code{serie_inegi()} y \code{YoY()}.  
+#'
+#' @param token token personal emitido por el INEGI para acceder al API.
+#' @author Eduardo Flores
+#' @return Data.frame 
+#'
+#' @examples
+#' ActividadIndustrial<-series_actividad_industrial(token)
+#' @export
+#'
+
+series_actividad_industrial<-function(token)
+{ #traer actividad empresarial por subsector
+  #act industrial 
+  s1<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/402752/00000/en/false/xml/"
+  #construccion
+  s2<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/402760/00000/en/false/xml/"
+  #manuf
+  s3<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/402764/00000/en/false/xml/"
+  #mineria
+  s4<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/402753/00000/en/false/xml/"
+  #generacion 
+  s5<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/402757/00000/en/false/xml/"
+  
+  i1<-inegiR::serie_inegi(s1,token)
+  i2<-inegiR::serie_inegi(s2,token)
+  i3<-inegiR::serie_inegi(s3,token)
+  i4<-inegiR::serie_inegi(s4,token)
+  i5<-inegiR::serie_inegi(s5,token)
+  
+  t1<-cbind.data.frame(Fechas=i1$Fechas,"Actividad Industria (YoY)"=inegiR::YoY(i1$Valores,lapso=12,decimal=FALSE))
+  t2<-cbind.data.frame(Fechas=i2$Fechas,"Construcción (YoY)"=inegiR::YoY(i2$Valores,lapso=12,decimal=FALSE))
+  t3<-cbind.data.frame(Fechas=i3$Fechas,"Manufacturas (YoY)"=inegiR::YoY(i3$Valores,lapso=12,decimal=FALSE))
+  t4<-cbind.data.frame(Fechas=i3$Fechas,"Minería (YoY)"=inegiR::YoY(i4$Valores,lapso=12,decimal=FALSE))
+  t5<-cbind.data.frame(Fechas=i3$Fechas,"Generación Luz y Agua (YoY)"=inegiR::YoY(i5$Valores,lapso=12,decimal=FALSE))
+  
+  df<-Reduce(function(...) merge(...,all=T),list(t1,
+                                                 t2,
+                                                 t3,
+                                                 t4,
+                                                 t5))
   return(df)  
 }

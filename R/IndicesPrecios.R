@@ -17,8 +17,8 @@
 inflacion_general<-function (token){
   #Serie de INPC general;
   s<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216064/00000/es/false/xml/"
-  i<-serie_inegi(s,token)
-  t<-YoY(serie = i$Valores,lapso = 12,decimal = FALSE)
+  i<-inegiR::serie_inegi(s,token)
+  t<-inegiR::YoY(serie = i$Valores,lapso = 12,decimal = FALSE)
   d<-cbind.data.frame(Fechas=i$Fechas,Valores=t)
   return(d)
 }
@@ -41,27 +41,27 @@ inflacion_general<-function (token){
 
 inflacion_estudiantes<-function (token){
   #Series de INPC;
-  s1<-serie_inegi("http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216065/00000/es/false/xml/",token)
+  s1<-inegiR::serie_inegi("http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216065/00000/es/false/xml/",token)
   names(s1)<-c("s1","Fechas")
-  s2<-serie_inegi("http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216066/00000/es/false/xml/",token)
+  s2<-inegiR::serie_inegi("http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216066/00000/es/false/xml/",token)
   names(s2)<-c("s2","Fechas")
-  s3<-serie_inegi("http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216067/00000/es/false/xml/",token)
+  s3<-inegiR::serie_inegi("http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216067/00000/es/false/xml/",token)
   names(s3)<-c("s3","Fechas")
-  s4<-serie_inegi("http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216068/00000/es/false/xml/",token)
+  s4<-inegiR::serie_inegi("http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216068/00000/es/false/xml/",token)
   names(s4)<-c("s4","Fechas")
-  s5<-serie_inegi("http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216069/00000/es/false/xml/",token)
+  s5<-inegiR::serie_inegi("http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216069/00000/es/false/xml/",token)
   names(s5)<-c("s5","Fechas")
-  s6<-serie_inegi("http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216070/00000/es/false/xml/",token)
+  s6<-inegiR::serie_inegi("http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216070/00000/es/false/xml/",token)
   names(s6)<-c("s6","Fechas")
-  s7<-serie_inegi("http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216071/00000/es/false/xml/",token)
+  s7<-inegiR::serie_inegi("http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216071/00000/es/false/xml/",token)
   names(s7)<-c("s7","Fechas")
-  s8<-serie_inegi("http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216072/00000/es/false/xml/",token)
+  s8<-inegiR::serie_inegi("http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216072/00000/es/false/xml/",token)
   names(s8)<-c("s8","Fechas")
   
   df<-Reduce(function(...) merge(...,all=T),list(s1,s2,s3,s4,s5,s6,s7,s8))
   df$ipe<-(df$s1*0.331417)+(df$s2*0.032764)+(df$s3*0.077735)+(df$s4*0.00378)+(df$s5*0.028353177)+(df$s6*0.199190)+(df$s7*0.0606992)+(df$s8*0.266067)
   
-  st<-YoY(serie = df$ipe,lapso = 12,decimal = FALSE)
+  st<-inegiR::YoY(serie = df$ipe,lapso = 12,decimal = FALSE)
   d<-cbind.data.frame(Fechas=df$Fechas,Valores=st)
   return(d)
 }
@@ -86,9 +86,9 @@ inflacion_tot<-function(token)
   x<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/37502/00000/es/false/xml/"
   m<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/37503/00000/es/false/xml/"
   
-  x_val<-serie_inegi(x,token)
+  x_val<-inegiR::serie_inegi(x,token)
   names(x_val)<-c("x","Fechas")
-  m_val<-serie_inegi(m,token)
+  m_val<-inegiR::serie_inegi(m,token)
   names(m_val)<-c("m","Fechas")
   
   df<-Reduce(function(...) merge(...,all=T),list(m_val,x_val))
