@@ -107,3 +107,39 @@ ultimos<-function(serie, col = "Fechas", n = 12)
   # export
   return(set)
 }
+
+#' Crece una serie por tasas 
+#'
+#' Al especificar un dato inicial, "crece" una serie de datos usando un vector de tasas de crecimiento. La tasa se hace de periodo en periodo. 
+#'
+#' @param tasas vector con tasas de crecimiento
+#' @param comienzo número inicial
+#'
+#' @author Eduardo Flores 
+#' @return Vector numerico
+#' @seealso series_crecimiento_regiones
+#' @examples
+#' #MWE
+#' tasas_crecimiento<-c(1.10,1.20,1.05,1.02,1.10)
+#' 
+#' Crecer por esas tasas (en cada periodo) el número 100:
+#' Resultados<-crecer(tasas = tasas_crecimiento, comienzo = 100)
+#' 
+#' @export
+#' 
+
+crecer<-function(tasas, comienzo)
+{
+  m<-tasas
+  r<-0:length(m)
+  n<-comienzo
+  
+  for (i in 1:length(m))
+  { 
+    r[i]<-m[i]*n
+    n<-r[i]
+  }
+  
+  salida<-r[1:length(m)]
+  return(salida)
+}
