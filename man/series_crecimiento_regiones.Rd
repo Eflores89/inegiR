@@ -14,7 +14,7 @@ Data.frame
 }
 \description{
 Obtiene índice de PIB por zona geográfica.
-Este es un wrapper de \code{serie_inegi()}, con una metodología propia de En El Margen, se puede consultar la misma aquí: \url{www.enelmargen.org}.
+Este es un wrapper de \code{serie_inegi()}, con una metodología propia de En El Margen, se puede consultar la misma aquí: \url{http://www.enelmargen.org/2015/07/euromex.html}.
 El crecimiento del mismo es una estimación de la dinámica de crecimiento regional nacional, inspirado en \url{http://www.banxico.org.mx/publicaciones-y-discursos/publicaciones/informes-periodicos/reportes-sobre-las-economias-regionales/{1C8EFC32-C12C-8393-6C29-5AF0A7F45686}.pdf}.
 Los agrupamientos regionales provienen del INEGI \url{http://www.inegi.org.mx/est/contenidos/proyectos/cn/itaee/default.aspx}
 }
