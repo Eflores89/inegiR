@@ -732,3 +732,24 @@ series_ITAE_estados<-function(token)
                                                  i31,i32))
   return(df)
 }
+#' Obtener Tipo de Cambio Peso - USD
+#'
+#' Obtiene tipo de cambio interbancario (venta) histórico de pesos a dólares.
+#' Es un wrapper de las funciones \code{serie_inegi()} y \code{YoY()}. 
+#'
+#' @param token token personal emitido por el INEGI para acceder al API.
+#' @author Eduardo Flores
+#' @return Data.frame
+#'
+#' @examples
+#' USD<-series_tipocambio(token)
+#' @export
+#'
+
+series_tipocambio<-function(token)
+{ #Retornar la producción automotriz
+  s<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/824/00000/en/false/xml/"
+  
+  d<-inegiR::serie_inegi(s,token)
+  return(d)
+}
