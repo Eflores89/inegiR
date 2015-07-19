@@ -495,7 +495,7 @@ series_crecimiento_regiones<-function(token)
   
   #Suma con crecimientos - 1 explicación, solamente para norte.... 
   # voy a usar las tasas de crecimiento del ITAE de Baja california para crecer
-  Baja<-crecer(Norte_tasas$BajaCalifornia[2:length(Norte_tasas$BajaCalifornia)], 
+  Baja<-inegiR::crecer(Norte_tasas$BajaCalifornia[2:length(Norte_tasas$BajaCalifornia)], 
                # el ITAE original multiplicado por el peso que el estado tiene en la región
                Norte_ITAE$BajaCalifornia[1]*BajaCalifornia_p)
   #### despues hago lo mismo para todos los estados y lo sumo...
