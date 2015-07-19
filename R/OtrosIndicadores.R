@@ -16,7 +16,7 @@
 series_balanza_comercial<-function(token)
 { #balanza comercial as-is (no YoY)
   x<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/33223/00000/en/false/xml/"
-  m<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/33226/00000/en/false/xml//"
+  m<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/33226/00000/en/false/xml/"
   
   x_val<-inegiR::serie_inegi(x,token)
     names(x_val)<-c("Exportaciones","Fechas")
