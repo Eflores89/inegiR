@@ -48,7 +48,7 @@ La inflación no es más que el cambio porcentual en el Indice Nacional de Preci
 ```{r}
 urlINPC<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216064/00000/es/false/xml/"
 #Obtener datos
-INPC<-serie_inegi(urlINPC,token)
+INPC<-serie_inegi(urlINPC, token)
 #ver datos
 tail(INPC)
 # Fechas         Valores
@@ -62,7 +62,7 @@ tail(INPC)
 ```
 Si queremos saber todos los metadatos (Nombre de serie, última actualización, región, unidad, número de indicador y frecuencia), retornamos una lista con el argumento `metadata = TRUE`.
 ```{r}
-INPC_Metadata<-serie_inegi(urlINPC,token, metadata = TRUE)
+INPC_Metadata<-serie_inegi(urlINPC, token, metadata = TRUE)
 class(INPC_Metadata)
 # [1] "list"
 ```
@@ -73,7 +73,7 @@ INPC_Metadata$MetaData$UltimaActualizacion
 ```
 Regresando al ejemplo de la inflación, para obtener el cambio porcentual anual, aplicamos la función de `YoY()`
 ```{r}
-Inflacion<-YoY(INPC$Valores,12,decimal=FALSE)
+Inflacion<-YoY(INPC$Valores, 12, decimal=FALSE)
 # a df con fechas
 Inflacion<-cbind.data.frame(Fechas = INPC$Fechas, Inflacion = Inflacion)
 #
