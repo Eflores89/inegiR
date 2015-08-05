@@ -8,3 +8,5 @@ Maintainer: Eduardo Flores <eduardo@enelmargen.org>
 Description: Paquete para interactuar con el API de Indicadores y DENUE del INEGI.
 Encoding: UTF-8
 Imports: zoo,XML,plyr
+Suggests: knitr
+VignetteBuilder: knitr
