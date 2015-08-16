@@ -26,8 +26,7 @@
 
 serie_inegi<-function(serie,token,metadata=FALSE,coercionar=TRUE)
 { #detener en error de pegado
-  if(grepl(pattern = "xml/$",x = serie)){} else {stop("La serie no termina con xml/")}
-  
+  if (!grepl(pattern = "xml/$", x = serie)){stop("La serie no termina con xml/")}
   serie<-paste0(serie,token)
   
   s<-xmlToList(serie)  
