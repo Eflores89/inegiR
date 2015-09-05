@@ -1,6 +1,6 @@
 #' Obtiene establecimientos del DENUE
 #'
-#' Regresa Data.Frame datos de establecimientos registrados en el DENUE en zona aledaña a las coordenadas.  
+#' Regresa data.frame de datos de establecimientos registrados en el DENUE en zona aledaña a las coordenadas.  
 #' Es una de las funciones primitivas del paquete.
 #'
 #' @param latitud Vector en caracter de latitud (en decimal) de lugar
