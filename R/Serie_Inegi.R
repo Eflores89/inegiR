@@ -24,12 +24,15 @@
 #' Serie <- serie_inegi(url,token)
 #' @export
 
-serie_inegi<-function(serie,token,metadata=FALSE,coercionar=TRUE)
+serie_inegi<-function(serie, token, metadata=FALSE, coercionar=TRUE)
 { #detener en error de pegado
   if (!grepl(pattern = "xml/$", x = serie)){stop("La serie no termina con xml/")}
-  
+  if(grepl(pattern = "json/$", x = serie)){
+    #call json
+  }else{
+    #parse xml
+    
   serie<-paste0(serie,token)
-  
   s<-xmlToList(serie)  
   Fechas<-ldply(.data = s$Data$Serie, .fun = "[[",'TimePeriod')[,'[[']
   
@@ -86,5 +89,10 @@ serie_inegi<-function(serie,token,metadata=FALSE,coercionar=TRUE)
       { warning(print(Mensaje))
       }
       return(df)
-    } 
+    }} 
+}
+
+serie_inegi_json<-function(serie, token, metadata=FALSE, coercionar=TRUE)
+{
+  
 }
