@@ -125,7 +125,6 @@ serie_inegi<-function(serie, token, metadata=FALSE, coercionar=TRUE)
 
 serie_inegi_json<-function(serie, token, metadata=FALSE, coercionar=TRUE)
 {
-  serie <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/5300000031/05011/es/false/json/"
   serie <- paste0(serie, token, "?callback?")
   
   s<-jsonlite::fromJSON(serie)
