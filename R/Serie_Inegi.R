@@ -26,7 +26,9 @@
 
 serie_inegi<-function(serie, token, metadata=FALSE, coercionar=TRUE)
 { #detener en error de pegado
-  if (!grepl(pattern = "xml/$", x = serie)){stop("La serie no termina con xml/")}
+  if (grepl(pattern = "xml/$", x = serie) | grepl(pattern = "json/$", x = serie)){}
+  else{stop("La serie no termina con xml/ o json/")}
+  
   if(grepl(pattern = "json/$", x = serie)){
     #call json
     df<-serie_inegi_json(serie, token, metadata, coercionar)
@@ -40,7 +42,7 @@ serie_inegi<-function(serie, token, metadata=FALSE, coercionar=TRUE)
   
   # note to former - zoo::as.yearmon
     if(s$MetaData$Freq=="Anual" | s$MetaData$Freq=="Yearly" | s$MetaData$Freq=="Annual" | s$MetaData$Freq=="Quinquenal")
-      {Fechas_Date<-as.Date(as.yearmon(x = paste0("01/",Fechas),format = "%m/%Y"))
+      {Fechas_Date<-as.Date(zoo::as.yearmon(x = paste0("01/",Fechas),format = "%m/%Y"))
       } 
   else {
     if(s$MetaData$Freq=="Trimestral" | s$MetaData$Freq=="Quarterly" )
@@ -48,17 +50,17 @@ serie_inegi<-function(serie, token, metadata=FALSE, coercionar=TRUE)
       Fechas<-gsub(pattern = "/04", replacement = "/10", x = Fechas)
       Fechas<-gsub(pattern = "/03", replacement = "/07", x = Fechas)
       Fechas<-gsub(pattern = "/02", replacement = "/04", x = Fechas)
-      Fechas_Date<-as.Date(as.yearmon(Fechas, "%Y/%m"))
+      Fechas_Date<-as.Date(zoo::as.yearmon(Fechas, "%Y/%m"))
         } else {
           if(s$MetaData$Freq=="Quincenal")
             {if(coercionar){
               Mensaje<-"Importante: El indicador quincenal fue coercionado a meses - para evitar, correr con opción coercionar=FALSE"
-              Fechas_Date<-as.Date(as.yearmon(Fechas, "%Y/%m"))
+              Fechas_Date<-as.Date(zoo::as.yearmon(Fechas, "%Y/%m"))
                             } else {
                               FechasN<-gsub(pattern="/02$",replacement="/15",x = Fechas)
                               Fechas_Date<-as.Date(x = FechasN,format = "%Y/%m/%d")}
             } else {
-              Fechas_Date<-as.Date(as.yearmon(Fechas, "%Y/%m"))
+              Fechas_Date<-as.Date(zoo::as.yearmon(Fechas, "%Y/%m"))
             }
         }}
   # Values
@@ -98,7 +100,7 @@ serie_inegi<-function(serie, token, metadata=FALSE, coercionar=TRUE)
 #' Regresa Data.Frame con la serie de tiempo escogida, al buscar en el webservice del INEGI y parsear via Jsonlite. 
 #' Si parametro Metadata=TRUE, regresa lista con indicadores meta y datos.
 #' 
-#' @details Esta función se llama directamente en \code{serie_inegi()}, cuando el parametro de serie termina en "json/". 
+#' @details Esta función se llama directamente en \code{serie_inegi()}, cuando el parametro "serie" termina en "json/". 
 #' @note La instancia "?callback?" requerida por la documentación del INEGI no es requerida.
 #'
 #' @param serie Vector en caracter de url de dirección. Este es un metódo directo (se requiere de URL en formato XML, con token)
@@ -110,7 +112,7 @@ serie_inegi<-function(serie, token, metadata=FALSE, coercionar=TRUE)
 #'
 #' @author Eduardo Flores 
 #' @seealso serie_inegi
-#' @importFrom XML xmlToList
+#' @importFrom jsonlite fromJSON
 #' @importFrom zoo as.yearmon
 #' @importFrom zoo as.Date
 #' @importFrom plyr ldply
@@ -121,8 +123,63 @@ serie_inegi<-function(serie, token, metadata=FALSE, coercionar=TRUE)
 #' Serie <- serie_inegi(url,token)
 #' @export
 
-
 serie_inegi_json<-function(serie, token, metadata=FALSE, coercionar=TRUE)
 {
+  serie <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/5300000031/05011/es/false/json/"
+  serie <- paste0(serie, token, "?callback?")
   
-}
+  s<-jsonlite::fromJSON(serie)
+  
+  #valores 
+  Valores <- as.numeric(as.data.frame(s$Data$Serie)[,c("CurrentValue")])
+  
+  #fechas 
+  Fechas <- (s$Data$Serie)[,c("TimePeriod")]
+  if(s$MetaData$Freq=="Anual" | s$MetaData$Freq=="Yearly" | s$MetaData$Freq=="Annual" | s$MetaData$Freq=="Quinquenal")
+  {Fechas_Date<-as.Date(zoo::as.yearmon(x = paste0("01/",Fechas),format = "%m/%Y"))
+  } else {
+    if(s$MetaData$Freq=="Trimestral" | s$MetaData$Freq=="Quarterly" )
+    {
+      Fechas<-gsub(pattern = "/04", replacement = "/10", x = Fechas)
+      Fechas<-gsub(pattern = "/03", replacement = "/07", x = Fechas)
+      Fechas<-gsub(pattern = "/02", replacement = "/04", x = Fechas)
+      Fechas_Date<-as.Date(zoo::as.yearmon(Fechas, "%Y/%m"))
+    } else {
+      if(s$MetaData$Freq=="Quincenal")
+      {if(coercionar){
+        Mensaje<-"Importante: El indicador quincenal fue coercionado a meses - para evitar, correr con opción coercionar=FALSE"
+        Fechas_Date<-as.Date(zoo::as.yearmon(Fechas, "%Y/%m"))
+      } else {
+        FechasN<-gsub(pattern="/02$",replacement="/15",x = Fechas)
+        Fechas_Date<-as.Date(x = FechasN,format = "%Y/%m/%d")}
+      } else {
+        Fechas_Date<-as.Date(zoo::as.yearmon(Fechas, "%Y/%m"))
+      }
+    }}
+  
+  df <- data.frame("Valores" = Valores,
+                   "Fechas" = Fechas_Date)
+  
+  if(metadata){
+    MetaData<-list(
+      Nombre=s$MetaData$Name,
+      UltimaActualizacion=s$MetaData$LastUpdate,
+      Region=s$MetaData$Region,
+      Unidad=s$MetaData$Unit,
+      Indicador=s$MetaData$Indicator,
+      Frecuencia=s$MetaData$Freq)
+    Obj<-list(MetaData=MetaData,
+              Datos=df)
+    #warn-on-quincenal
+    if(exists("Mensaje"))
+    { warning(print(Mensaje))
+    }
+    return(Obj)
+  } else{
+    #warn-on-quincenal
+    if(exists("Mensaje"))
+    { warning(print(Mensaje))
+    }
+    return(df)
+  }
+} 
