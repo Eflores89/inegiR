@@ -8,7 +8,7 @@
 #' @param token token personal emitido por el INEGI para acceder al API.
 #' @param metadata Default = FALSE, si TRUE, parsea una lista con metadatos de serie.
 #' @param coercionar Por default (TRUE), los indicadores quincenales serán coercionados a mensuales. Aparecerán todas las observaciones pero en el mismo día del mes a pesar de estar en diferentes quincenas. Para usar días = FALSE.
-#' 
+#' @note La instancia "?callback?", requerida por la documentación del INEGI para series JSON no es requerida.
 #' @return Dataframe o lista
 #'
 #' @author Eduardo Flores 
@@ -29,6 +29,8 @@ serie_inegi<-function(serie, token, metadata=FALSE, coercionar=TRUE)
   if (!grepl(pattern = "xml/$", x = serie)){stop("La serie no termina con xml/")}
   if(grepl(pattern = "json/$", x = serie)){
     #call json
+    df<-serie_inegi_json(serie, token, metadata, coercionar)
+    return(df)
   }else{
     #parse xml
     
@@ -91,6 +93,34 @@ serie_inegi<-function(serie, token, metadata=FALSE, coercionar=TRUE)
       return(df)
     }} 
 }
+#' Obtiene serie de tiempo de INEGI en formato JSON
+#'
+#' Regresa Data.Frame con la serie de tiempo escogida, al buscar en el webservice del INEGI y parsear via Jsonlite. 
+#' Si parametro Metadata=TRUE, regresa lista con indicadores meta y datos.
+#' 
+#' @details Esta función se llama directamente en \code{serie_inegi()}, cuando el parametro de serie termina en "json/". 
+#' @note La instancia "?callback?" requerida por la documentación del INEGI no es requerida.
+#'
+#' @param serie Vector en caracter de url de dirección. Este es un metódo directo (se requiere de URL en formato XML, con token)
+#' @param token token personal emitido por el INEGI para acceder al API.
+#' @param metadata Default = FALSE, si TRUE, parsea una lista con metadatos de serie.
+#' @param coercionar Por default (TRUE), los indicadores quincenales serán coercionados a mensuales. Aparecerán todas las observaciones pero en el mismo día del mes a pesar de estar en diferentes quincenas. Para usar días = FALSE.
+#' 
+#' @return Dataframe o lista
+#'
+#' @author Eduardo Flores 
+#' @seealso serie_inegi
+#' @importFrom XML xmlToList
+#' @importFrom zoo as.yearmon
+#' @importFrom zoo as.Date
+#' @importFrom plyr ldply
+#' @examples
+#' #Serie de INPC General 
+#' token<-"tokenProporcionadoporWebservice"
+#' url <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216064/00000/es/false/xml/"
+#' Serie <- serie_inegi(url,token)
+#' @export
+
 
 serie_inegi_json<-function(serie, token, metadata=FALSE, coercionar=TRUE)
 {
