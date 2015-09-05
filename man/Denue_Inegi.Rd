@@ -21,7 +21,7 @@ denue_inegi(latitud, longitud, token, metros = 250, keyword = "todos")
 Data.frame
 }
 \description{
-Regresa Data.Frame datos de establecimientos registrados en el DENUE en zona aledaña a las coordenadas.
+Regresa data.frame de datos de establecimientos registrados en el DENUE en zona aledaña a las coordenadas.
 Es una de las funciones primitivas del paquete.
 }
 \examples{
