@@ -1,6 +1,6 @@
 # inegiR
 _______
-Paquete de R para interactuar con dos API's de datos de INEGI (Instituto de estadísticas oficiales de México). Las dos funciones principales, `serie_inegi()` y `denue_inegi()` son *wrappers* de los paquetes "xml", "zoo" y transformaciones usando "plyr". 
+Paquete de R para interactuar con dos API's de datos de INEGI (Instituto de estadísticas oficiales de México). Las dos funciones principales, `serie_inegi()` y `denue_inegi()` son *wrappers* de los paquetes "xml", "zoo", "jsonlite" y transformaciones usando "plyr". 
 - `serie_inegi()` - Obtiene una serie de datos del API de indicadores, parsea y retorna un data.frame con valores y fechas o una lista con un data.frame y valores de metadatos.
 - `denue_inegi()` - Obtiene negocios registrados en el DENUE (Registro de unidades económicas) en un radio específico de coordenadas. 
 
@@ -44,10 +44,16 @@ Se debe obtener un token del API del INEGI que se otorga mediante un registro gr
 ```{r}
 token<-"abc123"
 ```
-La inflación no es más que el cambio porcentual en el Indice Nacional de Precios al Consumidor (INPC), por lo que primero debemos obtener este indicador. En el sitio del API del INEGI encontramos la serie en XML:
+La inflación no es más que el cambio porcentual en el Indice Nacional de Precios al Consumidor (INPC), por lo que primero debemos obtener este indicador. En el sitio del API del INEGI encontramos la serie:
 ```{r}
 urlINPC<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216064/00000/es/false/xml/"
-#Obtener datos
+```
+Apartir de Sep-2015, también acepta series en formato JSON (sin el "?callback?" de la documentación del INEGI): 
+```{r}
+tambienAcepta <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216064/00000/es/false/json/
+```
+Ahora, para obtener datos:
+```{r}
 INPC<-serie_inegi(urlINPC, token)
 #ver datos
 tail(INPC)
