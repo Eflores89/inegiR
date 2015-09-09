@@ -7,6 +7,7 @@ Author: Eduardo Flores
 Maintainer: Eduardo Flores <eduardo@enelmargen.org>
 Description: Paquete para interactuar con el API de Indicadores y DENUE del INEGI.
 Encoding: UTF-8
+License: CC0
 Imports: zoo, XML, plyr, jsonlite
 Suggests: knitr
 VignetteBuilder: knitr
