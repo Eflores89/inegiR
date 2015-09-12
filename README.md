@@ -32,7 +32,7 @@ Obtenemos el paquete desde github, usando devtools:
 #install.packages("devtools")
 library(devtools)
 install_github("Eflores89/inegiR")
-  #Paquetes dependientes: zoo, XML, plyr
+  #Paquetes dependientes: zoo, XML, plyr, jsonlite
 library(inegiR)
 ```
 ### Series Económicas
