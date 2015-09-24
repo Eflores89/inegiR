@@ -31,8 +31,7 @@ denue_inegi<-function(latitud,longitud,token, metros = 250, keyword = "todos")
   url<-"http://www3.inegi.org.mx/sistemas/api/denue/v1/consulta/buscar/"
   coordenadas<-paste0(latitud,",",longitud)
   consulta<-paste0(url,keyword,"/",coordenadas,"/",metros,"/",token)
-  #consulta de prueba: http://www3.inegi.org.mx/sistemas/api/denue/v1/consulta/buscar/todos/21.85717833,-102.28487238/250/f3fe034d-3273-4be5-a5b3-45b990eb0534
-      
+  
       # extraccion inicial
          #codigo de xmlparse usa print() como "warnings". Esto lo suprime,
           invisible(
