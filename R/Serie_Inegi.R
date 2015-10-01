@@ -41,24 +41,24 @@ serie_inegi<-function(serie, token, metadata=FALSE, coercionar=TRUE)
   Fechas<-ldply(.data = s$Data$Serie, .fun = "[[",'TimePeriod')[,'[[']
   
   # note to former - zoo::as.yearmon
-    if(s$MetaData$Freq=="Anual" | s$MetaData$Freq=="Yearly" | s$MetaData$Freq=="Annual" | s$MetaData$Freq=="Quinquenal")
-      {Fechas_Date<-as.Date(zoo::as.yearmon(x = paste0("01/",Fechas),format = "%m/%Y"))
+    if(s$MetaData$Freq == "Anual" | s$MetaData$Freq == "Yearly" | s$MetaData$Freq == "Annual" | s$MetaData$Freq == "Quinquenal")
+      {Fechas_Date<-as.Date(zoo::as.yearmon(x = paste0("01/",Fechas), format = "%m/%Y"))
       } 
   else {
-    if(s$MetaData$Freq=="Trimestral" | s$MetaData$Freq=="Quarterly" )
+    if(s$MetaData$Freq == "Trimestral" | s$MetaData$Freq == "Quarterly" )
       {
       Fechas<-gsub(pattern = "/04", replacement = "/10", x = Fechas)
       Fechas<-gsub(pattern = "/03", replacement = "/07", x = Fechas)
       Fechas<-gsub(pattern = "/02", replacement = "/04", x = Fechas)
       Fechas_Date<-as.Date(zoo::as.yearmon(Fechas, "%Y/%m"))
         } else {
-          if(s$MetaData$Freq=="Quincenal")
+          if(s$MetaData$Freq == "Quincenal")
             {if(coercionar){
-              Mensaje<-"Importante: El indicador quincenal fue coercionado a meses - para evitar, correr con opción coercionar=FALSE"
-              Fechas_Date<-as.Date(zoo::as.yearmon(Fechas, "%Y/%m"))
+              Mensaje <- "Importante: El indicador quincenal fue coercionado a meses - para evitar, correr con opción coercionar=FALSE"
+              Fechas_Date <- as.Date(zoo::as.yearmon(Fechas, "%Y/%m"))
                             } else {
-                              FechasN<-gsub(pattern="/02$",replacement="/15",x = Fechas)
-                              Fechas_Date<-as.Date(x = FechasN,format = "%Y/%m/%d")}
+                              FechasN <- gsub(pattern="/02$", replacement = "/15", x = Fechas)
+                              Fechas_Date <- as.Date(x = FechasN, format = "%Y/%m/%d")}
             } else {
               Fechas_Date<-as.Date(zoo::as.yearmon(Fechas, "%Y/%m"))
             }
@@ -67,11 +67,11 @@ serie_inegi<-function(serie, token, metadata=FALSE, coercionar=TRUE)
   Valores<-as.numeric(ldply(s$Data$Serie,"[[",'CurrentValue')[,'[['])
   
   # df
-  df<-cbind.data.frame(as.numeric(Valores),Fechas_Date)
+  df<-cbind.data.frame(as.numeric(Valores), Fechas_Date)
   
   # Asegurar nombres y classes
-  names(df)<-c("Valores","Fechas")
-  class(df[,'Valores'])<-"numeric"
+  names(df)<-c("Valores", "Fechas")
+  class(df[,'Valores']) <- "numeric"
   
   if(metadata){
     MetaData<-list(
@@ -134,10 +134,10 @@ serie_inegi_json<-function(serie, token, metadata=FALSE, coercionar=TRUE)
   
   #fechas 
   Fechas <- (s$Data$Serie)[,c("TimePeriod")]
-  if(s$MetaData$Freq=="Anual" | s$MetaData$Freq=="Yearly" | s$MetaData$Freq=="Annual" | s$MetaData$Freq=="Quinquenal")
-  {Fechas_Date<-as.Date(zoo::as.yearmon(x = paste0("01/",Fechas),format = "%m/%Y"))
+  if(s$MetaData$Freq == "Anual" | s$MetaData$Freq == "Yearly" | s$MetaData$Freq == "Annual" | s$MetaData$Freq == "Quinquenal")
+  {Fechas_Date<-as.Date(zoo::as.yearmon(x = paste0("01/",Fechas), format = "%m/%Y"))
   } else {
-    if(s$MetaData$Freq=="Trimestral" | s$MetaData$Freq=="Quarterly" )
+    if(s$MetaData$Freq == "Trimestral" | s$MetaData$Freq == "Quarterly" )
     {
       Fechas<-gsub(pattern = "/04", replacement = "/10", x = Fechas)
       Fechas<-gsub(pattern = "/03", replacement = "/07", x = Fechas)
