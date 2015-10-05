@@ -26,8 +26,17 @@
 #' @importFrom plyr ldply
 #' @export
 
-denue_inegi<-function(latitud,longitud,token, metros = 250, keyword = "todos")
-{ #configurar consulta
+denue_inegi<-function(latitud, longitud, token, metros = 250, keyword = "todos")
+{ 
+
+#Revisar que coordenadas estén en México---
+.EstaEnMexico<-function(latitud,longitud){
+  if(as.numeric(latitud)<14.559507 | as.numeric(latitud)> 32.757120 | as.numeric(longitud)> -86.708301 | as.numeric(longitud)< -118.312155)
+  {FALSE} else {TRUE}}
+  
+  if(.EstaEnMexico(latitud, longitud)){}else{stop("Coordenadas no estan en Mexico")}
+
+#configurar consulta
   url<-"http://www3.inegi.org.mx/sistemas/api/denue/v1/consulta/buscar/"
   coordenadas<-paste0(latitud,",",longitud)
   consulta<-paste0(url,keyword,"/",coordenadas,"/",metros,"/",token)
