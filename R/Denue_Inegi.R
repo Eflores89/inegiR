@@ -15,10 +15,13 @@
 #' 
 #' @examples
 #' #Traer todos los establecimientos a 1 km de la macro plaza en Monterrey
-#' token<-"tokenProporcionadoporWebservice"
+#' \dontrun{
+#' token<-"webservice_token"
 #' latitud<-"25.669194"
 #' longitud<-"-100.30990"
-#' Negocios <- denue_inegi(latitud,longitud,token,metros = 1000)
+#' Negocios <- denue_inegi(latitud, longitud, token, metros = 1000)
+#' }
+#'
 #' @importFrom XML xmlToList
 #' @importFrom XML xmlParse
 #' @importFrom zoo as.yearmon
@@ -38,35 +41,35 @@ denue_inegi<-function(latitud, longitud, token, metros = 250, keyword = "todos")
 
 #configurar consulta
   url<-"http://www3.inegi.org.mx/sistemas/api/denue/v1/consulta/buscar/"
-  coordenadas<-paste0(latitud,",",longitud)
-  consulta<-paste0(url,keyword,"/",coordenadas,"/",metros,"/",token)
+  coordenadas<-paste0(latitud, ",", longitud)
+  consulta<-paste0(url, keyword, "/", coordenadas, "/", metros, "/", token)
   
       # extraccion inicial
          #codigo de xmlparse usa print() como "warnings". Esto lo suprime,
           invisible(
                 capture.output(
-                s<-xmlToList(xmlParse(consulta,isHTML = TRUE, encoding = "UTF-8"))
+                s<-xmlToList(xmlParse(consulta, isHTML = TRUE, encoding = "UTF-8"))
                   ))
-      l<-strsplit(as.character(s$body),split = "\",\"|}")
+      l<-strsplit(x = as.character(s$body), split = "\",\"|}")
       l<-as.list(l[[1]])
           largo<-length(l)-1
       l<-l[1:largo]
       
       # limpia
-      l_limpia<-gsub(pattern = "\"",replacement = "",l)  
-      l_limpia<-gsub(pattern = "{",replacement = "",l_limpia,perl=TRUE)
+      l_limpia<-gsub(pattern = "\"", replacement = "",l)  
+      l_limpia<-gsub(pattern = "{", replacement = "", l_limpia, perl=TRUE)
     
       # Revisar que sea divisible
         if(length(l_limpia)%%18==0) {} else {
-          stop(print("Error en definición de datos: uno o más de los negocios traen más o menos de 18 campos"))}
+          stop(print("Error en definicion de datos: uno o mas de los negocios traen mas o menos de 18 campos"))}
       
       # dividir
       l_split<-split(x = l_limpia, f = 1:18)
   
       # Hacer en un data.frame 
-      LimpiarRapido<-function(pat,elemento)
+      LimpiarRapido<-function(pat, elemento)
         {
-          exit<-substr(elemento, regexpr(pattern = pat,text = elemento)+1,stop = 4000)
+          exit<-substr(elemento, regexpr(pattern = pat, text = elemento)+1, stop = 4000)
           return(exit)
         }
       df<-data.frame(
