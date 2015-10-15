@@ -32,7 +32,7 @@
 denue_inegi<-function(latitud, longitud, token, metros = 250, keyword = "todos")
 { 
 
-#Revisar que coordenadas estén en México---
+#Revisar que coordenadas esten en Mexico---
 .EstaEnMexico<-function(latitud,longitud){
   if(as.numeric(latitud)<14.559507 | as.numeric(latitud)> 32.757120 | as.numeric(longitud)> -86.708301 | as.numeric(longitud)< -118.312155)
   {FALSE} else {TRUE}}
