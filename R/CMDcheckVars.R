@@ -1,0 +1,1 @@
+Actividad<-Fechas<-BajaCalifornia<-BajaCaliforniaSur<-Coahuila<-Chihuahua<-Sinaloa<-Sonora<-NuevoLeon<-Tamaulipas<-Aguascalientes<-Colima<-Durango<-Guanajuato<-Jalisco<-Nayarit<-SanLuisPotosi<-Zacatecas<-EdoMexico<- DF<-Guerrero<- Hidalgo<- Michoacan<- Morelos<-Puebla<- Queretaro<- Tlaxcala<-Campeche<- Chiapas<- Oaxaca<- QuintanaRoo<-Tabasco<- Veracruz<- Yucatan<-NULL
