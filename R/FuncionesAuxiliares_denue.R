@@ -16,13 +16,15 @@
 #'
 #' @examples
 #' #indicadores de 2 lugares
-#' token<-"tokenProporcionadoporWebservice"
+#' \dontrun{
+#' token<-"webservice_token"
 #' df<-as.data.frame(latitud  = c(25.669194,25.121194),
 #'                   longitud = c(-100.30990,-99.81923))
 #' stats<-denue_varios_stats(data     = df,
 #'                           col_lat  = 1,
 #'                           col_long = 2,
 #'                           metros   = 500)
+#'}
 #' @export
 
 denue_varios_stats<-function(data,col_lat, col_long, token, metros = 250, keyword = "todos")
@@ -30,8 +32,8 @@ denue_varios_stats<-function(data,col_lat, col_long, token, metros = 250, keywor
   n<-length(data[,col_lat])
  
   #antes de correr, revisar datos de columnas
-  if(class(data[,col_lat][1])=="numeric"){} else {stop(print("Columna de Latitud no es númerica"))}
-  if(class(data[,col_long][1])=="numeric"){} else {stop(print("Columna de Longitud no es númerica"))}
+  if(class(data[,col_lat][1])=="numeric"){} else {stop(print("Columna de Latitud no es numerica"))}
+  if(class(data[,col_long][1])=="numeric"){} else {stop(print("Columna de Longitud no es numerica"))}
  
   # poblar data frame inicial
   d<-data.frame(
@@ -80,11 +82,11 @@ denue_varios_stats<-function(data,col_lat, col_long, token, metros = 250, keywor
     #cantidad de actividades diferentes
     d[i,]$ACTIVIDADES<-if(is.null(length(unique(m[,"Actividad"])))){0} else {length(unique(m[,"Actividad"]))}
     #negocios con telefono
-    d[i,]$NEGOCIOS_TEL<-if(is.null(length(m[!grepl(pat= "^$",m["Tel"][,1]),][,1]))){0} else {length(m[!grepl(pat= "^$",m["Tel"][,1]),][,1])}
-    #negocios con sitios de internet - no WWW, parse:""
-    d[i,]$NEGOCIOS_WEBSITE<-if(is.null(length(m[!grepl(pat= "^$",m["SitioWeb"][,1]),][,1]))) {0} else {length(m[!grepl(pat= "^$",m["SitioWeb"][,1]),][,1])}
-    #negocios con razón social (la que sea)
-    d[i,]$NEGOCIOS_RAZON<-if(is.null(length(m[!grepl(pat= "^$",m["Razon"][,1]),][,1]))){0} else {length(m[!grepl(pat= "^$",m["Razon"][,1]),][,1])}
+    d[i,]$NEGOCIOS_TEL<-if(is.null(length(m[!grepl(pattern = "^$",m["Tel"][,1]),][,1]))){0} else {length(m[!grepl(pattern = "^$",m["Tel"][,1]),][,1])}
+    #negocios con sitios de internet - no WWW, 
+    d[i,]$NEGOCIOS_WEBSITE<-if(is.null(length(m[!grepl(pattern = "^$",m["SitioWeb"][,1]),][,1]))) {0} else {length(m[!grepl(pattern = "^$",m["SitioWeb"][,1]),][,1])}
+    #negocios con razon social (la que sea)
+    d[i,]$NEGOCIOS_RAZON<-if(is.null(length(m[!grepl(pattern = "^$",m["Razon"][,1]),][,1]))){0} else {length(m[!grepl(pattern = "^$",m["Razon"][,1]),][,1])}
     #negocios ubicados en avenida
     d[i,]$NEGOCIOS_SOBRE_AVENIDA<-if(is.null(length(subset(m,m$Vialidad == "AVENIDA")[,1]))){0} else {length(subset(m,m$Vialidad == "AVENIDA")[,1])}
     #negocios fijos
@@ -93,7 +95,7 @@ denue_varios_stats<-function(data,col_lat, col_long, token, metros = 250, keywor
     d[i,]$EMPLEADOS_EST<-if(is.null(sum(as.numeric((m[,"Empleados"]))))){0} else {sum(as.numeric((m[,"Empleados"])))}
     #desviacion standar de empleados en comercios
     d[i,]$EMPLEADOS_SD<-if(is.null(sd(x = as.numeric((m[,"Empleados"]))))) {0} else {sd(x = as.numeric((m[,"Empleados"])))}
-    #actividad principal más importante - usa otra función de este paquete.
+    #actividad principal mas importante - usa otra funcion de este paquete.
     d[i,]$ACTIVIDAD_PRINCIPAL<-if(is.null(inegiR::ordenar_porconteo(m,Actividad)[1,1])){"Ninguna"} else {inegiR::ordenar_porconteo(m,Actividad)[1,1]}
     
     #termina instancia de tryCatch

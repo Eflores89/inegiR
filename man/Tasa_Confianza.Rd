@@ -18,7 +18,10 @@ Devuelve tasas de serie desestacionalizada anual, desestacionalizada contra mes 
 Es un wrapper de las funciones \code{serie_inegi()} y \code{YoY()}.
 }
 \examples{
+\dontrun{
+token<-"webservice_token"
 ConfianzaEconomia<-tasa_confianza(token)
+}
 }
 \author{
 Eduardo Flores

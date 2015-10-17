@@ -18,11 +18,10 @@ Data.frame
 Wrapper para ordenar rapidamente de mayor a menor por grupos un data.frame.
 }
 \examples{
-#MWE
 df<-data.frame(factores=c("A","A","B","C","C","D","A","A"),otros=c(1,3,2,4,5,1,2,7))
 
 #Ordenar, de mayor a menor, por conteo de factores
-PorConteo<-ordenar_porconteo(df,factores)
+PorConteo<-ordenar_porconteo(df, factores)
 }
 \author{
 Eduardo Flores

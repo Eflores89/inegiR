@@ -26,7 +26,3 @@ Se puede encontrar m√°s referencias sobre el API del INEGI, incluyendo generaci√
 http://www.inegi.org.mx/desarrolladores/indicadores/apiindicadores.aspx
 }
 \keyword{ package }
-\examples{
-#traer el PIB real y guardar en un data frame
-PIB<-serie_inegi(PIB_real,token)
-}

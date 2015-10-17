@@ -19,7 +19,10 @@ El crecimiento del mismo es una estimación de la dinámica de crecimiento regio
 Los agrupamientos regionales provienen del INEGI \url{http://www.inegi.org.mx/est/contenidos/proyectos/cn/itaee/default.aspx}
 }
 \examples{
+\dontrun{
+token<-"webservice_token"
 CrecimientoZonas<-series_crecimiento_regiones(token)
+}
 }
 \author{
 Eduardo Flores

@@ -16,11 +16,11 @@ Data.frame
 Obtiene la tasa de inflación mensual por ciudad.
 Es un wrapper de las funciones \code{serie_inegi()} y \code{YoY()}.
 }
-\note{
-Encoding no permite acentos en titulo de descripción
-}
 \examples{
+\dontrun{
+token<-"webservice_token"
 InflacionCiudades<-inflacion_ciudades(token)
+}
 }
 \author{
 Eduardo Flores

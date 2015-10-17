@@ -16,11 +16,11 @@ Data.frame
 Obtiene tasa de desocupación (serie unificada) urbana (agregado de 32 ciudades)
 Es un wrapper de las funciones \code{serie_inegi()} y \code{YoY()}.
 }
-\note{
-Encoding no permite acentos en título de descripción
-}
 \examples{
+\dontrun{
+token<-"webservice_token"
 Desempleo<-tasa_desempleo(token)
+}
 }
 \author{
 Eduardo Flores

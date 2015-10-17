@@ -26,10 +26,12 @@ Es una de las funciones primitivas del paquete.
 }
 \examples{
 #Traer todos los establecimientos a 1 km de la macro plaza en Monterrey
-token<-"tokenProporcionadoporWebservice"
+\dontrun{
+token<-"webservice_token"
 latitud<-"25.669194"
 longitud<-"-100.30990"
-Negocios <- denue_inegi(latitud,longitud,token,metros = 1000)
+Negocios <- denue_inegi(latitud, longitud, token, metros = 1000)
+}
 }
 \author{
 Eduardo Flores

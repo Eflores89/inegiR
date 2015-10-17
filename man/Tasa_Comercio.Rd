@@ -17,7 +17,10 @@ Obtiene tasa de crecimiento del Comercio (Actividad Terciaria), por mes.
 Es un wrapper de las funciones \code{serie_inegi()} y \code{YoY()}.
 }
 \examples{
+\dontrun{
+token<-"webservice_token"
 Comercio<-tasa_comercio(token)
+}
 }
 \author{
 Eduardo Flores

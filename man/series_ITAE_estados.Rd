@@ -16,7 +16,10 @@ Data.frame
 Obtiene series originales de Indicador Trimestral de Actividad Económica (ITAE) por estado.
 }
 \examples{
+\dontrun{
+token<-"webservice_token"
 ITAE<-series_ITAE_estados(token)
+}
 }
 \author{
 Eduardo Flores

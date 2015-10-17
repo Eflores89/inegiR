@@ -18,10 +18,9 @@ Vector numerico
 Al especificar un dato inicial, "crece" una serie de datos usando un vector de tasas de crecimiento. La tasa se hace de periodo en periodo.
 }
 \examples{
-#MWE
 tasas_crecimiento<-c(1.10,1.20,1.05,1.02,1.10)
 
-Crecer por esas tasas (en cada periodo) el número 100:
+# Crecer por esas tasas (en cada periodo) el 100:
 Resultados<-crecer(tasas = tasas_crecimiento, comienzo = 100)
 }
 \author{

@@ -18,10 +18,12 @@
 #' @importFrom zoo as.Date
 #' @importFrom plyr ldply
 #' @examples
+#' \dontrun{
 #' #Serie de INPC General 
-#' token<-"tokenProporcionadoporWebservice"
+#' token<-"webservice_token"
 #' url <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216064/00000/es/false/xml/"
-#' Serie <- serie_inegi(url,token)
+#' Serie <- serie_inegi(url, token)
+#' }
 #' @export
 
 serie_inegi<-function(serie, token, metadata=FALSE, coercionar=TRUE)
@@ -36,7 +38,7 @@ serie_inegi<-function(serie, token, metadata=FALSE, coercionar=TRUE)
   }else{
     #parse xml
     
-  serie<-paste0(serie,token)
+  serie<-paste0(serie, token)
   s<-xmlToList(serie)  
   Fechas<-ldply(.data = s$Data$Serie, .fun = "[[",'TimePeriod')[,'[[']
   
@@ -54,7 +56,7 @@ serie_inegi<-function(serie, token, metadata=FALSE, coercionar=TRUE)
         } else {
           if(s$MetaData$Freq == "Quincenal")
             {if(coercionar){
-              Mensaje <- "Importante: El indicador quincenal fue coercionado a meses - para evitar, correr con opción coercionar=FALSE"
+              Mensaje <- "Importante: El indicador quincenal fue coercionado a meses - para evitar, correr con opcion coercionar=FALSE"
               Fechas_Date <- as.Date(zoo::as.yearmon(Fechas, "%Y/%m"))
                             } else {
                               FechasN <- gsub(pattern="/02$", replacement = "/15", x = Fechas)
@@ -117,10 +119,12 @@ serie_inegi<-function(serie, token, metadata=FALSE, coercionar=TRUE)
 #' @importFrom zoo as.Date
 #' @importFrom plyr ldply
 #' @examples
+#' \dontrun{
 #' #Serie de INPC General 
-#' token<-"tokenProporcionadoporWebservice"
+#' token<-"webservice_token"
 #' url <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216064/00000/es/false/xml/"
 #' Serie <- serie_inegi(url,token)
+#' }
 #' @export
 
 serie_inegi_json<-function(serie, token, metadata=FALSE, coercionar=TRUE)
@@ -146,7 +150,7 @@ serie_inegi_json<-function(serie, token, metadata=FALSE, coercionar=TRUE)
     } else {
       if(s$MetaData$Freq=="Quincenal")
       {if(coercionar){
-        Mensaje<-"Importante: El indicador quincenal fue coercionado a meses - para evitar, correr con opción coercionar=FALSE"
+        Mensaje<-"Importante: El indicador quincenal fue coercionado a meses - para evitar, correr con opcion coercionar=FALSE"
         Fechas_Date<-as.Date(zoo::as.yearmon(Fechas, "%Y/%m"))
       } else {
         FechasN<-gsub(pattern="/02$",replacement="/15",x = Fechas)

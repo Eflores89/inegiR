@@ -17,7 +17,10 @@ Obtiene Tasas de Crecimiento de Indicador Global de Actividad Económica por sub
 Todas las tasas son con series originales. Cambio porcentual anual.
 }
 \examples{
+\dontrun{
+token<-"webservice_token"
 Sectores<-tasa_sectoresYoY(token)
+}
 }
 \author{
 Eduardo Flores

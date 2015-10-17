@@ -17,7 +17,10 @@ Obtiene Tasas de Crecimiento de Indicador Global de Actividad Económica
 Devuelve tasas de serie desestacionalizada anual, desestacionalizada contra mes previo y serie original anual.
 }
 \examples{
+\dontrun{
+token<-"webservice_token"
 ActividadEconomica<-tasa_IGAE(token)
+}
 }
 \author{
 Eduardo Flores

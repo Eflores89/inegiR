@@ -17,7 +17,10 @@ Obtiene series originales del PIB a Precios 2008 por Entidad Federativa. Unidade
 Es un wrapper de \code{serie_inegi()}.
 }
 \examples{
+\dontrun{
+token<-"webservice_token"
 Estados<-series_PIB_estados(token)
+}
 }
 \author{
 Eduardo Flores

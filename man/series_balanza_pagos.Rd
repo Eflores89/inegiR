@@ -17,7 +17,10 @@ Obtiene principales componentes de la Balanza de Pagos: 2 de la Cuenta Corriente
 Es un wrapper de las funciones \code{serie_inegi()} y \code{YoY()}.
 }
 \examples{
+\dontrun{
+token<-"webservice_token"
 BalanzadePagosMexico<-series_balanza_pagos(token)
+}
 }
 \author{
 Eduardo Flores

@@ -21,7 +21,9 @@ Wrapper para ordenar de mayor a menor serie y traer solamente últimos 13 period
 }
 \examples{
 #Ver solamente ultimos 13 meses
-Ultimos<-ultimos(Inflacion)
+\dontrun{
+Ultimos<-ultimos(Inflacion, n = 12)
+}
 }
 \author{
 Eduardo Flores

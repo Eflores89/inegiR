@@ -18,7 +18,10 @@ Todos los productos y todos los países.
 Es un wrapper de las funciones \code{serie_inegi()} y \code{YoY()}.
 }
 \examples{
+\dontrun{
+token<-"webservice_token"
 ComercioExterior<-series_balanza_comercial(token)
+}
 }
 \author{
 Eduardo Flores

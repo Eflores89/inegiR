@@ -29,13 +29,15 @@ Trae una función de loop integrada, para que pueda regresar indicadores de much
 }
 \examples{
 #indicadores de 2 lugares
-token<-"tokenProporcionadoporWebservice"
+\dontrun{
+token<-"webservice_token"
 df<-as.data.frame(latitud  = c(25.669194,25.121194),
                   longitud = c(-100.30990,-99.81923))
 stats<-denue_varios_stats(data     = df,
                           col_lat  = 1,
                           col_long = 2,
                           metros   = 500)
+}
 }
 \author{
 Eduardo Flores

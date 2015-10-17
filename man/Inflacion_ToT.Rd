@@ -17,11 +17,11 @@ Obtiene la razón de términos de intercambio para México (ToT). Es un wrapper 
 La razón se define como el índice de precios de exportaciones entre el índice de precios de importaciones.
 Es un wrapper de las funciones \code{serie_inegi()} y \code{YoY()}.
 }
-\note{
-Encoding no permite acentos en titulo de descripción
-}
 \examples{
+\dontrun{
+token<-"webservice_token"
 TerminosIntercambio<-inflacion_tot(token)
+}
 }
 \author{
 Eduardo Flores

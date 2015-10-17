@@ -14,12 +14,15 @@
 #'
 #' @examples
 #' #Calcular la inflación (Ver Inflacion_Inegi() para un método más directo)
-#' INPC<-serie_inegi(INPC,token)
+#' \dontrun{
+#' token<-"webservice_token"
+#' INPC<-serie_inegi(INPC, token)
 #' Inflacion<-YoY(INPC$Valores,12)
+#' }
 #' @export
 #' 
 
-YoY<-function (serie,lapso,decimal=TRUE){
+YoY<-function (serie, lapso, decimal = TRUE){
   if(NROW(serie)<=lapso){
     stop("Muy pocos renglones o mal especificado el lapso")
   }
@@ -29,7 +32,7 @@ YoY<-function (serie,lapso,decimal=TRUE){
   } 
   else{
     indexes<-1:(NROW(serie)-lapso)
-    s<-c(rep(NA,lapso),(serie[indexes+lapso]-serie[indexes])/serie[indexes])
+    s<-c(rep(NA, lapso),(serie[indexes+lapso]-serie[indexes])/serie[indexes])
       if(decimal) {return(s)}
           else    {return(s*100)}
   }
@@ -45,24 +48,23 @@ YoY<-function (serie,lapso,decimal=TRUE){
 #' @return Data.frame
 #' @seealso denue_varios_stats 
 #' @examples
-#' #MWE
 #' df<-data.frame(factores=c("A","A","B","C","C","D","A","A"),otros=c(1,3,2,4,5,1,2,7))
 #' 
 #' #Ordenar, de mayor a menor, por conteo de factores
-#' PorConteo<-ordenar_porconteo(df,factores)
+#' PorConteo<-ordenar_porconteo(df, factores)
 #' 
 #' @export
 #' 
 
 ordenar_porconteo<-function(df,col)
 { #para poner solamente el nombre de columna
-  columna<-as.character(eval(substitute(col),df, parent.frame()))
+  columna<-as.character(eval(substitute(col), df, parent.frame()))
   
   # agrupar
-  set<-aggregate(x = df,by = list(columna),FUN = length)
+  set<-aggregate(x = df, by = list(columna), FUN = length)
   set<-set[,names(set)[1:2]]
   # ordenar mayor a menor
-  ordenado<-set[order(set[,names(set[2])],decreasing=TRUE),]
+  ordenado<-set[order(set[,names(set[2])], decreasing=TRUE),]
   # export
   return(ordenado)
 }
@@ -81,7 +83,9 @@ ordenar_porconteo<-function(df,col)
 #' @seealso denue_varios_stats 
 #' @examples
 #' #Ver solamente ultimos 13 meses
-#' Ultimos<-ultimos(Inflacion)
+#' \dontrun{
+#' Ultimos<-ultimos(Inflacion, n = 12)
+#' }
 #' 
 #' @export
 #' 
@@ -90,7 +94,7 @@ ultimos<-function(serie, col = "Fechas", n = 12)
 { #para poner solamente el nombre de columna
   if(col=="Fechas")
   {columna<-"Fechas"} else {
-  columna<-as.character(eval(substitute(col),serie, parent.frame()))
+  columna<-as.character(eval(substitute(col), serie, parent.frame()))
   }
   
   if(class(serie[,columna])=="Date"){} else {stop(print("Columna no es fecha"))}
@@ -102,7 +106,7 @@ ultimos<-function(serie, col = "Fechas", n = 12)
   # ultimas 13
   n_1<-length(ordenado[,1])
   n_2<-n_1-n
-    if(n_2<1){stop(print("Serie es más corta que 13 observaciones"))} else {}
+    if(n_2<1){stop(print("Serie es mas corta que 13 observaciones"))} else {}
   set<-ordenado[n_2:n_1,]
   # export
   return(set)
@@ -119,10 +123,9 @@ ultimos<-function(serie, col = "Fechas", n = 12)
 #' @return Vector numerico
 #' @seealso series_crecimiento_regiones
 #' @examples
-#' #MWE
 #' tasas_crecimiento<-c(1.10,1.20,1.05,1.02,1.10)
 #' 
-#' Crecer por esas tasas (en cada periodo) el número 100:
+#' # Crecer por esas tasas (en cada periodo) el 100:
 #' Resultados<-crecer(tasas = tasas_crecimiento, comienzo = 100)
 #' 
 #' @export

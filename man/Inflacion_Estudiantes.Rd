@@ -17,11 +17,11 @@ Obtiene tasa de inflación de estudiantes, inter anual en porcentaje. Es un wrap
 La metodología del índice se puede encontrar aquí: \url{http://www.enelmargen.org/2011/04/indice-de-precios-estudiantes.html}
 Es un wrapper de las funciones \code{serie_inegi()} y \code{YoY()}.
 }
-\note{
-Encoding no permite acentos en titulo de descripción
-}
 \examples{
+\dontrun{
+token<-"webservice_token"
 InflacionEstudiantes<-inflacion_estudiantes(token)
+}
 }
 \author{
 Eduardo Flores

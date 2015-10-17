@@ -9,7 +9,10 @@
 #' @return Data.frame
 #' 
 #' @examples
+#' \dontrun{
+#' token<-"webservice_token"
 #' ComercioExterior<-series_balanza_comercial(token)
+#' }
 #' @export
 #' 
 #' 
@@ -23,7 +26,7 @@ series_balanza_comercial<-function(token)
   m_val<-inegiR::serie_inegi(m,token)
     names(m_val)<-c("Importaciones","Fechas")
   
-  df<-Reduce(function(...) merge(...,all=T),list(m_val,x_val))
+  df<-Reduce(function(...) merge(...,all=TRUE), list(m_val,x_val))
   d<-cbind.data.frame(Fechas=df$Fechas,
                       Exportaciones=df$Exportaciones,
                       Importaciones=df$Importaciones,
@@ -41,8 +44,10 @@ series_balanza_comercial<-function(token)
 #' @return Data.frame
 #'
 #' @examples
+#' \dontrun{
+#' token<-"webservice_token"
 #' ExportacionesMx<-series_exportaciones_pais(token)
-#' @note Encoding no permite acéntos en título de descripción
+#' }
 #' @export
 #' 
 series_exportaciones_pais<-function(token)
@@ -53,18 +58,19 @@ series_exportaciones_pais<-function(token)
   cam<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/133173/00000/en/false/xml/"
   sur<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/133183/00000/en/false/xml/"
     
-  usa_v<-inegiR::serie_inegi(usa,token)
+  usa_v<-inegiR::serie_inegi(usa, token)
     names(usa_v)<-c("Estados Unidos","Fechas")
-  can_v<-inegiR::serie_inegi(can,token)
-    names(can_v)<-c("Canadá","Fechas")
-  chn_v<-inegiR::serie_inegi(chn,token)
+  can_v<-inegiR::serie_inegi(can, token)
+    names(can_v)<-c("Canada","Fechas")
+  chn_v<-inegiR::serie_inegi(chn, token)
     names(chn_v)<-c("China","Fechas")
-  cam_v<-inegiR::serie_inegi(cam,token)
-    names(cam_v)<-c("Centro América","Fechas") 
-  sur_v<-inegiR::serie_inegi(sur,token)
-    names(sur_v)<-c("América del Sur","Fechas") 
+  cam_v<-inegiR::serie_inegi(cam, token)
+    names(cam_v)<-c("Centro America","Fechas") 
+  sur_v<-inegiR::serie_inegi(sur, token)
+    names(sur_v)<-c("America del Sur","Fechas") 
   
-  df<-Reduce(function(...) merge(...,all=T),list(usa_v,can_v,chn_v,cam_v,sur_v))
+  df<-Reduce(function(...) merge(..., all = TRUE),
+             list(usa_v,can_v,chn_v,cam_v,sur_v))
   return(df)
 }
 
@@ -78,16 +84,18 @@ series_exportaciones_pais<-function(token)
 #' @return Data.frame
 #'
 #' @examples
+#' \dontrun{
+#' token<-"webservice_token"
 #' ProduccionAutos<-series_produccion_autos(token)
-#' @note Encoding no permite acentos en título de descripción
+#' }
 #' @export
 #'
 
 series_produccion_autos<-function(token)
-{ #Retornar la producción automotriz
+{ #Retornar la prod automotriz
   s<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/15166/00000/en/false/xml/"
   
-  i<-inegiR::serie_inegi(s,token)
+  i<-inegiR::serie_inegi(s, token)
   t<-inegiR::YoY(serie=i$Valores, lapso=12, decimal=FALSE)
   d<-cbind.data.frame(Fechas=i$Fechas,"Autos"=i$Valores,"YoY"=t)
   
@@ -105,12 +113,15 @@ series_produccion_autos<-function(token)
 #' @return Data.frame
 #'
 #' @examples
+#' \dontrun{
+#' token<-"webservice_token"
 #' BalanzadePagosMexico<-series_balanza_pagos(token)
+#' } 
 #' @export
 #'
 
 series_balanza_pagos<-function(token)
-{ #Retornar la Balanza de Pagos de México
+{ #Retornar la Balanza de Pagos de Mexico
   
   #with_all
   pre<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/"
@@ -132,10 +143,10 @@ series_balanza_pagos<-function(token)
   cf_res<-inegiR::serie_inegi(paste0(pre,"214114",last),token)
     names(cf_res)<-c("Cuenta Financiera - Cambio en Reservas","Fechas")
   cf_ajv<-inegiR::serie_inegi(paste0(pre,"214115",last),token)
-    names(cf_ajv)<-c("Cuenta Financiera - Ajustes en Valoración","Fechas")
+    names(cf_ajv)<-c("Cuenta Financiera - Ajustes en Valoracion","Fechas")
   
   #union
-  df<-Reduce(function(...) merge(...,all=T),list(cc_tot,
+  df<-Reduce(function(...) merge(..., all=TRUE),list(cc_tot,
                                                  cc_ing,
                                                  cc_egr,
                                                  cf_tot,
@@ -155,12 +166,15 @@ series_balanza_pagos<-function(token)
 #' @return Data.frame 
 #'
 #' @examples
+#' \dontrun{
+#' token<-"webservice_token"
 #' OpinionMexicanos<-series_opiniones(token)
+#' }
 #' @export
 #'
 
 series_opiniones<-function(token)
-{ #traer opinión empresarial por subsector
+{ #traer opinion empresarial por subsector
   #comercio
   s1<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/437473/00000/en/false/xml/"
   #manuf
@@ -172,13 +186,20 @@ series_opiniones<-function(token)
   i2<-inegiR::serie_inegi(s2,token)
   i3<-inegiR::serie_inegi(s3,token)
   
-  t1<-cbind.data.frame(Fechas=i1$Fechas,"Comercio (YoY)"=inegiR::YoY(i1$Valores,lapso=12,decimal=FALSE), "Comercio"= i1$Valores)
-  t2<-cbind.data.frame(Fechas=i2$Fechas,"Manufacturas (YoY)"=inegiR::YoY(i2$Valores,lapso=12,decimal=FALSE), "Manufacturas"= i2$Valores)
-  t3<-cbind.data.frame(Fechas=i3$Fechas,"Construcción (YoY)"=inegiR::YoY(i3$Valores,lapso=12,decimal=FALSE), "Construcción"= i3$Valores)
+  t1<-cbind.data.frame(Fechas=i1$Fechas,"Comercio (YoY)"=inegiR::YoY(i1$Valores,
+                                                                     lapso=12,
+                                                                     decimal=FALSE), 
+                       "Comercio"= i1$Valores)
+  t2<-cbind.data.frame(Fechas=i2$Fechas,"Manufacturas (YoY)"=inegiR::YoY(i2$Valores,
+                                                                         lapso=12,
+                                                                         decimal=FALSE), 
+                       "Manufacturas"= i2$Valores)
+  t3<-cbind.data.frame(Fechas=i3$Fechas,"Construccion (YoY)"=inegiR::YoY(i3$Valores,
+                                                                         lapso=12,
+                                                                         decimal=FALSE), 
+                       "Construccion"= i3$Valores)
   
-  df<-Reduce(function(...) merge(...,all=T),list(t1,
-                                                 t2,
-                                                 t3))
+  df<-Reduce(function(...) merge(...,all=TRUE),list(t1, t2, t3))
   return(df)  
 }
 
@@ -193,7 +214,10 @@ series_opiniones<-function(token)
 #' @return Data.frame 
 #'
 #' @examples
+#' \dontrun{
+#' token<-"webservice_token"
 #' ActividadIndustrial<-series_actividad_industrial(token)
+#' }
 #' @export
 #'
 
@@ -216,17 +240,23 @@ series_actividad_industrial<-function(token)
   i4<-inegiR::serie_inegi(s4,token)
   i5<-inegiR::serie_inegi(s5,token)
   
-  t1<-cbind.data.frame(Fechas=i1$Fechas,"Actividad Industria (YoY)"=inegiR::YoY(i1$Valores,lapso=12,decimal=FALSE))
-  t2<-cbind.data.frame(Fechas=i2$Fechas,"Construcción (YoY)"=inegiR::YoY(i2$Valores,lapso=12,decimal=FALSE))
-  t3<-cbind.data.frame(Fechas=i3$Fechas,"Manufacturas (YoY)"=inegiR::YoY(i3$Valores,lapso=12,decimal=FALSE))
-  t4<-cbind.data.frame(Fechas=i3$Fechas,"Minería (YoY)"=inegiR::YoY(i4$Valores,lapso=12,decimal=FALSE))
-  t5<-cbind.data.frame(Fechas=i3$Fechas,"Generación Luz y Agua (YoY)"=inegiR::YoY(i5$Valores,lapso=12,decimal=FALSE))
+  t1<-cbind.data.frame(Fechas=i1$Fechas,"Actividad Industria (YoY)"=inegiR::YoY(i1$Valores,
+                                                                                lapso=12,
+                                                                                decimal=FALSE))
+  t2<-cbind.data.frame(Fechas=i2$Fechas,"Construccion (YoY)"=inegiR::YoY(i2$Valores,
+                                                                         lapso=12,
+                                                                         decimal=FALSE))
+  t3<-cbind.data.frame(Fechas=i3$Fechas,"Manufacturas (YoY)"=inegiR::YoY(i3$Valores,
+                                                                         lapso=12,
+                                                                         decimal=FALSE))
+  t4<-cbind.data.frame(Fechas=i3$Fechas,"Mineria (YoY)"=inegiR::YoY(i4$Valores,
+                                                                    lapso=12,
+                                                                    decimal=FALSE))
+  t5<-cbind.data.frame(Fechas=i3$Fechas,"Generacion Luz y Agua (YoY)"=inegiR::YoY(i5$Valores,
+                                                                                  lapso=12,
+                                                                                  decimal=FALSE))
   
-  df<-Reduce(function(...) merge(...,all=T),list(t1,
-                                                 t2,
-                                                 t3,
-                                                 t4,
-                                                 t5))
+  df<-Reduce(function(...) merge(...,all=TRUE),list(t1, t2, t3, t4, t5))
   return(df)  
 }
 #' Obtener PIB por Entidad Federativa
@@ -239,7 +269,10 @@ series_actividad_industrial<-function(token)
 #' @return Data.frame 
 #' @seealso series_crecimiento_regiones
 #' @examples
+#' \dontrun{
+#' token<-"webservice_token"
 #' Estados<-series_PIB_estados(token)
+#' }
 #' @export
 #'
 
@@ -362,7 +395,10 @@ series_PIB_estados<-function(token)
 #' @return Data.frame 
 #' @seealso series_PIB_estados, crecer, series_ITAE_estados
 #' @examples
+#' \dontrun{
+#' token<-"webservice_token"
 #' CrecimientoZonas<-series_crecimiento_regiones(token)
+#' }
 #' @export
 #'
 #'
@@ -372,17 +408,18 @@ series_crecimiento_regiones<-function(token)
   
   ##########################################################
   #### (DEL INEGI):
-  # La Región Norte comprende las entidades de:
+  # La Region Norte comprende las entidades de:
   # Baja California, Baja California Sur, Coahuila de Zaragoza,
-  # Chihuahua, Nuevo León, Sinaloa, Sonora y Tamaulipas.
+  # Chihuahua, Nuevo Leon, Sinaloa, Sonora y Tamaulipas.
   Norte_PIB<-subset(x = PIB_estados,
                     select = c(Fechas,BajaCalifornia,BajaCaliforniaSur,
                                Coahuila,Chihuahua,Sinaloa,
                                Sonora,NuevoLeon,Tamaulipas))
   
-  #ponderacion - se calculan ultimos 4 años
-  Norte_PIB$Total<-rowSums(x = subset(Norte_PIB,select = -c(Fechas)))
-  Norte_l<-inegiR::ultimos(Norte_PIB,n = 4)
+  #ponderacion - se calculan ultimos 4 anios
+  Norte_PIB$Total<-rowSums(x = subset(Norte_PIB,
+                                      select = -c(Fechas)))
+  Norte_l<-inegiR::ultimos(Norte_PIB, n = 4)
   
   #Estados - no se hace loop para dejar todo explicito
   BajaCalifornia_p<-mean(Norte_l$BajaCalifornia/Norte_l$Total)
@@ -395,15 +432,15 @@ series_crecimiento_regiones<-function(token)
   Tamaulipas_p<-mean(Norte_l$Tamaulipas/Norte_l$Total)
   
   ##########################################################
-  # La Región Centro-Norte comprende las entidades de:
+  # La Region Centro-Norte comprende las entidades de:
   # Aguascalientes, Colima, Durango, Guanajuato, Jalisco,
-  # Nayarit, San Luis Potosí y Zacatecas.
+  # Nayarit, San Luis Potosi y Zacatecas.
   Centro_Nte_PIB<-subset(x = PIB_estados,
                          select = c(Fechas,Aguascalientes,Colima,
                                     Durango,Guanajuato,Jalisco,Nayarit,SanLuisPotosi,Zacatecas))
   #ponderacion
   Centro_Nte_PIB$Total<-rowSums(x = subset(Centro_Nte_PIB, select = -c(Fechas)))
-  Centro_Nte_l<-inegiR::ultimos(Centro_Nte_PIB,n = 4)
+  Centro_Nte_l<-inegiR::ultimos(Centro_Nte_PIB, n = 4)
   
   #Estados - no se hace loop para dejar todo explicito
   Aguascalientes_p<-mean(Centro_Nte_l$Aguascalientes/Centro_Nte_l$Total)
@@ -416,12 +453,13 @@ series_crecimiento_regiones<-function(token)
   Zacatecas_p<-mean(Centro_Nte_l$Zacatecas/Centro_Nte_l$Total)
   
   ##########################################################
-  # La Región Centro comprende las entidades de:
-  # El Distrito Federal y México.
+  # La Region Centro comprende las entidades de:
+  # El Distrito Federal y Mexico.
   Centro_PIB<-subset(x = PIB_estados,
-                     select = c(Fechas,EdoMexico,DF))
+                     select = c(Fechas, EdoMexico, DF))
   #ponderacion
-  Centro_PIB$Total<-rowSums(x = subset(Centro_PIB, select = -c(Fechas)))
+  Centro_PIB$Total<-rowSums(x = subset(Centro_PIB, 
+                                       select = -c(Fechas)))
   Centro_l<-inegiR::ultimos(Centro_PIB, n = 4)
   
   #Estados - no se hace loop para dejar todo explicito
@@ -429,9 +467,9 @@ series_crecimiento_regiones<-function(token)
   DF_p<-mean(Centro_l$DF/Centro_l$Total)
   
   ##########################################################
-  # La Región Centro-Sur comprende las entidades de:
-  # Guerrero, Hidalgo, Michoacán de Ocampo,
-  # Morelos, Puebla, Querétaro y Tlaxcala.
+  # La Region Centro-Sur comprende las entidades de:
+  # Guerrero, Hidalgo, Michoacan de Ocampo,
+  # Morelos, Puebla, Queretaro y Tlaxcala.
   Centro_Sur_PIB<-subset(x = PIB_estados,
                          select = c(Fechas, Guerrero, Hidalgo, Michoacan, Morelos,
                                     Puebla, Queretaro, Tlaxcala))
@@ -449,9 +487,9 @@ series_crecimiento_regiones<-function(token)
   Tlaxcala_p<-mean(Centro_Sur_l$Tlaxcala/Centro_Sur_l$Total)
   
   ##########################################################
-  # La Región Sur-Sureste comprende las entidades de:
+  # La Region Sur-Sureste comprende las entidades de:
   # Campeche, Chiapas, Oaxaca, Quintana Roo,
-  # Tabasco, Veracruz de Ignacio de la Llave y Yucatán.
+  # Tabasco, Veracruz de Ignacio de la Llave y Yucatan.
   Sur_PIB<-subset(x = PIB_estados,
                   select = c(Fechas, Campeche, Chiapas, Oaxaca, QuintanaRoo,
                              Tabasco, Veracruz, Yucatan))
@@ -475,7 +513,7 @@ series_crecimiento_regiones<-function(token)
   ITAEs<-inegiR::series_ITAE_estados(token)
   
   # solamente el "scope" del estudio (trimestres antes)
-  ITAEs<-inegiR::ultimos(ITAEs, n = 16) #ultimos 16 trimestres (5 años) - para calcular cambios de 12
+  ITAEs<-inegiR::ultimos(ITAEs, n = 16) # ultimos 16 trimestres (5 anios) - para calcular cambios de 12
   
   TasasCambio<-apply(ITAEs[,2:length(ITAEs)], 2, function(x) {1+inegiR::YoY(x,1)})
   TasasCambio<-cbind.data.frame(Fechas = ITAEs$Fechas, TasasCambio)
@@ -493,10 +531,10 @@ series_crecimiento_regiones<-function(token)
                                 Coahuila,Chihuahua,Sinaloa,
                                 Sonora,NuevoLeon,Tamaulipas))
   
-  #Suma con crecimientos - 1 explicación, solamente para norte.... 
+  #Suma con crecimientos - 1 explicacion, solamente para norte.... 
   # voy a usar las tasas de crecimiento del ITAE de Baja california para crecer
   Baja<-inegiR::crecer(Norte_tasas$BajaCalifornia[2:length(Norte_tasas$BajaCalifornia)], 
-               # el ITAE original multiplicado por el peso que el estado tiene en la región
+               # el ITAE original multiplicado por el peso que el estado tiene en la region
                Norte_ITAE$BajaCalifornia[1]*BajaCalifornia_p)
   #### despues hago lo mismo para todos los estados y lo sumo...
   #### fin de explicacion, continuo con toda la zona....
@@ -619,7 +657,10 @@ series_crecimiento_regiones<-function(token)
 #' @return Data.frame
 #' @seealso series_PIB_estados, series_crecimiento_regiones
 #' @examples
+#' \dontrun{
+#' token<-"webservice_token"
 #' ITAE<-series_ITAE_estados(token)
+#' }
 #' @export
 #'
 series_ITAE_estados<-function(token)
@@ -630,7 +671,6 @@ series_ITAE_estados<-function(token)
   s4<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/428029/00000/en/false/xml/"
   s5<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/428031/00000/en/false/xml/"
   s6<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/428033/00000/en/false/xml/"
-  #chiapas=7
   s7<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/428034/00000/en/false/xml/"
   s8<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/428036/00000/en/false/xml/"
   s9<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/428037/00000/en/false/xml/"
@@ -726,7 +766,7 @@ series_ITAE_estados<-function(token)
   i32<-inegiR::serie_inegi(s32,token)
   names(i32)<-c("Zacatecas","Fechas")
   
-  df<-Reduce(function(...) merge(...,all=T),list(i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,
+  df<-Reduce(function(...) merge(...,all = TRUE),list(i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,
                                                  i11,i12,i13,i14,i15,i16,i17,i18,i19,i20,
                                                  i21,i22,i23,i24,i25,i26,i27,i28,i29,i30,
                                                  i31,i32))
@@ -742,14 +782,17 @@ series_ITAE_estados<-function(token)
 #' @return Data.frame
 #'
 #' @examples
+#' \dontrun{
+#' token<-"webservice_token"
 #' USD<-series_tipocambio(token)
+#' }
 #' @export
 #'
 
 series_tipocambio<-function(token)
-{ #Retornar la producción automotriz
+{ 
   s<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/824/00000/en/false/xml/"
   
-  d<-inegiR::serie_inegi(s,token)
+  d<-inegiR::serie_inegi(s, token)
   return(d)
 }

@@ -29,10 +29,12 @@ Esta función se llama directamente en \code{serie_inegi()}, cuando el parametro
 La instancia "?callback?" requerida por la documentación del INEGI no es requerida.
 }
 \examples{
+\dontrun{
 #Serie de INPC General
-token<-"tokenProporcionadoporWebservice"
+token<-"webservice_token"
 url <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216064/00000/es/false/xml/"
 Serie <- serie_inegi(url,token)
+}
 }
 \author{
 Eduardo Flores

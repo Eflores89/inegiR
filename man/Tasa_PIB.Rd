@@ -20,7 +20,10 @@ Es un wrapper de las funciones \code{serie_inegi()} y \code{YoY()}.
 Ruta tematica BIE: Indicadores económicos de coyuntura ... Producto interno bruto trimestral, base 2008 ... Series originales ... Valores a precios de 2008 ... Producto interno bruto, a precios de mercado
 }
 \examples{
+\dontrun{
+token<-"webservice_token"
 CrecimientoMex<-tasa_PIB(token)
+}
 }
 \author{
 Eduardo Flores

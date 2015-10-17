@@ -17,7 +17,10 @@ Obtiene principales componentes de encuestas de Opinión Empresarial del INEGI d
 Es un wrapper de las funciones \code{serie_inegi()} y \code{YoY()}.
 }
 \examples{
+\dontrun{
+token<-"webservice_token"
 OpinionMexicanos<-series_opiniones(token)
+}
 }
 \author{
 Eduardo Flores

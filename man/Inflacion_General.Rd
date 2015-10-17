@@ -17,11 +17,11 @@ Obtiene tasa de inflación inter anual en porcentaje.
 La inflación se define como el cambio porcentual en el INPC.
 Es un wrapper de las funciones \code{serie_inegi()} y \code{YoY()}.
 }
-\note{
-Encoding no permite acentos en titulo de descripción
-}
 \examples{
+\dontrun{
+token<-"webservice_token"
 Inflacion<-inflacion_general(token)
+}
 }
 \author{
 Eduardo Flores

@@ -17,11 +17,11 @@ Obtiene exportaciones de principales socios comerciales.
 Todos los productos y Estados Unidos, Canadá, China, CentroAmerica y América del Sur.
 Es un wrapper de las funciones \code{serie_inegi()} y \code{YoY()}.
 }
-\note{
-Encoding no permite acéntos en título de descripción
-}
 \examples{
+\dontrun{
+token<-"webservice_token"
 ExportacionesMx<-series_exportaciones_pais(token)
+}
 }
 \author{
 Eduardo Flores

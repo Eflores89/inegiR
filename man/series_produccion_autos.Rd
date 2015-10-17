@@ -16,11 +16,11 @@ Data.frame
 Obtiene producción automotriz en México y cambio porcentual anual.
 Es un wrapper de las funciones \code{serie_inegi()} y \code{YoY()}.
 }
-\note{
-Encoding no permite acentos en título de descripción
-}
 \examples{
+\dontrun{
+token<-"webservice_token"
 ProduccionAutos<-series_produccion_autos(token)
+}
 }
 \author{
 Eduardo Flores

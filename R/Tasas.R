@@ -10,16 +10,19 @@
 #' @note Ruta tematica BIE: Indicadores económicos de coyuntura ... Producto interno bruto trimestral, base 2008 ... Series originales ... Valores a precios de 2008 ... Producto interno bruto, a precios de mercado 
 #'
 #' @examples
+#' \dontrun{
+#' token<-"webservice_token"
 #' CrecimientoMex<-tasa_PIB(token)
+#' }
 #' @export
 #' 
 
 tasa_PIB<-function (token){
   #Serie de PIB;
   s<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/381016/00000/es/false/xml/"
-  i<-inegiR::serie_inegi(s,token)
-  t<-inegiR::YoY(serie = i$Valores,lapso = 4,decimal = FALSE)
-  d<-cbind.data.frame(Fechas=i$Fechas,Valores=t)
+  i<-inegiR::serie_inegi(s, token)
+  t<-inegiR::YoY(serie = i$Valores, lapso = 4, decimal = FALSE)
+  d<-cbind.data.frame(Fechas=i$Fechas, Valores=t)
   return(d)
 }
 
@@ -33,8 +36,10 @@ tasa_PIB<-function (token){
 #' @return Data.frame
 #'
 #' @examples
+#' \dontrun{
+#' token<-"webservice_token"
 #' Desempleo<-tasa_desempleo(token)
-#' @note Encoding no permite acentos en título de descripción
+#' }
 #' @export
 #'
 
@@ -56,7 +61,10 @@ tasa_desempleo<-function(token)
 #' @return Data.frame
 #'
 #' @examples
+#' \dontrun{
+#' token<-"webservice_token"
 #' Comercio<-tasa_comercio(token)
+#' }
 #' @export
 #'
 
@@ -64,7 +72,9 @@ tasa_comercio<-function(token)
 { #traer tasa de actividad terciaria - comercio.
   s<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/383160/00000/en/false/xml/"
   d<-inegiR::serie_inegi(s,token)
-    d<-cbind.data.frame(Fechas=d$Fechas,Valores=d$Valores,"YoY"=YoY(serie = d$Valores,lapso = 12, decimal=FALSE))
+    d<-cbind.data.frame(Fechas=d$Fechas,Valores=d$Valores,"YoY"=YoY(serie = d$Valores,
+                                                                    lapso = 12, 
+                                                                    decimal = FALSE))
 return(d)
 }
 
@@ -78,7 +88,10 @@ return(d)
 #' @return Data.frame
 #'
 #' @examples
+#' \dontrun{
+#' token<-"webservice_token"
 #' ActividadEconomica<-tasa_IGAE(token)
+#' }
 #' @export
 #'
 
@@ -93,15 +106,15 @@ tasa_IGAE<-function(token)
   i1<-inegiR::serie_inegi(s1,token)
   i2<-inegiR::serie_inegi(s2,token)
   
-  t1<-inegiR::YoY(serie = i1$Valores, lapso = 12, decimal=FALSE)
+  t1<-inegiR::YoY(serie = i1$Valores, lapso = 12, decimal = FALSE)
     t1<-cbind.data.frame(Fechas=i1$Fechas, "Serie Original (YoY)"=t1)
-  t2<-inegiR::YoY(serie = i2$Valores, lapso = 12, decimal=FALSE)
+  t2<-inegiR::YoY(serie = i2$Valores, lapso = 12, decimal = FALSE)
     t2<-cbind.data.frame(Fechas=i1$Fechas, "Serie Desest. (YoY)"=t2)
-  t3<-inegiR::YoY(serie = i2$Valores, lapso = 1, decimal=FALSE)
+  t3<-inegiR::YoY(serie = i2$Valores, lapso = 1, decimal = FALSE)
     t3<-cbind.data.frame(Fechas=i1$Fechas, "Serie Desest. (MoM)"=t3)
   
   #union
-  df<-Reduce(function(...) merge(...,all=T),list(t1,
+  df<-Reduce(function(...) merge(...,all=TRUE),list(t1,
                                                  t2,
                                                  t3))
   return(df)
@@ -117,7 +130,10 @@ tasa_IGAE<-function(token)
 #' @return Data.frame
 #'
 #' @examples
+#' \dontrun{
+#' token<-"webservice_token"
 #' Sectores<-tasa_sectoresYoY(token)
+#' }
 #' @export
 #'
 
@@ -142,7 +158,7 @@ tasa_sectoresYoY<-function(token)
     t3<-cbind.data.frame(Fechas=i1$Fechas, "Terciarios (YoY)"=t3)
   
   #union
-  df<-Reduce(function(...) merge(...,all=T),list(t1,
+  df<-Reduce(function(...) merge(...,all=TRUE),list(t1,
                                                  t2,
                                                  t3))
   return(df)
@@ -159,7 +175,10 @@ tasa_sectoresYoY<-function(token)
 #' @return Data.frame
 #'
 #' @examples
+#' \dontrun{
+#' token<-"webservice_token"
 #' ConfianzaEconomia<-tasa_confianza(token)
+#' }
 #' @export
 #'
 
@@ -171,8 +190,8 @@ tasa_confianza<-function(token)
   #serie desest.
   s2<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/132944/00000/en/false/xml/"
   
-  i1<-inegiR::serie_inegi(s1,token)
-  i2<-inegiR::serie_inegi(s2,token)
+  i1<-inegiR::serie_inegi(s1, token)
+  i2<-inegiR::serie_inegi(s2, token)
   
   t1<-inegiR::YoY(serie = i1$Valores, lapso = 12, decimal=FALSE)
   t1<-cbind.data.frame(Fechas=i1$Fechas, "Serie Original (YoY)"=t1)
@@ -182,7 +201,7 @@ tasa_confianza<-function(token)
   t3<-cbind.data.frame(Fechas=i1$Fechas, "Serie Desest. (MoM)"=t3)
   
   #union
-  df<-Reduce(function(...) merge(...,all=T),list(t1,
+  df<-Reduce(function(...) merge(...,all = TRUE),list(t1,
                                                  t2,
                                                  t3))
   return(df)

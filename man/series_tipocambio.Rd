@@ -17,7 +17,10 @@ Obtiene tipo de cambio interbancario (venta) histórico de pesos a dólares.
 Es un wrapper de las funciones \code{serie_inegi()} y \code{YoY()}.
 }
 \examples{
+\dontrun{
+token<-"webservice_token"
 USD<-series_tipocambio(token)
+}
 }
 \author{
 Eduardo Flores

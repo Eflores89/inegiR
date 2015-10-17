@@ -9,17 +9,19 @@
 #' @return Data.frame
 #'
 #' @examples
+#' \dontrun{
+#' token<-"webservice_token"
 #' Inflacion<-inflacion_general(token)
-#' @note Encoding no permite acentos en titulo de descripción
+#' }
 #' @export
 #' 
 
 inflacion_general<-function (token){
-  #Serie de INPC general;
+  #Serie de INPC general
   s<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216064/00000/es/false/xml/"
-  i<-inegiR::serie_inegi(s,token)
-  t<-inegiR::YoY(serie = i$Valores,lapso = 12,decimal = FALSE)
-  d<-cbind.data.frame(Fechas=i$Fechas,Valores=t)
+  i<-inegiR::serie_inegi(s, token)
+  t<-inegiR::YoY(serie = i$Valores, lapso = 12, decimal = FALSE)
+  d<-cbind.data.frame(Fechas=i$Fechas, Valores=t)
   return(d)
 }
 
@@ -34,8 +36,10 @@ inflacion_general<-function (token){
 #' @return Data.frame
 #'
 #' @examples
+#' \dontrun{
+#' token<-"webservice_token"
 #' InflacionEstudiantes<-inflacion_estudiantes(token)
-#' @note Encoding no permite acentos en titulo de descripción
+#' }
 #' @export
 #' 
 
@@ -58,11 +62,11 @@ inflacion_estudiantes<-function (token){
   s8<-inegiR::serie_inegi("http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216072/00000/es/false/xml/",token)
   names(s8)<-c("s8","Fechas")
   
-  df<-Reduce(function(...) merge(...,all=T),list(s1,s2,s3,s4,s5,s6,s7,s8))
+  df<-Reduce(function(...) merge(...,all=T), list(s1,s2,s3,s4,s5,s6,s7,s8))
   df$ipe<-(df$s1*0.331417)+(df$s2*0.032764)+(df$s3*0.077735)+(df$s4*0.00378)+(df$s5*0.028353177)+(df$s6*0.199190)+(df$s7*0.0606992)+(df$s8*0.266067)
   
-  st<-inegiR::YoY(serie = df$ipe,lapso = 12,decimal = FALSE)
-  d<-cbind.data.frame(Fechas=df$Fechas,Valores=st)
+  st<-inegiR::YoY(serie = df$ipe, lapso = 12, decimal = FALSE)
+  d<-cbind.data.frame(Fechas=df$Fechas, Valores=st)
   return(d)
 }
 #' Obtener terminos de intercambio
@@ -76,8 +80,10 @@ inflacion_estudiantes<-function (token){
 #' @return Data.frame 
 #'
 #' @examples
+#' \dontrun{
+#' token<-"webservice_token"
 #' TerminosIntercambio<-inflacion_tot(token)
-#' @note Encoding no permite acentos en titulo de descripción
+#' } 
 #' @export
 #'
 
@@ -91,7 +97,7 @@ inflacion_tot<-function(token)
   m_val<-inegiR::serie_inegi(m,token)
   names(m_val)<-c("m","Fechas")
   
-  df<-Reduce(function(...) merge(...,all=T),list(m_val,x_val))
+  df<-Reduce(function(...) merge(...,all=TRUE), list(m_val,x_val))
   df$ToT<-df$x/df$m
   
   d<-cbind.data.frame(Fechas=df$Fechas,Valores=df$ToT)
@@ -108,8 +114,10 @@ inflacion_tot<-function(token)
 #' @return Data.frame 
 #'
 #' @examples
+#' \dontrun{
+#' token<-"webservice_token"
 #' InflacionCiudades<-inflacion_ciudades(token)
-#' @note Encoding no permite acentos en titulo de descripción
+#' }
 #' @export
 #'
 
@@ -193,7 +201,7 @@ inflacion_ciudades<-function(token){
   }
   
   #join
-  df<-Reduce(function(...) merge(...,all=T),dloads)
+  df<-Reduce(function(...) merge(..., all=TRUE), dloads)
   
   # year over year
   ts<-apply(df[,2:47],

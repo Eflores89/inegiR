@@ -18,7 +18,10 @@ Aun y cuando son las mismas series reportadas en el IGAE unas semanas después, 
 Es un wrapper de las funciones \code{serie_inegi()} y \code{YoY()}.
 }
 \examples{
+\dontrun{
+token<-"webservice_token"
 ActividadIndustrial<-series_actividad_industrial(token)
+}
 }
 \author{
 Eduardo Flores
