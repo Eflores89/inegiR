@@ -1,13 +1,14 @@
 Package: inegiR
 Type: Package
-Title: Integrar API’s de INEGI con R
+Title: Integrate INEGI’s (Mexican Stats Office) API with R
 Version: 1.0
-Date: 2015-06-19
+Date: 2015-10-19
 Author: Eduardo Flores
 Maintainer: Eduardo Flores <eduardo@enelmargen.org>
-Description: Paquete para interactuar con el API de Indicadores y DENUE del INEGI.
+Description: Provides functions to download and parse information from INEGI (Official Mexican statistics agency).
 Encoding: UTF-8
 License: CC0
 Imports: zoo, XML, plyr, jsonlite
 Suggests: knitr
 VignetteBuilder: knitr
+Language: es
