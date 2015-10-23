@@ -61,7 +61,7 @@ ordenar_porconteo<-function(df,col)
   columna<-as.character(eval(substitute(col), df, parent.frame()))
   
   # agrupar
-  set<-aggregate(x = df, by = list(columna), FUN = length)
+  set<-stats::aggregate(x = df, by = list(columna), FUN = length)
   set<-set[,names(set)[1:2]]
   # ordenar mayor a menor
   ordenado<-set[order(set[,names(set[2])], decreasing=TRUE),]

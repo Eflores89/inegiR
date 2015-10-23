@@ -94,7 +94,7 @@ denue_varios_stats<-function(data,col_lat, col_long, token, metros = 250, keywor
     #estimacion de empleados en base a columna de estrato
     d[i,]$EMPLEADOS_EST<-if(is.null(sum(as.numeric((m[,"Empleados"]))))){0} else {sum(as.numeric((m[,"Empleados"])))}
     #desviacion standar de empleados en comercios
-    d[i,]$EMPLEADOS_SD<-if(is.null(sd(x = as.numeric((m[,"Empleados"]))))) {0} else {sd(x = as.numeric((m[,"Empleados"])))}
+    d[i,]$EMPLEADOS_SD<-if(is.null(stats::sd(x = as.numeric((m[,"Empleados"]))))) {0} else {stats::sd(x = as.numeric((m[,"Empleados"])))}
     #actividad principal mas importante - usa otra funcion de este paquete.
     d[i,]$ACTIVIDAD_PRINCIPAL<-if(is.null(inegiR::ordenar_porconteo(m,Actividad)[1,1])){"Ninguna"} else {inegiR::ordenar_porconteo(m,Actividad)[1,1]}
     

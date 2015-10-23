@@ -47,7 +47,7 @@ denue_inegi<-function(latitud, longitud, token, metros = 250, keyword = "todos")
       # extraccion inicial
          #codigo de xmlparse usa print() como "warnings". Esto lo suprime,
           invisible(
-                capture.output(
+            utils::capture.output(
                 s<-xmlToList(xmlParse(consulta, isHTML = TRUE, encoding = "UTF-8"))
                   ))
       l<-strsplit(x = as.character(s$body), split = "\",\"|}")
