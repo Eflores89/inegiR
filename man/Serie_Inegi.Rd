@@ -19,12 +19,12 @@ serie_inegi(serie, token, metadata = FALSE, coercionar = TRUE)
 Dataframe o lista
 }
 \description{
-Regresa Data.Frame con la serie de tiempo escogida, al buscar en el webservice del INEGI y parsear via XML y ZOO.
+Regresa data.frame con la serie de tiempo escogida, al buscar en el webservice del INEGI y parsear via XML y ZOO.
 Si parametro Metadata=TRUE, regresa lista con indicadores meta y datos.
 Es una de las funciones primitivas del paquete.
 }
 \note{
-La instancia "?callback?", requerida por la documentación del INEGI para series JSON no es requerida.
+La instancia "?callback?", requerida por la documentación del INEGI para series JSON no es necesaria.
 }
 \examples{
 \dontrun{

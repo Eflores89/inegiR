@@ -14,7 +14,7 @@ Data.frame
 }
 \description{
 Obtiene tasa de inflación de estudiantes, inter anual en porcentaje. Es un wrapper de las funciones Serie_Inegi() y YoY().
-La metodología del índice se puede encontrar aquí: \url{http://www.enelmargen.org/2011/04/indice-de-precios-estudiantes.html}
+La metodología del índice se puede encontrar aquí: \url{http://enelmargen.org/eem/ipe/}
 Es un wrapper de las funciones \code{serie_inegi()} y \code{YoY()}.
 }
 \examples{

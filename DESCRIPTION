@@ -1,7 +1,7 @@
 Package: inegiR
 Type: Package
 Title: Integrate INEGI’s (Mexican Stats Office) API with R
-Version: 1.0.1
+Version: 1.0.2
 Date: 2015-10-19
 Author: Eduardo Flores
 Maintainer: Eduardo Flores <eduardo@enelmargen.org>
