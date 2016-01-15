@@ -138,7 +138,7 @@ serie_inegi_json<-function(serie, token, metadata=FALSE, coercionar=TRUE)
   
   #fechas 
   Fechas <- (s$Data$Serie)[,c("TimePeriod")]
-  if(s$MetaData$Freq == "Anual" | s$MetaData$Freq == "Yearly" | s$MetaData$Freq == "Annual" | s$MetaData$Freq == "Quinquenal")
+  if(s$MetaData$Freq == "Anual" | s$MetaData$Freq == "Yearly" | s$MetaData$Freq == "Annual" | s$MetaData$Freq == "Quinquenal" | s$MetaData$Freq == "Decenal" | s$MetaData$Freq == "Bienal")
   {Fechas_Date<-as.Date(zoo::as.yearmon(x = paste0("01/",Fechas), format = "%m/%Y"))
   } else {
     if(s$MetaData$Freq == "Trimestral" | s$MetaData$Freq == "Quarterly" )
