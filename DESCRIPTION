@@ -1,12 +1,18 @@
 Package: inegiR
 Type: Package
 Title: Integrate INEGI’s (Mexican Stats Office) API with R
-Version: 1.0.2
+Version: 1.2.0
 Date: 2015-10-19
 Author: Eduardo Flores
 Maintainer: Eduardo Flores <eduardo@enelmargen.org>
-Description: Provides functions to download and parse information from INEGI (Official Mexican statistics agency).
+Description: Provides functions to download and parse information from INEGI
+    (Official Mexican statistics agency).
 Encoding: UTF-8
 License: CC0
-Imports: zoo, XML, plyr, jsonlite
+Imports:
+    zoo,
+    XML,
+    plyr,
+    jsonlite
 Language: es
+RoxygenNote: 5.0.1

@@ -93,11 +93,11 @@ series_exportaciones_pais<-function(token)
 
 series_produccion_autos<-function(token)
 { #Retornar la prod automotriz
-  s<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/15166/00000/en/false/xml/"
+  s <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/15166/00000/en/false/xml/"
   
-  i<-inegiR::serie_inegi(s, token)
-  t<-inegiR::YoY(serie=i$Valores, lapso=12, decimal=FALSE)
-  d<-cbind.data.frame(Fechas=i$Fechas,"Autos"=i$Valores,"YoY"=t)
+  i <- inegiR::serie_inegi(s, token)
+  t <- inegiR::YoY(serie=i$Valores, lapso=12, decimal=FALSE)
+  d <- cbind.data.frame(Fechas=i$Fechas,"Autos"=i$Valores,"YoY"=t)
   
   return(d)
 }
@@ -124,8 +124,8 @@ series_balanza_pagos<-function(token)
 { #Retornar la Balanza de Pagos de Mexico
   
   #with_all
-  pre<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/"
-  last<-"/00000/en/false/xml/"
+  pre <-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/"
+  last <-"/00000/en/false/xml/"
   
   #Cuenta Corriente
   cc_ing<-inegiR::serie_inegi(paste0(pre,"214053",last),token)

@@ -64,10 +64,10 @@ denue_inegi<-function(latitud, longitud, token, metros = 250, keyword = "todos")
           stop(print("Error en definicion de datos: uno o mas de los negocios traen mas o menos de 18 campos"))}
       
       # dividir
-      l_split<-split(x = l_limpia, f = 1:18)
+      l_split <- split(x = l_limpia, f = 1:18)
   
       # Hacer en un data.frame 
-      LimpiarRapido<-function(pat, elemento)
+      LimpiarRapido <- function(pat, elemento)
         {
           exit<-substr(elemento, regexpr(pattern = pat, text = elemento)+1, stop = 4000)
           return(exit)
