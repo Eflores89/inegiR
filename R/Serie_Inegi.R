@@ -39,7 +39,12 @@ serie_inegi<-function(serie, token, metadata=FALSE, coercionar=TRUE)
     #parse xml
     
   serie<-paste0(serie, token)
-  s<-xmlToList(serie)  
+  s<-xmlToList(serie)
+    # revisar que no haya errores de origen
+    if(!is.null(s$ErrorInfo)){
+      warning(paste0("Error de INEGI: ", s$ErrorInfo))
+      return(NULL)
+    }
   Fechas<-ldply(.data = s$Data$Serie, .fun = "[[",'TimePeriod')[,'[[']
   
   # note to former - zoo::as.yearmon
@@ -132,6 +137,12 @@ serie_inegi_json<-function(serie, token, metadata=FALSE, coercionar=TRUE)
   serie <- paste0(serie, token, "?callback?")
   
   s<-jsonlite::fromJSON(serie)
+  
+  # revisar que no haya errores de origen
+  if(!is.null(s$ErrorInfo)){
+    warning(paste0("Error de INEGI: ", s$ErrorInfo))
+    return(NULL)
+  }
   
   #valores 
   Valores <- as.numeric(as.data.frame(s$Data$Serie)[,c("CurrentValue")])

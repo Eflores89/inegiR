@@ -796,3 +796,532 @@ series_tipocambio<-function(token)
   d<-inegiR::serie_inegi(s, token)
   return(d)
 }
+#' Obtener productividad de manufactura por estado
+#'
+#' Obtiene la productivdad de la manufactura por estado. Se calcula a partir de las series de personal ocupado y de valor de la producción de 
+#' la Encuesta Mensual de la Industria Manufacturera (EMIM) al dividirse valor (en miles de pesos) entre personal (personas).
+#' Es un wrapper de la función \code{serie_inegi()}.
+#'
+#' @param token token personal emitido por el INEGI para acceder al API.
+#' @author Eduardo Flores 
+#' @return Data.frame
+#' 
+#' @examples
+#' \dontrun{
+#' token<-"webservice_token"
+#' Productividad <- series_productividad_man(token)
+#' }
+#' @export
+#' 
+#' 
+series_productividad_man <- function(token)
+{ 
+  # series de personal ocupado... 
+  sp1 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/294731/00000/en/false/xml/"
+  sp2 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/294745/00000/en/false/xml/"
+  sp3 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/294766/00000/en/false/xml/"
+  sp4 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/294767/00000/en/false/xml/"
+  sp5 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/294768/00000/en/false/xml/"
+  sp6 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/294788/00000/en/false/xml/"
+  sp7 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/294789/00000/en/false/xml/"
+  sp8 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/294790/00000/en/false/xml/"
+  sp9 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/294810/00000/en/false/xml/"
+  sp10 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/294831/00000/en/false/xml/"
+  sp11 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/294842/00000/en/false/xml/"
+  sp12 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/294861/00000/en/false/xml/"
+  sp13 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/294862/00000/en/false/xml/"
+  sp14 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/294877/00000/en/false/xml/"
+  sp15 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/294899/00000/en/false/xml/"
+  sp16 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/294921/00000/en/false/xml/"
+  sp17 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/294933/00000/en/false/xml/"
+  sp18 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/294934/00000/en/false/xml/"
+  sp19 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/294935/00000/en/false/xml/"
+  sp20 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/294956/00000/en/false/xml/"
+  sp21 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/294957/00000/en/false/xml/"
+  sp22 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/294975/00000/en/false/xml/"
+  sp23 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/294990/00000/en/false/xml/"
+  sp24 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/294991/00000/en/false/xml/"
+  sp25 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295008/00000/en/false/xml/"
+  sp26 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295009/00000/en/false/xml/"
+  sp27 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295026/00000/en/false/xml/"
+  sp28 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295027/00000/en/false/xml/"
+  sp29 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295044/00000/en/false/xml/"
+  sp30 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295045/00000/en/false/xml/"
+  sp31 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295058/00000/en/false/xml/"
+  sp32 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295059/00000/en/false/xml/"
+  
+  # series de valor de producido....
+  sv1 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295389/00000/en/false/xml/"
+  sv2 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295403/00000/en/false/xml/"
+  sv3 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295424/00000/en/false/xml/"
+  sv4 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295425/00000/en/false/xml/"
+  sv5 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295426/00000/en/false/xml/"
+  sv6 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295446/00000/en/false/xml/"
+  sv7 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295447/00000/en/false/xml/"
+  sv8 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295448/00000/en/false/xml/"
+  sv9 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295468/00000/en/false/xml/"
+  sv10 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295489/00000/en/false/xml/"
+  sv11 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295500/00000/en/false/xml/"
+  sv12 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295519/00000/en/false/xml/"
+  sv13 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295520/00000/en/false/xml/"
+  sv14 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295535/00000/en/false/xml/"
+  sv15 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295557/00000/en/false/xml/"
+  sv16 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295579/00000/en/false/xml/"
+  sv17 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295591/00000/en/false/xml/"
+  sv18 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295592/00000/en/false/xml/"
+  sv19 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295593/00000/en/false/xml/"
+  sv20 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295614/00000/en/false/xml/"
+  sv21 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295615/00000/en/false/xml/"
+  sv22 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295633/00000/en/false/xml/"
+  sv23 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295648/00000/en/false/xml/"
+  sv24 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295649/00000/en/false/xml/"
+  sv25 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295666/00000/en/false/xml/"
+  sv26 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295667/00000/en/false/xml/"
+  sv27 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295684/00000/en/false/xml/"
+  sv28 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295685/00000/en/false/xml/"
+  sv29 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295702/00000/en/false/xml/"
+  sv30 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295703/00000/en/false/xml/"
+  sv31 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295716/00000/en/false/xml/"
+  sv32 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/295717/00000/en/false/xml/"
+  
+  # descargar las series de personal...
+  spd1 <- inegiR::serie_inegi(sp1, token)
+  spd2 <- inegiR::serie_inegi(sp2, token)
+  spd3 <- inegiR::serie_inegi(sp3, token)
+  spd4 <- inegiR::serie_inegi(sp4, token)
+  spd5 <- inegiR::serie_inegi(sp5, token)
+  spd6 <- inegiR::serie_inegi(sp6, token)
+  spd7 <- inegiR::serie_inegi(sp7, token)
+  spd8 <- inegiR::serie_inegi(sp8, token)
+  spd9 <- inegiR::serie_inegi(sp9, token)
+  spd10 <- inegiR::serie_inegi(sp10, token)
+  spd11 <- inegiR::serie_inegi(sp11, token)
+  spd12 <- inegiR::serie_inegi(sp12, token)
+  spd13 <- inegiR::serie_inegi(sp13, token)
+  spd14 <- inegiR::serie_inegi(sp14, token)
+  spd15 <- inegiR::serie_inegi(sp15, token)
+  spd16 <- inegiR::serie_inegi(sp16, token)
+  spd17 <- inegiR::serie_inegi(sp17, token)
+  spd18 <- inegiR::serie_inegi(sp18, token)
+  spd19 <- inegiR::serie_inegi(sp19, token)
+  spd20 <- inegiR::serie_inegi(sp20, token)
+  spd21 <- inegiR::serie_inegi(sp21, token)
+  spd22 <- inegiR::serie_inegi(sp22, token)
+  spd23 <- inegiR::serie_inegi(sp23, token)
+  spd24 <- inegiR::serie_inegi(sp24, token)
+  spd25 <- inegiR::serie_inegi(sp25, token)
+  spd26 <- inegiR::serie_inegi(sp26, token)
+  spd27 <- inegiR::serie_inegi(sp27, token)
+  spd28 <- inegiR::serie_inegi(sp28, token)
+  spd29 <- inegiR::serie_inegi(sp29, token)
+  spd30 <- inegiR::serie_inegi(sp30, token)
+  spd31 <- inegiR::serie_inegi(sp31, token)
+  spd32 <- inegiR::serie_inegi(sp32, token)
+  
+  # descargar las series de valor 
+  svd1 <- inegiR::serie_inegi(sv1, token)
+  svd2 <- inegiR::serie_inegi(sv2, token)
+  svd3 <- inegiR::serie_inegi(sv3, token)
+  svd4 <- inegiR::serie_inegi(sv4, token)
+  svd5 <- inegiR::serie_inegi(sv5, token)
+  svd6 <- inegiR::serie_inegi(sv6, token)
+  svd7 <- inegiR::serie_inegi(sv7, token)
+  svd8 <- inegiR::serie_inegi(sv8, token)
+  svd9 <- inegiR::serie_inegi(sv9, token)
+  svd10 <- inegiR::serie_inegi(sv10, token)
+  svd11 <- inegiR::serie_inegi(sv11, token)
+  svd12 <- inegiR::serie_inegi(sv12, token)
+  svd13 <- inegiR::serie_inegi(sv13, token)
+  svd14 <- inegiR::serie_inegi(sv14, token)
+  svd15 <- inegiR::serie_inegi(sv15, token)
+  svd16 <- inegiR::serie_inegi(sv16, token)
+  svd17 <- inegiR::serie_inegi(sv17, token)
+  svd18 <- inegiR::serie_inegi(sv18, token)
+  svd19 <- inegiR::serie_inegi(sv19, token)
+  svd20 <- inegiR::serie_inegi(sv20, token)
+  svd21 <- inegiR::serie_inegi(sv21, token)
+  svd22 <- inegiR::serie_inegi(sv22, token)
+  svd23 <- inegiR::serie_inegi(sv23, token)
+  svd24 <- inegiR::serie_inegi(sv24, token)
+  svd25 <- inegiR::serie_inegi(sv25, token)
+  svd26 <- inegiR::serie_inegi(sv26, token)
+  svd27 <- inegiR::serie_inegi(sv27, token)
+  svd28 <- inegiR::serie_inegi(sv28, token)
+  svd29 <- inegiR::serie_inegi(sv29, token)
+  svd30 <- inegiR::serie_inegi(sv30, token)
+  svd31 <- inegiR::serie_inegi(sv31, token)
+  svd32 <- inegiR::serie_inegi(sv32, token)
+  
+  # crear serie de productividad...
+  p1 <- svd1$Valores/spd1$Valores
+  p2 <- svd2$Valores/spd2$Valores
+  p3 <- svd3$Valores/spd3$Valores
+  p4 <- svd4$Valores/spd4$Valores
+  p5 <- svd5$Valores/spd5$Valores
+  p6 <- svd6$Valores/spd6$Valores
+  p7 <- svd7$Valores/spd7$Valores
+  p8 <- svd8$Valores/spd8$Valores
+  p9 <- svd9$Valores/spd9$Valores
+  p10 <- svd10$Valores/spd10$Valores
+  p11 <- svd11$Valores/spd11$Valores
+  p12 <- svd12$Valores/spd12$Valores
+  p13 <- svd13$Valores/spd13$Valores
+  p14 <- svd14$Valores/spd14$Valores
+  p15 <- svd15$Valores/spd15$Valores
+  p16 <- svd16$Valores/spd16$Valores
+  p17 <- svd17$Valores/spd17$Valores
+  p18 <- svd18$Valores/spd18$Valores
+  p19 <- svd19$Valores/spd19$Valores
+  p20 <- svd20$Valores/spd20$Valores
+  p21 <- svd21$Valores/spd21$Valores
+  p22 <- svd22$Valores/spd22$Valores
+  p23 <- svd23$Valores/spd23$Valores
+  p24 <- svd24$Valores/spd24$Valores
+  p25 <- svd25$Valores/spd25$Valores
+  p26 <- svd26$Valores/spd26$Valores
+  p27 <- svd27$Valores/spd27$Valores
+  p28 <- svd28$Valores/spd28$Valores
+  p29 <- svd29$Valores/spd29$Valores
+  p30 <- svd30$Valores/spd30$Valores
+  p31 <- svd31$Valores/spd31$Valores
+  p32 <- svd32$Valores/spd32$Valores
+  
+  # nombrar, para unir... 
+  pd1 <- cbind.data.frame("AGS" = p1, 
+                          "Fechas" = svd1$Fechas)
+  pd2 <- cbind.data.frame("BC" = p2, 
+                          "Fechas" = svd2$Fechas)
+  pd3 <- cbind.data.frame("BCS" = p3, 
+                          "Fechas" = svd3$Fechas)
+  pd4 <- cbind.data.frame("CAMP" = p4, 
+                          "Fechas" = svd3$Fechas)
+  pd5 <- cbind.data.frame("COAH" = p5, 
+                          "Fechas" = svd3$Fechas)
+  pd6 <- cbind.data.frame("COL" = p6, 
+                          "Fechas" = svd3$Fechas)
+  pd7 <- cbind.data.frame("CHPS" = p7, 
+                          "Fechas" = svd3$Fechas)
+  pd8 <- cbind.data.frame("CHIH" = p8, 
+                          "Fechas" = svd3$Fechas)
+  pd9 <- cbind.data.frame("CDMX" = p9, 
+                          "Fechas" = svd3$Fechas)
+  pd10 <- cbind.data.frame("DGO" = p10, 
+                           "Fechas" = svd3$Fechas)
+  pd11 <- cbind.data.frame("GTO" = p11, 
+                           "Fechas" = svd3$Fechas)
+  pd12 <- cbind.data.frame("GRO" = p12, 
+                           "Fechas" = svd3$Fechas)
+  pd13 <- cbind.data.frame("HGO" = p13, 
+                           "Fechas" = svd3$Fechas)
+  pd14 <- cbind.data.frame("JAL" = p14, 
+                           "Fechas" = svd3$Fechas)
+  pd15 <- cbind.data.frame("MEX" = p15, 
+                           "Fechas" = svd3$Fechas)
+  pd16 <- cbind.data.frame("MICH" = p16, 
+                           "Fechas" = svd3$Fechas)
+  pd17 <- cbind.data.frame("MOR" = p17, 
+                           "Fechas" = svd3$Fechas)
+  pd18 <- cbind.data.frame("NAY" = p18, 
+                           "Fechas" = svd3$Fechas)
+  pd19 <- cbind.data.frame("NL" = p19, 
+                           "Fechas" = svd3$Fechas)
+  pd20 <- cbind.data.frame("OAX" = p20, 
+                           "Fechas" = svd3$Fechas)
+  pd21 <- cbind.data.frame("PUE" = p21, 
+                           "Fechas" = svd3$Fechas)
+  pd22 <- cbind.data.frame("QRO" = p22, 
+                           "Fechas" = svd3$Fechas)
+  pd23 <- cbind.data.frame("QROO" = p23, 
+                           "Fechas" = svd3$Fechas)
+  pd24 <- cbind.data.frame("SLP" = p24, 
+                           "Fechas" = svd3$Fechas)
+  pd25 <- cbind.data.frame("SIN" = p25, 
+                           "Fechas" = svd3$Fechas)
+  pd26 <- cbind.data.frame("SON" = p26, 
+                           "Fechas" = svd3$Fechas)
+  pd27 <- cbind.data.frame("TAB" = p27, 
+                           "Fechas" = svd3$Fechas)
+  pd28 <- cbind.data.frame("TAM" = p28, 
+                           "Fechas" = svd3$Fechas)
+  pd29 <- cbind.data.frame("TLAX" = p29, 
+                           "Fechas" = svd3$Fechas)
+  pd30 <- cbind.data.frame("VER" = p30, 
+                           "Fechas" = svd3$Fechas)
+  pd31 <- cbind.data.frame("YUC" = p31, 
+                           "Fechas" = svd3$Fechas)
+  pd32 <- cbind.data.frame("ZAC" = p32, 
+                           "Fechas" = svd3$Fechas)
+  
+  df<-Reduce(function(...) merge(..., all=TRUE), 
+             list(pd1, pd2, pd3, pd4, pd5, pd6, pd7, pd8, pd9, pd10,
+                  pd11, pd12, pd13, pd14, pd15, pd16, pd17, pd18, pd19, pd20, 
+                  pd21, pd22, pd23, pd24, pd25, pd26, pd27, pd28, pd29, pd30, 
+                  pd31, pd32
+             ))
+  return(df)
+}
+#' Obtener productividad de construcción por estado
+#'
+#' Obtiene la productivdad de la construcción generada por estado. Se calcula a partir de las series de personal ocupado y de valor de la producción de 
+#' la Encuesta Nacional de Empresas Constructoras (ENEC) al dividirse valor (en miles de pesos a precios corrientes) entre personal (personas).
+#' Es un wrapper de la función \code{serie_inegi()}.
+#'
+#' @param token token personal emitido por el INEGI para acceder al API.
+#' @author Eduardo Flores 
+#' @return Data.frame
+#' 
+#' @examples
+#' \dontrun{
+#' token<-"webservice_token"
+#' Productividad <- series_productividad_const(token)
+#' }
+#' @export
+#' 
+#' 
+series_productividad_const <- function(token)
+{ 
+  # series de personal ocupado... 
+  sp1 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291123/00000/en/false/xml/"
+  sp2 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291124/00000/en/false/xml/"
+  sp3 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291125/00000/en/false/xml/"
+  sp4 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291126/00000/en/false/xml/"
+  sp5 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291127/00000/en/false/xml/"
+  sp6 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291128/00000/en/false/xml/"
+  sp7 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291129/00000/en/false/xml/"
+  sp8 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291130/00000/en/false/xml/"
+  sp9 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291131/00000/en/false/xml/"
+  sp10 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291132/00000/en/false/xml/"
+  sp11 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291133/00000/en/false/xml/"
+  sp12 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291134/00000/en/false/xml/"
+  sp13 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291135/00000/en/false/xml/"
+  sp14 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291136/00000/en/false/xml/"
+  sp15 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291137/00000/en/false/xml/"
+  sp16 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291138/00000/en/false/xml/"
+  sp17 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291139/00000/en/false/xml/"
+  sp18 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291140/00000/en/false/xml/"
+  sp19 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291141/00000/en/false/xml/"
+  sp20 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291142/00000/en/false/xml/"
+  sp21 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291143/00000/en/false/xml/"
+  sp22 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291144/00000/en/false/xml/"
+  sp23 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291145/00000/en/false/xml/"
+  sp24 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291146/00000/en/false/xml/"
+  sp25 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291147/00000/en/false/xml/"
+  sp26 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291148/00000/en/false/xml/"
+  sp27 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291149/00000/en/false/xml/"
+  sp28 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291150/00000/en/false/xml/"
+  sp29 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291151/00000/en/false/xml/"
+  sp30 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291152/00000/en/false/xml/"
+  sp31 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291153/00000/en/false/xml/"
+  sp32 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/291154/00000/en/false/xml/"
+  
+  # series de valor de producido....
+  sv1 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293136/00000/en/false/xml/"
+  sv2 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293137/00000/en/false/xml/"
+  sv3 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293138/00000/en/false/xml/"
+  sv4 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293139/00000/en/false/xml/"
+  sv5 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293140/00000/en/false/xml/"
+  sv6 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293141/00000/en/false/xml/"
+  sv7 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293142/00000/en/false/xml/"
+  sv8 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293143/00000/en/false/xml/"
+  sv9 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293144/00000/en/false/xml/"
+  sv10 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293145/00000/en/false/xml/"
+  sv11 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293146/00000/en/false/xml/"
+  sv12 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293147/00000/en/false/xml/"
+  sv13 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293148/00000/en/false/xml/"
+  sv14 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293149/00000/en/false/xml/"
+  sv15 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293150/00000/en/false/xml/"
+  sv16 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293151/00000/en/false/xml/"
+  sv17 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293152/00000/en/false/xml/"
+  sv18 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293153/00000/en/false/xml/"
+  sv19 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293154/00000/en/false/xml/"
+  sv20 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293155/00000/en/false/xml/"
+  sv21 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293156/00000/en/false/xml/"
+  sv22 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293157/00000/en/false/xml/"
+  sv23 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293158/00000/en/false/xml/"
+  sv24 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293159/00000/en/false/xml/"
+  sv25 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293160/00000/en/false/xml/"
+  sv26 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293161/00000/en/false/xml/"
+  sv27 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293162/00000/en/false/xml/"
+  sv28 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293163/00000/en/false/xml/"
+  sv29 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293164/00000/en/false/xml/"
+  sv30 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293165/00000/en/false/xml/"
+  sv31 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293166/00000/en/false/xml/"
+  sv32 <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/293167/00000/en/false/xml/"
+  
+  # descargar las series de personal...
+  spd1 <- inegiR::serie_inegi(sp1, token)
+  spd2 <- inegiR::serie_inegi(sp2, token)
+  spd3 <- inegiR::serie_inegi(sp3, token)
+  spd4 <- inegiR::serie_inegi(sp4, token)
+  spd5 <- inegiR::serie_inegi(sp5, token)
+  spd6 <- inegiR::serie_inegi(sp6, token)
+  spd7 <- inegiR::serie_inegi(sp7, token)
+  spd8 <- inegiR::serie_inegi(sp8, token)
+  spd9 <- inegiR::serie_inegi(sp9, token)
+  spd10 <- inegiR::serie_inegi(sp10, token)
+  spd11 <- inegiR::serie_inegi(sp11, token)
+  spd12 <- inegiR::serie_inegi(sp12, token)
+  spd13 <- inegiR::serie_inegi(sp13, token)
+  spd14 <- inegiR::serie_inegi(sp14, token)
+  spd15 <- inegiR::serie_inegi(sp15, token)
+  spd16 <- inegiR::serie_inegi(sp16, token)
+  spd17 <- inegiR::serie_inegi(sp17, token)
+  spd18 <- inegiR::serie_inegi(sp18, token)
+  spd19 <- inegiR::serie_inegi(sp19, token)
+  spd20 <- inegiR::serie_inegi(sp20, token)
+  spd21 <- inegiR::serie_inegi(sp21, token)
+  spd22 <- inegiR::serie_inegi(sp22, token)
+  spd23 <- inegiR::serie_inegi(sp23, token)
+  spd24 <- inegiR::serie_inegi(sp24, token)
+  spd25 <- inegiR::serie_inegi(sp25, token)
+  spd26 <- inegiR::serie_inegi(sp26, token)
+  spd27 <- inegiR::serie_inegi(sp27, token)
+  spd28 <- inegiR::serie_inegi(sp28, token)
+  spd29 <- inegiR::serie_inegi(sp29, token)
+  spd30 <- inegiR::serie_inegi(sp30, token)
+  spd31 <- inegiR::serie_inegi(sp31, token)
+  spd32 <- inegiR::serie_inegi(sp32, token)
+  
+  # descargar las series de valor 
+  svd1 <- inegiR::serie_inegi(sv1, token)
+  svd2 <- inegiR::serie_inegi(sv2, token)
+  svd3 <- inegiR::serie_inegi(sv3, token)
+  svd4 <- inegiR::serie_inegi(sv4, token)
+  svd5 <- inegiR::serie_inegi(sv5, token)
+  svd6 <- inegiR::serie_inegi(sv6, token)
+  svd7 <- inegiR::serie_inegi(sv7, token)
+  svd8 <- inegiR::serie_inegi(sv8, token)
+  svd9 <- inegiR::serie_inegi(sv9, token)
+  svd10 <- inegiR::serie_inegi(sv10, token)
+  svd11 <- inegiR::serie_inegi(sv11, token)
+  svd12 <- inegiR::serie_inegi(sv12, token)
+  svd13 <- inegiR::serie_inegi(sv13, token)
+  svd14 <- inegiR::serie_inegi(sv14, token)
+  svd15 <- inegiR::serie_inegi(sv15, token)
+  svd16 <- inegiR::serie_inegi(sv16, token)
+  svd17 <- inegiR::serie_inegi(sv17, token)
+  svd18 <- inegiR::serie_inegi(sv18, token)
+  svd19 <- inegiR::serie_inegi(sv19, token)
+  svd20 <- inegiR::serie_inegi(sv20, token)
+  svd21 <- inegiR::serie_inegi(sv21, token)
+  svd22 <- inegiR::serie_inegi(sv22, token)
+  svd23 <- inegiR::serie_inegi(sv23, token)
+  svd24 <- inegiR::serie_inegi(sv24, token)
+  svd25 <- inegiR::serie_inegi(sv25, token)
+  svd26 <- inegiR::serie_inegi(sv26, token)
+  svd27 <- inegiR::serie_inegi(sv27, token)
+  svd28 <- inegiR::serie_inegi(sv28, token)
+  svd29 <- inegiR::serie_inegi(sv29, token)
+  svd30 <- inegiR::serie_inegi(sv30, token)
+  svd31 <- inegiR::serie_inegi(sv31, token)
+  svd32 <- inegiR::serie_inegi(sv32, token)
+  
+  
+  # crear serie de productividad...
+  p1 <- svd1$Valores/spd1$Valores
+  p2 <- svd2$Valores/spd2$Valores
+  p3 <- svd3$Valores/spd3$Valores
+  p4 <- svd4$Valores/spd4$Valores
+  p5 <- svd5$Valores/spd5$Valores
+  p6 <- svd6$Valores/spd6$Valores
+  p7 <- svd7$Valores/spd7$Valores
+  p8 <- svd8$Valores/spd8$Valores
+  p9 <- svd9$Valores/spd9$Valores
+  p10 <- svd10$Valores/spd10$Valores
+  p11 <- svd11$Valores/spd11$Valores
+  p12 <- svd12$Valores/spd12$Valores
+  p13 <- svd13$Valores/spd13$Valores
+  p14 <- svd14$Valores/spd14$Valores
+  p15 <- svd15$Valores/spd15$Valores
+  p16 <- svd16$Valores/spd16$Valores
+  p17 <- svd17$Valores/spd17$Valores
+  p18 <- svd18$Valores/spd18$Valores
+  p19 <- svd19$Valores/spd19$Valores
+  p20 <- svd20$Valores/spd20$Valores
+  p21 <- svd21$Valores/spd21$Valores
+  p22 <- svd22$Valores/spd22$Valores
+  p23 <- svd23$Valores/spd23$Valores
+  p24 <- svd24$Valores/spd24$Valores
+  p25 <- svd25$Valores/spd25$Valores
+  p26 <- svd26$Valores/spd26$Valores
+  p27 <- svd27$Valores/spd27$Valores
+  p28 <- svd28$Valores/spd28$Valores
+  p29 <- svd29$Valores/spd29$Valores
+  p30 <- svd30$Valores/spd30$Valores
+  p31 <- svd31$Valores/spd31$Valores
+  p32 <- svd32$Valores/spd32$Valores
+  
+  # nombrar, para unir... 
+  pd1 <- cbind.data.frame("AGS" = p1, 
+                          "Fechas" = svd1$Fechas)
+  pd2 <- cbind.data.frame("BC" = p2, 
+                          "Fechas" = svd2$Fechas)
+  pd3 <- cbind.data.frame("BCS" = p3, 
+                          "Fechas" = svd3$Fechas)
+  pd4 <- cbind.data.frame("CAMP" = p4, 
+                          "Fechas" = svd3$Fechas)
+  pd5 <- cbind.data.frame("COAH" = p5, 
+                          "Fechas" = svd3$Fechas)
+  pd6 <- cbind.data.frame("COL" = p6, 
+                          "Fechas" = svd3$Fechas)
+  pd7 <- cbind.data.frame("CHPS" = p7, 
+                          "Fechas" = svd3$Fechas)
+  pd8 <- cbind.data.frame("CHIH" = p8, 
+                          "Fechas" = svd3$Fechas)
+  pd9 <- cbind.data.frame("CDMX" = p9, 
+                          "Fechas" = svd3$Fechas)
+  pd10 <- cbind.data.frame("DGO" = p10, 
+                           "Fechas" = svd3$Fechas)
+  pd11 <- cbind.data.frame("GTO" = p11, 
+                           "Fechas" = svd3$Fechas)
+  pd12 <- cbind.data.frame("GRO" = p12, 
+                           "Fechas" = svd3$Fechas)
+  pd13 <- cbind.data.frame("HGO" = p13, 
+                           "Fechas" = svd3$Fechas)
+  pd14 <- cbind.data.frame("JAL" = p14, 
+                           "Fechas" = svd3$Fechas)
+  pd15 <- cbind.data.frame("MEX" = p15, 
+                           "Fechas" = svd3$Fechas)
+  pd16 <- cbind.data.frame("MICH" = p16, 
+                           "Fechas" = svd3$Fechas)
+  pd17 <- cbind.data.frame("MOR" = p17, 
+                           "Fechas" = svd3$Fechas)
+  pd18 <- cbind.data.frame("NAY" = p18, 
+                           "Fechas" = svd3$Fechas)
+  pd19 <- cbind.data.frame("NL" = p19, 
+                           "Fechas" = svd3$Fechas)
+  pd20 <- cbind.data.frame("OAX" = p20, 
+                           "Fechas" = svd3$Fechas)
+  pd21 <- cbind.data.frame("PUE" = p21, 
+                           "Fechas" = svd3$Fechas)
+  pd22 <- cbind.data.frame("QRO" = p22, 
+                           "Fechas" = svd3$Fechas)
+  pd23 <- cbind.data.frame("QROO" = p23, 
+                           "Fechas" = svd3$Fechas)
+  pd24 <- cbind.data.frame("SLP" = p24, 
+                           "Fechas" = svd3$Fechas)
+  pd25 <- cbind.data.frame("SIN" = p25, 
+                           "Fechas" = svd3$Fechas)
+  pd26 <- cbind.data.frame("SON" = p26, 
+                           "Fechas" = svd3$Fechas)
+  pd27 <- cbind.data.frame("TAB" = p27, 
+                           "Fechas" = svd3$Fechas)
+  pd28 <- cbind.data.frame("TAM" = p28, 
+                           "Fechas" = svd3$Fechas)
+  pd29 <- cbind.data.frame("TLAX" = p29, 
+                           "Fechas" = svd3$Fechas)
+  pd30 <- cbind.data.frame("VER" = p30, 
+                           "Fechas" = svd3$Fechas)
+  pd31 <- cbind.data.frame("YUC" = p31, 
+                           "Fechas" = svd3$Fechas)
+  pd32 <- cbind.data.frame("ZAC" = p32, 
+                           "Fechas" = svd3$Fechas)
+  
+  df<-Reduce(function(...) merge(..., all=TRUE), 
+             list(pd1, pd2, pd3, pd4, pd5, pd6, pd7, pd8, pd9, pd10,
+                  pd11, pd12, pd13, pd14, pd15, pd16, pd17, pd18, pd19, pd20, 
+                  pd21, pd22, pd23, pd24, pd25, pd26, pd27, pd28, pd29, pd30, 
+                  pd31, pd32
+             ))
+  return(df)
+}
