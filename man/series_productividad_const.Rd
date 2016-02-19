@@ -2,7 +2,7 @@
 % Please edit documentation in R/OtrosIndicadores.R
 \name{series_productividad_const}
 \alias{series_productividad_const}
-\title{Obtener productividad de construcción por estado}
+\title{Obtener productividad de construccion por estado}
 \usage{
 series_productividad_const(token)
 }

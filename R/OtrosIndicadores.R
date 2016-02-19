@@ -276,7 +276,7 @@ series_actividad_industrial<-function(token)
 #' @export
 #'
 
-series_PIB_estados<-function(token)
+series_PIB_estados <- function(token)
 { # unidades: millones de pesos a precios de 2008...
   
   s1<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/383217/00000/en/false/xml/"
@@ -313,70 +313,70 @@ series_PIB_estados<-function(token)
   s32<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/383248/00000/en/false/xml/"
   
   i1<-inegiR::serie_inegi(s1,token)
-    names(i1)<-c("Aguascalientes","Fechas")
+  names(i1)<-c("AGS","Fechas")
   i2<-inegiR::serie_inegi(s2,token)
-    names(i2)<-c("BajaCalifornia","Fechas")
+  names(i2)<-c("BC","Fechas")
   i3<-inegiR::serie_inegi(s3,token)
-    names(i3)<-c("BajaCaliforniaSur","Fechas")
+  names(i3)<-c("BCS","Fechas")
   i4<-inegiR::serie_inegi(s4,token)
-    names(i4)<-c("Campeche","Fechas")
+  names(i4)<-c("CAMP","Fechas")
   i5<-inegiR::serie_inegi(s5,token)
-    names(i5)<-c("Coahuila","Fechas")
+  names(i5)<-c("COAH","Fechas")
   i6<-inegiR::serie_inegi(s6,token)
-    names(i6)<-c("Colima","Fechas")
+  names(i6)<-c("COL","Fechas")
   i7<-inegiR::serie_inegi(s7,token)
-    names(i7)<-c("Chiapas","Fechas")
+  names(i7)<-c("CHPS","Fechas")
   i8<-inegiR::serie_inegi(s8,token)
-    names(i8)<-c("Chihuahua","Fechas")
+  names(i8)<-c("CHIH","Fechas")
   i9<-inegiR::serie_inegi(s9,token)
-    names(i9)<-c("DF","Fechas")
+  names(i9)<-c("CDMX","Fechas")
   i10<-inegiR::serie_inegi(s10,token)
-    names(i10)<-c("Durango","Fechas")
+  names(i10)<-c("DGO","Fechas")
   i11<-inegiR::serie_inegi(s11,token)
-    names(i11)<-c("Guanajuato","Fechas")
+  names(i11)<-c("GTO","Fechas")
   i12<-inegiR::serie_inegi(s12,token)
-    names(i12)<-c("Guerrero","Fechas")
+  names(i12)<-c("GRO","Fechas")
   i13<-inegiR::serie_inegi(s13,token)
-    names(i13)<-c("Hidalgo","Fechas")
+  names(i13)<-c("HGO","Fechas")
   i14<-inegiR::serie_inegi(s14,token)
-    names(i14)<-c("Jalisco","Fechas")
+  names(i14)<-c("JAL","Fechas")
   i15<-inegiR::serie_inegi(s15,token)
-    names(i15)<-c("EdoMexico","Fechas")
+  names(i15)<-c("MEX","Fechas")
   i16<-inegiR::serie_inegi(s16,token)
-    names(i16)<-c("Michoacan","Fechas")
+  names(i16)<-c("MICH","Fechas")
   i17<-inegiR::serie_inegi(s17,token)
-    names(i17)<-c("Morelos","Fechas")
+  names(i17)<-c("MOR","Fechas")
   i18<-inegiR::serie_inegi(s18,token)
-    names(i18)<-c("Nayarit","Fechas")
+  names(i18)<-c("NAY","Fechas")
   i19<-inegiR::serie_inegi(s19,token)
-    names(i19)<-c("NuevoLeon","Fechas")
+  names(i19)<-c("NL","Fechas")
   i20<-inegiR::serie_inegi(s20,token)
-    names(i20)<-c("Oaxaca","Fechas")
+  names(i20)<-c("OAX","Fechas")
   i21<-inegiR::serie_inegi(s21,token)
-    names(i21)<-c("Puebla","Fechas") 
+  names(i21)<-c("PUE","Fechas") 
   i22<-inegiR::serie_inegi(s22,token)
-    names(i22)<-c("Queretaro","Fechas")   
+  names(i22)<-c("QRO","Fechas")   
   i23<-inegiR::serie_inegi(s23,token)
-    names(i23)<-c("QuintanaRoo","Fechas")   
+  names(i23)<-c("QROO","Fechas")   
   i24<-inegiR::serie_inegi(s24,token)
-    names(i24)<-c("SanLuisPotosi","Fechas")   
+  names(i24)<-c("SLP","Fechas")   
   i25<-inegiR::serie_inegi(s25,token)
-    names(i25)<-c("Sinaloa","Fechas")   
+  names(i25)<-c("SIN","Fechas")   
   i26<-inegiR::serie_inegi(s26,token)
-    names(i26)<-c("Sonora","Fechas")   
+  names(i26)<-c("SON","Fechas")   
   i27<-inegiR::serie_inegi(s27,token)
-    names(i27)<-c("Tabasco","Fechas")   
+  names(i27)<-c("TAB","Fechas")   
   i28<-inegiR::serie_inegi(s28,token)
-    names(i28)<-c("Tamaulipas","Fechas")   
+  names(i28)<-c("TAM","Fechas")   
   i29<-inegiR::serie_inegi(s29,token)
-    names(i29)<-c("Tlaxcala","Fechas")   
+  names(i29)<-c("TLAX","Fechas")   
   i30<-inegiR::serie_inegi(s30,token)
-    names(i30)<-c("Veracruz","Fechas")   
+  names(i30)<-c("VER","Fechas")   
   i31<-inegiR::serie_inegi(s31,token)
-    names(i31)<-c("Yucatan","Fechas")   
+  names(i31)<-c("YUC","Fechas")   
   i32<-inegiR::serie_inegi(s32,token)
-    names(i32)<-c("Zacatecas","Fechas")  
-
+  names(i32)<-c("ZAC","Fechas")  
+  
   df<-Reduce(function(...) merge(...,all=T),list(i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,
                                                  i11,i12,i13,i14,i15,i16,i17,i18,i19,i20,
                                                  i21,i22,i23,i24,i25,i26,i27,i28,i29,i30,
@@ -412,9 +412,9 @@ series_crecimiento_regiones<-function(token)
   # Baja California, Baja California Sur, Coahuila de Zaragoza,
   # Chihuahua, Nuevo Leon, Sinaloa, Sonora y Tamaulipas.
   Norte_PIB<-subset(x = PIB_estados,
-                    select = c(Fechas,BajaCalifornia,BajaCaliforniaSur,
-                               Coahuila,Chihuahua,Sinaloa,
-                               Sonora,NuevoLeon,Tamaulipas))
+                    select = c(Fechas,BC,BCS,
+                               COAH,CHIH,SIN,
+                               SON,NL,TAM))
   
   #ponderacion - se calculan ultimos 4 anios
   Norte_PIB$Total<-rowSums(x = subset(Norte_PIB,
@@ -422,89 +422,89 @@ series_crecimiento_regiones<-function(token)
   Norte_l<-inegiR::ultimos(Norte_PIB, n = 4)
   
   #Estados - no se hace loop para dejar todo explicito
-  BajaCalifornia_p<-mean(Norte_l$BajaCalifornia/Norte_l$Total)
-  BajaCaliforniaSur_p<-mean(Norte_l$BajaCaliforniaSur/Norte_l$Total)
-  Coahuila_p<-mean(Norte_l$Coahuila/Norte_l$Total)
-  Chihuahua_p<-mean(Norte_l$Chihuahua/Norte_l$Total)
-  Sinaloa_p<-mean(Norte_l$Sinaloa/Norte_l$Total)
-  Sonora_p<-mean(Norte_l$Sonora/Norte_l$Total)
-  NuevoLeon_p<-mean(Norte_l$NuevoLeon/Norte_l$Total)
-  Tamaulipas_p<-mean(Norte_l$Tamaulipas/Norte_l$Total)
+  BajaCalifornia_p<-mean(Norte_l$BC/Norte_l$Total)
+  BajaCaliforniaSur_p<-mean(Norte_l$BCS/Norte_l$Total)
+  Coahuila_p<-mean(Norte_l$COAH/Norte_l$Total)
+  Chihuahua_p<-mean(Norte_l$CHIH/Norte_l$Total)
+  Sinaloa_p<-mean(Norte_l$SIN/Norte_l$Total)
+  Sonora_p<-mean(Norte_l$SON/Norte_l$Total)
+  NuevoLeon_p<-mean(Norte_l$NL/Norte_l$Total)
+  Tamaulipas_p<-mean(Norte_l$TAM/Norte_l$Total)
   
   ##########################################################
   # La Region Centro-Norte comprende las entidades de:
   # Aguascalientes, Colima, Durango, Guanajuato, Jalisco,
   # Nayarit, San Luis Potosi y Zacatecas.
   Centro_Nte_PIB<-subset(x = PIB_estados,
-                         select = c(Fechas,Aguascalientes,Colima,
-                                    Durango,Guanajuato,Jalisco,Nayarit,SanLuisPotosi,Zacatecas))
+                         select = c(Fechas, AGS, COL,
+                                    DGO, GTO, JAL, NAY, SLP, ZAC))
   #ponderacion
   Centro_Nte_PIB$Total<-rowSums(x = subset(Centro_Nte_PIB, select = -c(Fechas)))
   Centro_Nte_l<-inegiR::ultimos(Centro_Nte_PIB, n = 4)
   
   #Estados - no se hace loop para dejar todo explicito
-  Aguascalientes_p<-mean(Centro_Nte_l$Aguascalientes/Centro_Nte_l$Total)
-  Colima_p<-mean(Centro_Nte_l$Colima/Centro_Nte_l$Total)
-  Durango_p<-mean(Centro_Nte_l$Durango/Centro_Nte_l$Total)
-  Guanajuato_p<-mean(Centro_Nte_l$Guanajuato/Centro_Nte_l$Total)
-  Jalisco_p<-mean(Centro_Nte_l$Jalisco/Centro_Nte_l$Total)
-  Nayarit_p<-mean(Centro_Nte_l$Nayarit/Centro_Nte_l$Total)
-  SanLuisPotosi_p<-mean(Centro_Nte_l$SanLuisPotosi/Centro_Nte_l$Total)
-  Zacatecas_p<-mean(Centro_Nte_l$Zacatecas/Centro_Nte_l$Total)
+  Aguascalientes_p<-mean(Centro_Nte_l$AGS/Centro_Nte_l$Total)
+  Colima_p<-mean(Centro_Nte_l$COL/Centro_Nte_l$Total)
+  Durango_p<-mean(Centro_Nte_l$DGO/Centro_Nte_l$Total)
+  Guanajuato_p<-mean(Centro_Nte_l$GTO/Centro_Nte_l$Total)
+  Jalisco_p<-mean(Centro_Nte_l$JAL/Centro_Nte_l$Total)
+  Nayarit_p<-mean(Centro_Nte_l$NAY/Centro_Nte_l$Total)
+  SanLuisPotosi_p<-mean(Centro_Nte_l$SLP/Centro_Nte_l$Total)
+  Zacatecas_p<-mean(Centro_Nte_l$ZAC/Centro_Nte_l$Total)
   
   ##########################################################
   # La Region Centro comprende las entidades de:
   # El Distrito Federal y Mexico.
   Centro_PIB<-subset(x = PIB_estados,
-                     select = c(Fechas, EdoMexico, DF))
+                     select = c(Fechas, MEX, CDMX))
   #ponderacion
   Centro_PIB$Total<-rowSums(x = subset(Centro_PIB, 
                                        select = -c(Fechas)))
   Centro_l<-inegiR::ultimos(Centro_PIB, n = 4)
   
   #Estados - no se hace loop para dejar todo explicito
-  EdoMexico_p<-mean(Centro_l$EdoMexico/Centro_l$Total)
-  DF_p<-mean(Centro_l$DF/Centro_l$Total)
+  EdoMexico_p<-mean(Centro_l$MEX/Centro_l$Total)
+  DF_p<-mean(Centro_l$CDMX/Centro_l$Total)
   
   ##########################################################
   # La Region Centro-Sur comprende las entidades de:
   # Guerrero, Hidalgo, Michoacan de Ocampo,
   # Morelos, Puebla, Queretaro y Tlaxcala.
   Centro_Sur_PIB<-subset(x = PIB_estados,
-                         select = c(Fechas, Guerrero, Hidalgo, Michoacan, Morelos,
-                                    Puebla, Queretaro, Tlaxcala))
+                         select = c(Fechas, GRO, HGO, MICH, MOR,
+                                    PUE, QRO, TLAX))
   #ponderacion
   Centro_Sur_PIB$Total<-rowSums(x = subset(Centro_Sur_PIB,select = -c(Fechas)))
   Centro_Sur_l<-inegiR::ultimos(Centro_Sur_PIB, n = 4)
   
   #Estados - no se hace loop para dejar todo explicito
-  Guerrero_p<-mean(Centro_Sur_l$Guerrero/Centro_Sur_l$Total)
-  Hidalgo_p<-mean(Centro_Sur_l$Hidalgo/Centro_Sur_l$Total)
-  Michoacan_p<-mean(Centro_Sur_l$Michoacan/Centro_Sur_l$Total)
-  Morelos_p<-mean(Centro_Sur_l$Morelos/Centro_Sur_l$Total)
-  Puebla_p<-mean(Centro_Sur_l$Puebla/Centro_Sur_l$Total)
-  Queretaro_p<-mean(Centro_Sur_l$Queretaro/Centro_Sur_l$Total)
-  Tlaxcala_p<-mean(Centro_Sur_l$Tlaxcala/Centro_Sur_l$Total)
+  Guerrero_p<-mean(Centro_Sur_l$GRO/Centro_Sur_l$Total)
+  Hidalgo_p<-mean(Centro_Sur_l$HGO/Centro_Sur_l$Total)
+  Michoacan_p<-mean(Centro_Sur_l$MICH/Centro_Sur_l$Total)
+  Morelos_p<-mean(Centro_Sur_l$MOR/Centro_Sur_l$Total)
+  Puebla_p<-mean(Centro_Sur_l$PUE/Centro_Sur_l$Total)
+  Queretaro_p<-mean(Centro_Sur_l$QRO/Centro_Sur_l$Total)
+  Tlaxcala_p<-mean(Centro_Sur_l$TLAX/Centro_Sur_l$Total)
   
   ##########################################################
   # La Region Sur-Sureste comprende las entidades de:
   # Campeche, Chiapas, Oaxaca, Quintana Roo,
   # Tabasco, Veracruz de Ignacio de la Llave y Yucatan.
   Sur_PIB<-subset(x = PIB_estados,
-                  select = c(Fechas, Campeche, Chiapas, Oaxaca, QuintanaRoo,
-                             Tabasco, Veracruz, Yucatan))
+                  select = c(Fechas, CAMP, CHPS, OAX, QROO,
+                             TAB, VER, YUC))
   #ponderacion
   Sur_PIB$Total<-rowSums(x = subset(Sur_PIB,select = -c(Fechas)))
   Sur_l<-inegiR::ultimos(Sur_PIB, n = 4)
   
   #Estados - no se hace loop para dejar todo explicito
-  Campeche_p<-mean(Sur_l$Campeche/Sur_l$Total)
-  Chiapas_p<-mean(Sur_l$Chiapas/Sur_l$Total)
-  Oaxaca_p<-mean(Sur_l$Oaxaca/Sur_l$Total)
-  QuintanaRoo_p<-mean(Sur_l$QuintanaRoo/Sur_l$Total)
-  Tabasco_p<-mean(Sur_l$Tabasco/Sur_l$Total)
-  Veracruz_p<-mean(Sur_l$Veracruz/Sur_l$Total)
-  Yucatan_p<-mean(Sur_l$Yucatan/Sur_l$Total)
+  Campeche_p<-mean(Sur_l$CAMP/Sur_l$Total)
+  Chiapas_p<-mean(Sur_l$CHPS/Sur_l$Total)
+  Oaxaca_p<-mean(Sur_l$OAX/Sur_l$Total)
+  QuintanaRoo_p<-mean(Sur_l$QROO/Sur_l$Total)
+  Tabasco_p<-mean(Sur_l$TAB/Sur_l$Total)
+  Veracruz_p<-mean(Sur_l$VER/Sur_l$Total)
+  Yucatan_p<-mean(Sur_l$YUC/Sur_l$Total)
   
   #################################################################
   ################## fin de todas las ponderaciones por estado
@@ -523,120 +523,120 @@ series_crecimiento_regiones<-function(token)
   
   #Region Norte
   Norte_tasas<-subset(x = TasasCambio,
-                      select = c(Fechas,BajaCalifornia,BajaCaliforniaSur,
-                                 Coahuila,Chihuahua,Sinaloa,
-                                 Sonora,NuevoLeon,Tamaulipas))
+                      select = c(Fechas, BC, BCS,
+                                 COAH, CHIH, SIN,
+                                 SON, NL, TAM))
   Norte_ITAE<-subset(x = ITAEs,
-                     select = c(Fechas,BajaCalifornia,BajaCaliforniaSur,
-                                Coahuila,Chihuahua,Sinaloa,
-                                Sonora,NuevoLeon,Tamaulipas))
+                     select = c(Fechas, BC, BCS,
+                                COAH, CHIH, SIN,
+                                SON, NL, TAM))
   
   #Suma con crecimientos - 1 explicacion, solamente para norte.... 
   # voy a usar las tasas de crecimiento del ITAE de Baja california para crecer
-  Baja<-inegiR::crecer(Norte_tasas$BajaCalifornia[2:length(Norte_tasas$BajaCalifornia)], 
-               # el ITAE original multiplicado por el peso que el estado tiene en la region
-               Norte_ITAE$BajaCalifornia[1]*BajaCalifornia_p)
+  Baja<-inegiR::crecer(Norte_tasas$BC[2:length(Norte_tasas$BC)], 
+                       # el ITAE original multiplicado por el peso que el estado tiene en la region
+                       Norte_ITAE$BC[1]*BajaCalifornia_p)
   #### despues hago lo mismo para todos los estados y lo sumo...
   #### fin de explicacion, continuo con toda la zona....
   Norte<-(Baja+
-            inegiR::crecer(Norte_tasas$BajaCaliforniaSur[2:length(Norte_tasas$BajaCaliforniaSur)],
-                           Norte_ITAE$BajaCaliforniaSur[1]*BajaCaliforniaSur_p) +
-            inegiR::crecer(Norte_tasas$Coahuila[2:length(Norte_tasas$Coahuila)],
-                           Norte_ITAE$Coahuila[1]*Coahuila_p)+
-            inegiR::crecer(Norte_tasas$Chihuahua[2:length(Norte_tasas$Chihuahua)],
-                           Norte_ITAE$Chihuahua[1]*Chihuahua_p)+
-            inegiR::crecer(Norte_tasas$Sinaloa[2:length(Norte_tasas$Sinaloa)],
-                           Norte_ITAE$Sinaloa[1]*Sinaloa_p)+
-            inegiR::crecer(Norte_tasas$Sonora[2:length(Norte_tasas$Sonora)],
-                           Norte_ITAE$Sonora[1]*Sonora_p)+
-            inegiR::crecer(Norte_tasas$NuevoLeon[2:length(Norte_tasas$NuevoLeon)],
-                           Norte_ITAE$NuevoLeon[1]*NuevoLeon_p)+
-            inegiR::crecer(Norte_tasas$Tamaulipas[2:length(Norte_tasas$Tamaulipas)],
-                           Norte_ITAE$Tamaulipas[1]*Tamaulipas_p)
+            inegiR::crecer(Norte_tasas$BCS[2:length(Norte_tasas$BCS)],
+                           Norte_ITAE$BCS[1]*BajaCaliforniaSur_p) +
+            inegiR::crecer(Norte_tasas$COAH[2:length(Norte_tasas$COAH)],
+                           Norte_ITAE$COAH[1]*Coahuila_p)+
+            inegiR::crecer(Norte_tasas$CHIH[2:length(Norte_tasas$CHIH)],
+                           Norte_ITAE$CHIH[1]*Chihuahua_p)+
+            inegiR::crecer(Norte_tasas$SIN[2:length(Norte_tasas$SIN)],
+                           Norte_ITAE$SIN[1]*Sinaloa_p)+
+            inegiR::crecer(Norte_tasas$SON[2:length(Norte_tasas$SON)],
+                           Norte_ITAE$SON[1]*Sonora_p)+
+            inegiR::crecer(Norte_tasas$NL[2:length(Norte_tasas$NL)],
+                           Norte_ITAE$NL[1]*NuevoLeon_p)+
+            inegiR::crecer(Norte_tasas$TAM[2:length(Norte_tasas$TAM)],
+                           Norte_ITAE$TAM[1]*Tamaulipas_p)
   )
   
   #Region Centro Norte
   Centro_Norte_tasas<-subset(x = TasasCambio,
-                             select = c(Fechas,Aguascalientes,Colima,
-                                        Durango,Guanajuato,Jalisco,Nayarit,SanLuisPotosi,Zacatecas))
+                             select = c(Fechas, AGS, COL,
+                                        DGO, GTO, JAL, NAY, SLP, ZAC))
   Centro_Norte_ITAE<-subset(x = ITAEs,
-                            select = c(Fechas,Aguascalientes,Colima,
-                                       Durango,Guanajuato,Jalisco,Nayarit,SanLuisPotosi,Zacatecas))
-  Centro_Norte<-(inegiR::crecer(Centro_Norte_tasas$Aguascalientes[2:length(Centro_Norte_tasas$Aguascalientes)],
-                                Centro_Norte_ITAE$Aguascalientes[1]*Aguascalientes_p)+
-                   inegiR::crecer(Centro_Norte_tasas$Colima[2:length(Centro_Norte_tasas$Colima)],
-                                  Centro_Norte_ITAE$Colima[1]*Colima_p)+
-                   inegiR::crecer(Centro_Norte_tasas$Durango[2:length(Centro_Norte_tasas$Durango)],
-                                  Centro_Norte_ITAE$Durango[1]*Durango_p)+
-                   inegiR::crecer(Centro_Norte_tasas$Guanajuato[2:length(Centro_Norte_tasas$Guanajuato)],
-                                  Centro_Norte_ITAE$Guanajuato[1]*Guanajuato_p)+
-                   inegiR::crecer(Centro_Norte_tasas$Jalisco[2:length(Centro_Norte_tasas$Jalisco)],
-                                  Centro_Norte_ITAE$Jalisco[1]*Jalisco_p)+
-                   inegiR::crecer(Centro_Norte_tasas$Nayarit[2:length(Centro_Norte_tasas$Nayarit)],
-                                  Centro_Norte_ITAE$Nayarit[1]*Nayarit_p)+
-                   inegiR::crecer(Centro_Norte_tasas$SanLuisPotosi[2:length(Centro_Norte_tasas$SanLuisPotosi)],
-                                  Centro_Norte_ITAE$SanLuisPotosi[1]*SanLuisPotosi_p)+
-                   inegiR::crecer(Centro_Norte_tasas$Zacatecas[2:length(Centro_Norte_tasas$Zacatecas)],
-                                  Centro_Norte_ITAE$Zacatecas[1]*Zacatecas_p)
+                            select = c(Fechas, AGS, COL,
+                                       DGO, GTO, JAL, NAY, SLP, ZAC))
+  Centro_Norte<-(inegiR::crecer(Centro_Norte_tasas$AGS[2:length(Centro_Norte_tasas$AGS)],
+                                Centro_Norte_ITAE$AGS[1]*Aguascalientes_p)+
+                   inegiR::crecer(Centro_Norte_tasas$COL[2:length(Centro_Norte_tasas$COL)],
+                                  Centro_Norte_ITAE$COL[1]*Colima_p)+
+                   inegiR::crecer(Centro_Norte_tasas$DGO[2:length(Centro_Norte_tasas$DGO)],
+                                  Centro_Norte_ITAE$DGO[1]*Durango_p)+
+                   inegiR::crecer(Centro_Norte_tasas$GTO[2:length(Centro_Norte_tasas$GTO)],
+                                  Centro_Norte_ITAE$GTO[1]*Guanajuato_p)+
+                   inegiR::crecer(Centro_Norte_tasas$JAL[2:length(Centro_Norte_tasas$JAL)],
+                                  Centro_Norte_ITAE$JAL[1]*Jalisco_p)+
+                   inegiR::crecer(Centro_Norte_tasas$NAY[2:length(Centro_Norte_tasas$NAY)],
+                                  Centro_Norte_ITAE$NAY[1]*Nayarit_p)+
+                   inegiR::crecer(Centro_Norte_tasas$SLP[2:length(Centro_Norte_tasas$SLP)],
+                                  Centro_Norte_ITAE$SLP[1]*SanLuisPotosi_p)+
+                   inegiR::crecer(Centro_Norte_tasas$ZAC[2:length(Centro_Norte_tasas$ZAC)],
+                                  Centro_Norte_ITAE$ZAC[1]*Zacatecas_p)
   )
   
   #Region Centro
   Centro_tasas<-subset(x = TasasCambio,
-                       select = c(Fechas,EdoMexico,DF))
+                       select = c(Fechas, MEX, CDMX))
   Centro_ITAE<-subset(x = ITAEs,
-                      select = c(Fechas,EdoMexico,DF))
+                      select = c(Fechas, MEX, CDMX))
   
-  Centro<-(inegiR::crecer(Centro_tasas$EdoMexico[2:length(Centro_tasas$EdoMexico)],
-                          Centro_ITAE$EdoMexico[1]*EdoMexico_p)+
-             inegiR::crecer(Centro_tasas$DF[2:length(Centro_tasas$DF)],
-                            Centro_ITAE$DF[1]*DF_p)
+  Centro<-(inegiR::crecer(Centro_tasas$MEX[2:length(Centro_tasas$MEX)],
+                          Centro_ITAE$MEX[1]*EdoMexico_p)+
+             inegiR::crecer(Centro_tasas$CDMX[2:length(Centro_tasas$CDMX)],
+                            Centro_ITAE$CDMX[1]*DF_p)
   )
   
   #Region Centro - Sur
   Centro_Sur_tasas<-subset(x = TasasCambio,
-                           select = c(Fechas, Guerrero, Hidalgo, Michoacan, Morelos,
-                                      Puebla, Queretaro, Tlaxcala))
+                           select = c(Fechas, GRO, HGO, MICH, MOR,
+                                      PUE, QRO, TLAX))
   Centro_Sur_ITAE<-subset(x = ITAEs,
-                          select = c(Fechas, Guerrero, Hidalgo, Michoacan, Morelos,
-                                     Puebla, Queretaro, Tlaxcala))
+                          select = c(Fechas, GRO, HGO, MICH, MOR,
+                                     PUE, QRO, TLAX))
   
-  Centro_Sur<-(inegiR::crecer(Centro_Sur_tasas$Guerrero[2:length(Centro_Sur_tasas$Guerrero)],
-                              Centro_Sur_ITAE$Guerrero[1]*Guerrero_p)+
-                 inegiR::crecer(Centro_Sur_tasas$Hidalgo[2:length(Centro_Sur_tasas$Hidalgo)],
-                                Centro_Sur_ITAE$Hidalgo[1]*Hidalgo_p)+
-                 inegiR::crecer(Centro_Sur_tasas$Michoacan[2:length(Centro_Sur_tasas$Michoacan)],
-                                Centro_Sur_ITAE$Michoacan[1]*Michoacan_p)+
-                 inegiR::crecer(Centro_Sur_tasas$Morelos[2:length(Centro_Sur_tasas$Morelos)],
-                                Centro_Sur_ITAE$Morelos[1]*Morelos_p)+
-                 inegiR::crecer(Centro_Sur_tasas$Puebla[2:length(Centro_Sur_tasas$Puebla)],
-                                Centro_Sur_ITAE$Puebla[1]*Puebla_p)+
-                 inegiR::crecer(Centro_Sur_tasas$Queretaro[2:length(Centro_Sur_tasas$Queretaro)],
-                                Centro_Sur_ITAE$Queretaro[1]*Queretaro_p)+
-                 inegiR::crecer(Centro_Sur_tasas$Tlaxcala[2:length(Centro_Sur_tasas$Tlaxcala)],
-                                Centro_Sur_ITAE$Tlaxcala[1]*Tlaxcala_p)
+  Centro_Sur<-(inegiR::crecer(Centro_Sur_tasas$GRO[2:length(Centro_Sur_tasas$GRO)],
+                              Centro_Sur_ITAE$GRO[1]*Guerrero_p)+
+                 inegiR::crecer(Centro_Sur_tasas$HGO[2:length(Centro_Sur_tasas$HGO)],
+                                Centro_Sur_ITAE$HGO[1]*Hidalgo_p)+
+                 inegiR::crecer(Centro_Sur_tasas$MICH[2:length(Centro_Sur_tasas$MICH)],
+                                Centro_Sur_ITAE$MICH[1]*Michoacan_p)+
+                 inegiR::crecer(Centro_Sur_tasas$MOR[2:length(Centro_Sur_tasas$MOR)],
+                                Centro_Sur_ITAE$MOR[1]*Morelos_p)+
+                 inegiR::crecer(Centro_Sur_tasas$PUE[2:length(Centro_Sur_tasas$PUE)],
+                                Centro_Sur_ITAE$PUE[1]*Puebla_p)+
+                 inegiR::crecer(Centro_Sur_tasas$QRO[2:length(Centro_Sur_tasas$QRO)],
+                                Centro_Sur_ITAE$QRO[1]*Queretaro_p)+
+                 inegiR::crecer(Centro_Sur_tasas$TLAX[2:length(Centro_Sur_tasas$TLAX)],
+                                Centro_Sur_ITAE$TLAX[1]*Tlaxcala_p)
   )
   #Region Sur
   Sur_tasas<-subset(x = TasasCambio,
-                    select = c(Fechas, Campeche, Chiapas, Oaxaca, QuintanaRoo,
-                               Tabasco, Veracruz, Yucatan))
+                    select = c(Fechas, CAMP, CHPS, OAX, QROO,
+                               TAB, VER, YUC))
   Sur_ITAE<-subset(x = ITAEs,
-                   select = c(Fechas, Campeche, Chiapas, Oaxaca, QuintanaRoo,
-                              Tabasco, Veracruz, Yucatan))
+                   select = c(Fechas, CAMP, CHPS, OAX, QROO,
+                              TAB, VER, YUC))
   
-  Sur<-(inegiR::crecer(Sur_tasas$Campeche[2:length(Sur_tasas$Campeche)],
-                       Sur_ITAE$Campeche[1]*Campeche_p)+
-          inegiR::crecer(Sur_tasas$Chiapas[2:length(Sur_tasas$Chiapas)],
-                         Sur_ITAE$Chiapas[1]*Chiapas_p)+
-          inegiR::crecer(Sur_tasas$Oaxaca[2:length(Sur_tasas$Oaxaca)],
-                         Sur_ITAE$Oaxaca[1]*Oaxaca_p)+
-          inegiR::crecer(Sur_tasas$QuintanaRoo[2:length(Sur_tasas$QuintanaRoo)],
-                         Sur_ITAE$QuintanaRoo[1]*QuintanaRoo_p)+
-          inegiR::crecer(Sur_tasas$Tabasco[2:length(Sur_tasas$Tabasco)],
-                         Sur_ITAE$Tabasco[1]*Tabasco_p)+
-          inegiR::crecer(Sur_tasas$Veracruz[2:length(Sur_tasas$Veracruz)],
-                         Sur_ITAE$Veracruz[1]*Veracruz_p)+
-          inegiR::crecer(Sur_tasas$Yucatan[2:length(Sur_tasas$Yucatan)],
-                         Sur_ITAE$Yucatan[1]*Yucatan_p)
+  Sur<-(inegiR::crecer(Sur_tasas$CAMP[2:length(Sur_tasas$CAMP)],
+                       Sur_ITAE$CAMP[1]*Campeche_p)+
+          inegiR::crecer(Sur_tasas$CHPS[2:length(Sur_tasas$CHPS)],
+                         Sur_ITAE$CHPS[1]*Chiapas_p)+
+          inegiR::crecer(Sur_tasas$OAX[2:length(Sur_tasas$OAX)],
+                         Sur_ITAE$OAX[1]*Oaxaca_p)+
+          inegiR::crecer(Sur_tasas$QROO[2:length(Sur_tasas$QROO)],
+                         Sur_ITAE$QROO[1]*QuintanaRoo_p)+
+          inegiR::crecer(Sur_tasas$TAB[2:length(Sur_tasas$TAB)],
+                         Sur_ITAE$TAB[1]*Tabasco_p)+
+          inegiR::crecer(Sur_tasas$VER[2:length(Sur_tasas$VER)],
+                         Sur_ITAE$VER[1]*Veracruz_p)+
+          inegiR::crecer(Sur_tasas$YUC[2:length(Sur_tasas$YUC)],
+                         Sur_ITAE$YUC[1]*Yucatan_p)
   )
   
   salida<-cbind.data.frame("Fechas" = ITAEs$Fechas[2:length(ITAEs$Fechas)],
@@ -662,7 +662,6 @@ series_crecimiento_regiones<-function(token)
 #' ITAE<-series_ITAE_estados(token)
 #' }
 #' @export
-#'
 series_ITAE_estados<-function(token)
 {
   s1<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/428026/00000/en/false/xml/"
@@ -701,75 +700,75 @@ series_ITAE_estados<-function(token)
   s31<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/428065/00000/en/false/xml/"
   s32<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/428066/00000/en/false/xml/"
   
-  i1<-inegiR::serie_inegi(s1,token)
-  names(i1)<-c("Aguascalientes","Fechas")
+  i1<-inegiR::serie_inegi(s1, token)
+  names(i1)<-c("AGS","Fechas")
   i2<-inegiR::serie_inegi(s2,token)
-  names(i2)<-c("BajaCalifornia","Fechas")
+  names(i2)<-c("BC","Fechas")
   i3<-inegiR::serie_inegi(s3,token)
-  names(i3)<-c("BajaCaliforniaSur","Fechas")
+  names(i3)<-c("BCS","Fechas")
   i4<-inegiR::serie_inegi(s4,token)
-  names(i4)<-c("Campeche","Fechas")
+  names(i4)<-c("CAMP","Fechas")
   i5<-inegiR::serie_inegi(s5,token)
-  names(i5)<-c("Coahuila","Fechas")
+  names(i5)<-c("COAH","Fechas")
   i6<-inegiR::serie_inegi(s6,token)
-  names(i6)<-c("Colima","Fechas")
+  names(i6)<-c("COL","Fechas")
   i7<-inegiR::serie_inegi(s7,token)
-  names(i7)<-c("Chiapas","Fechas")
+  names(i7)<-c("CHPS","Fechas")
   i8<-inegiR::serie_inegi(s8,token)
-  names(i8)<-c("Chihuahua","Fechas")
+  names(i8)<-c("CHIH","Fechas")
   i9<-inegiR::serie_inegi(s9,token)
-  names(i9)<-c("DF","Fechas")
+  names(i9)<-c("CDMX","Fechas")
   i10<-inegiR::serie_inegi(s10,token)
-  names(i10)<-c("Durango","Fechas")
+  names(i10)<-c("DGO","Fechas")
   i11<-inegiR::serie_inegi(s11,token)
-  names(i11)<-c("Guanajuato","Fechas")
+  names(i11)<-c("GTO","Fechas")
   i12<-inegiR::serie_inegi(s12,token)
-  names(i12)<-c("Guerrero","Fechas")
+  names(i12)<-c("GUE","Fechas")
   i13<-inegiR::serie_inegi(s13,token)
-  names(i13)<-c("Hidalgo","Fechas")
+  names(i13)<-c("HGO","Fechas")
   i14<-inegiR::serie_inegi(s14,token)
-  names(i14)<-c("Jalisco","Fechas")
+  names(i14)<-c("JAL","Fechas")
   i15<-inegiR::serie_inegi(s15,token)
-  names(i15)<-c("EdoMexico","Fechas")
+  names(i15)<-c("MEX","Fechas")
   i16<-inegiR::serie_inegi(s16,token)
-  names(i16)<-c("Michoacan","Fechas")
+  names(i16)<-c("MICH","Fechas")
   i17<-inegiR::serie_inegi(s17,token)
-  names(i17)<-c("Morelos","Fechas")
+  names(i17)<-c("MOR","Fechas")
   i18<-inegiR::serie_inegi(s18,token)
-  names(i18)<-c("Nayarit","Fechas")
+  names(i18)<-c("NAY","Fechas")
   i19<-inegiR::serie_inegi(s19,token)
-  names(i19)<-c("NuevoLeon","Fechas")
+  names(i19)<-c("NL","Fechas")
   i20<-inegiR::serie_inegi(s20,token)
-  names(i20)<-c("Oaxaca","Fechas")
+  names(i20)<-c("OAX","Fechas")
   i21<-inegiR::serie_inegi(s21,token)
-  names(i21)<-c("Puebla","Fechas")
+  names(i21)<-c("PUE","Fechas")
   i22<-inegiR::serie_inegi(s22,token)
-  names(i22)<-c("Queretaro","Fechas")
+  names(i22)<-c("QRO","Fechas")
   i23<-inegiR::serie_inegi(s23,token)
-  names(i23)<-c("QuintanaRoo","Fechas")
+  names(i23)<-c("QROO","Fechas")
   i24<-inegiR::serie_inegi(s24,token)
-  names(i24)<-c("SanLuisPotosi","Fechas")
+  names(i24)<-c("SLP","Fechas")
   i25<-inegiR::serie_inegi(s25,token)
-  names(i25)<-c("Sinaloa","Fechas")
+  names(i25)<-c("SIN","Fechas")
   i26<-inegiR::serie_inegi(s26,token)
-  names(i26)<-c("Sonora","Fechas")
+  names(i26)<-c("SON","Fechas")
   i27<-inegiR::serie_inegi(s27,token)
-  names(i27)<-c("Tabasco","Fechas")
+  names(i27)<-c("TAB","Fechas")
   i28<-inegiR::serie_inegi(s28,token)
-  names(i28)<-c("Tamaulipas","Fechas")
+  names(i28)<-c("TAM","Fechas")
   i29<-inegiR::serie_inegi(s29,token)
-  names(i29)<-c("Tlaxcala","Fechas")
+  names(i29)<-c("TLAX","Fechas")
   i30<-inegiR::serie_inegi(s30,token)
-  names(i30)<-c("Veracruz","Fechas")
+  names(i30)<-c("VER","Fechas")
   i31<-inegiR::serie_inegi(s31,token)
-  names(i31)<-c("Yucatan","Fechas")
+  names(i31)<-c("YUC","Fechas")
   i32<-inegiR::serie_inegi(s32,token)
-  names(i32)<-c("Zacatecas","Fechas")
+  names(i32)<-c("ZAC","Fechas")
   
   df<-Reduce(function(...) merge(...,all = TRUE),list(i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,
-                                                 i11,i12,i13,i14,i15,i16,i17,i18,i19,i20,
-                                                 i21,i22,i23,i24,i25,i26,i27,i28,i29,i30,
-                                                 i31,i32))
+                                                      i11,i12,i13,i14,i15,i16,i17,i18,i19,i20,
+                                                      i21,i22,i23,i24,i25,i26,i27,i28,i29,i30,
+                                                      i31,i32))
   return(df)
 }
 #' Obtener Tipo de Cambio Peso - USD
@@ -1060,7 +1059,7 @@ series_productividad_man <- function(token)
              ))
   return(df)
 }
-#' Obtener productividad de construcción por estado
+#' Obtener productividad de construccion por estado
 #'
 #' Obtiene la productivdad de la construcción generada por estado. Se calcula a partir de las series de personal ocupado y de valor de la producción de 
 #' la Encuesta Nacional de Empresas Constructoras (ENEC) al dividirse valor (en miles de pesos a precios corrientes) entre personal (personas).
