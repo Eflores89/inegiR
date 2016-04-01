@@ -1,3 +1,5 @@
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/inegiR)](http://cran.r-project.org/package=inegiR) 
+
 ## Documentación
 
 * [English Vignette](http://www.enelmargen.org/inegiR/vignette_eng.html)
