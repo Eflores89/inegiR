@@ -14,4 +14,5 @@
 
 
 ## Desarrollo a Futuro
-Sugerencias, bugs, explicaciones: eduardo@enelmargen.org.
+Sugerencias, bugs, explicaciones: eduardo@enelmargen.org o en twitter: [![Follow](https://img.shields.io/twitter/follow/eflores89.svg?style=social)](https://twitter.com/intent/follow?screen_name=eflores89)
+
