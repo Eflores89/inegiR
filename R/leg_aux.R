@@ -1,34 +1,34 @@
-#' Calcular tasas de crecimiento
+#' Calculates growth
 #'
-#' Calcula tasas de crecimiento de una serie. 
+#' Year over year growth (or versus any period) 
 #'
-#' @param serie vector o serie de tiempo con datos númericos
-#' @param lapso separaciones por año a contemplar (12 = datos mensuales, 4 = datos trimestrales)
-#' @param decimal ¿Quieres que el resultado este en decimales? Default = TRUE. False obtiene el decimal x 100.
+#' @param serie numeric vector or series
+#' @param lapso period separations (12 = for monthly data, 4 = quaterly data)
+#' @param decimal Should result be in decimals? Default = TRUE. False returns percents x 100.
 #'
 #' @author Eduardo Flores 
-#' @return Vector numerico
+#' @return Vector numeric
 #'
 #' @note 
-#' La serie debe estar en orden asciendiente (Posición inicial es la más antigua). La función de Serie_Inegi() guarda en ese orden.
+#' Vector must be in ascending order (oldest to newest). The inegi_series() function returns in that order.
 #'
 #' @examples
-#' #Calcular la inflación (Ver Inflacion_Inegi() para un método más directo)
+#' # Calculate inflation
 #' \dontrun{
-#' token<-"webservice_token"
-#' INPC<-serie_inegi(INPC, token)
-#' Inflacion<-YoY(INPC$Valores,12)
+#' token <- "webservice_token"
+#' INPC <- serie_inegi(INPC, token)
+#' Inflation <- YoY(INPC$Valores, 12)
 #' }
 #' @export
 #' 
 
-YoY<-function (serie, lapso, decimal = TRUE){
-  if(NROW(serie)<=lapso){
-    stop("Muy pocos renglones o mal especificado el lapso")
+YoY <- function(serie, lapso, decimal = TRUE){
+  if(NROW(serie) <= lapso){
+    stop("Not enough rows for lapso parameter")
   }
   if(!("numeric"==class(serie)))
   {
-    stop("No es un vector numerico")
+    stop("No a numeric vector")
   } 
   else{
     indexes<-1:(NROW(serie)-lapso)
@@ -37,26 +37,24 @@ YoY<-function (serie, lapso, decimal = TRUE){
           else    {return(s*100)}
   }
 }
-#' Ordenar por conteo de factores
+#' Order factors by count
 #'
-#' Wrapper para ordenar rapidamente de mayor a menor por grupos un data.frame. 
+#' Wrapper for rapid ordering in a data.frame. 
 #'
-#' @param df Data.frame a condensar
-#' @param col Columna con factores. Se pone sin parentesis.
+#' @param df Data.frame
+#' @param col Columna with factor. (Bare, no parenthesis).
 #'
 #' @author Eduardo Flores 
-#' @return Data.frame
+#' @return data.frame
 #' @seealso denue_varios_stats 
 #' @examples
-#' df<-data.frame(factores=c("A","A","B","C","C","D","A","A"),otros=c(1,3,2,4,5,1,2,7))
-#' 
-#' #Ordenar, de mayor a menor, por conteo de factores
-#' PorConteo<-ordenar_porconteo(df, factores)
+#' df <- data.frame(factors=c("A","A","B","C","C","D","A","A"),
+#'                  others=c(1,3,2,4,5,1,2,7))
+#' #order by count
+#' ByCount <- ordenar_porconteo(df, factors)
 #' 
 #' @export
-#' 
-
-ordenar_porconteo<-function(df,col)
+ordenar_porconteo <- function(df,col)
 { #para poner solamente el nombre de columna
   columna<-as.character(eval(substitute(col), df, parent.frame()))
   
@@ -69,35 +67,32 @@ ordenar_porconteo<-function(df,col)
   return(ordenado)
 }
 
-#' Traer n datos mas recientes
+#' Returns n most recient data points
 #'
-#' Wrapper para ordenar de mayor a menor serie y traer solamente últimos 13 periodos. Prefente para series mensuales.
+#' Wrapper for other functions
 #' 
-#' 
-#' @param serie serie en data.frame
-#' @param col Columna con fechas
-#' @param n cantidad de periodos a traer
+#' @param serie serie in data.frame
+#' @param col Column with dates
+#' @param n amount of periods
 #'
 #' @author Eduardo Flores 
-#' @return Data.frame
+#' @return data.frame
 #' @seealso denue_varios_stats 
 #' @examples
-#' #Ver solamente ultimos 13 meses
+#' #return last 13 months
 #' \dontrun{
-#' Ultimos<-ultimos(Inflacion, n = 12)
+#' Ultimos <- ultimos(Inflation, n = 12)
 #' }
 #' 
 #' @export
-#' 
-
-ultimos<-function(serie, col = "Fechas", n = 12)
+ultimos <- function(serie, col = "Fechas", n = 12)
 { #para poner solamente el nombre de columna
   if(col=="Fechas")
   {columna<-"Fechas"} else {
   columna<-as.character(eval(substitute(col), serie, parent.frame()))
   }
   
-  if(class(serie[,columna])=="Date"){} else {stop(print("Columna no es fecha"))}
+  if(class(serie[,columna])=="Date"){} else {stop(print("Columna is not a date"))}
   
   #ordenar tiempos
   orden<-order(serie[,columna])
@@ -106,32 +101,29 @@ ultimos<-function(serie, col = "Fechas", n = 12)
   # ultimas 13
   n_1<-length(ordenado[,1])
   n_2<-n_1-n
-    if(n_2<1){stop(print("Serie es mas corta que 13 observaciones"))} else {}
+    if(n_2<1){stop(print("Series is shorter then n"))} else {}
   set<-ordenado[n_2:n_1,]
   # export
   return(set)
 }
-
-#' Crece una serie por tasas 
+#' Grows a series by a set rate 
 #'
-#' Al especificar un dato inicial, "crece" una serie de datos usando un vector de tasas de crecimiento. La tasa se hace de periodo en periodo. 
-#'
-#' @param tasas vector con tasas de crecimiento
-#' @param comienzo número inicial
+#' When specifying an initial starting value, this "grows" the value by a vector of growth rates.
+#' 
+#' @param tasas vector with rates
+#' @param comienzo initial value
 #'
 #' @author Eduardo Flores 
-#' @return Vector numerico
+#' @return numeric
 #' @seealso series_crecimiento_regiones
 #' @examples
-#' tasas_crecimiento<-c(1.10,1.20,1.05,1.02,1.10)
+#' rates <- c(1.10,1.20,1.05,1.02,1.10)
 #' 
-#' # Crecer por esas tasas (en cada periodo) el 100:
-#' Resultados<-crecer(tasas = tasas_crecimiento, comienzo = 100)
+#' # Grow by that rate
+#' Results <- crecer(tasas = rates, comienzo = 100)
 #' 
 #' @export
-#' 
-
-crecer<-function(tasas, comienzo)
+crecer <- function(tasas, comienzo)
 {
   m<-tasas
   r<-0:length(m)
@@ -145,4 +137,30 @@ crecer<-function(tasas, comienzo)
   
   salida<-r[1:length(m)]
   return(salida)
+}
+
+#' Compacts metadata into a data.frame 
+#'
+#' Returns data.frame with metadata and data from \code{inegi_series()} in data.frame form. Each metadata data is replicated in its corresponding column. 
+#'
+#' @param series INEGI series as passed to \code{inegi_series()}
+#' @param token INEGI API token
+#'
+#' @author Eduardo Flores 
+#' @example
+#' \dontrun{
+#' df <- compact_inegi_series(GDP_seriescode, token)
+#' }
+#' 
+#' @export
+compact_inegi_series <- function(series, token){
+  d <- inegiR::inegi_series(series = series, token = token, metadata = TRUE)
+  dat <- d$Data
+  dat$Name <- d$MetaData$Name
+  dat$Update <- d$MetaData$LastUpdate
+  dat$Region <- d$MetaData$Region
+  dat$Units <- d$MetaData$Units
+  dat$Indicator <- d$MetaData$Indicators
+  dat$Frequency <- d$MetaData$Frequency
+  return(dat)
 }
