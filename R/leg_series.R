@@ -38,14 +38,14 @@ serie_inegi<-function(serie, token, metadata=FALSE, coercionar=TRUE)
   }else{
     #parse xml
     
-  serie<-paste0(serie, token)
-  s<-xmlToList(serie)
+  serie <- paste0(serie, token)
+  s <- xmlToList(serie)
     # revisar que no haya errores de origen
     if(!is.null(s$ErrorInfo)){
       warning(paste0("Error de INEGI: ", s$ErrorInfo))
       return(NULL)
     }
-  Fechas<-ldply(.data = s$Data$Serie, .fun = "[[",'TimePeriod')[,'[[']
+  Fechas <- plyr::ldply(.data = s$Data$Serie, .fun = "[[",'TimePeriod')[,'[[']
   
   # note to former - zoo::as.yearmon
     if(s$MetaData$Freq == "Anual" | s$MetaData$Freq == "Yearly" | s$MetaData$Freq == "Annual" | s$MetaData$Freq == "Quinquenal" | s$MetaData$Freq == "Decenal" | s$MetaData$Freq == "Bienal")
