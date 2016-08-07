@@ -22,7 +22,7 @@ NULL
 rate_GDP <- function (token){
   #Serie de PIB;
   s<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/381016/00000/es/false/xml/"
-  i<-inegiR::serie_inegi(serie = s, token)
+  i<-inegiR::inegi_series(series = s, token)
   t<-inegiR::YoY(serie = i$Valores, lapso = 4, decimal = FALSE)
   d<-cbind.data.frame(Values=t, Dates = i$Fechas)
   return(d)
