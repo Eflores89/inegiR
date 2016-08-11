@@ -51,7 +51,7 @@ inegi_series <- function(series, token, metadata=FALSE, coerce=TRUE)
     
     # note to former - zoo::as.yearmon
     if(s$MetaData$Freq == "Anual" | s$MetaData$Freq == "Yearly" | s$MetaData$Freq == "Annual" | s$MetaData$Freq == "Quinquenal" | s$MetaData$Freq == "Decenal" | s$MetaData$Freq == "Bienal")
-    {Fechas_Date<-as.Date(zoo::as.yearmon(x = paste0("01/",Fechas), format = "%m/%Y"))
+    { Fechas_Date <- zoo::as.Date(zoo::as.yearmon(x = paste0("01/",Fechas), format = "%m/%Y"))
     } 
     else {
       if(s$MetaData$Freq == "Trimestral" | s$MetaData$Freq == "Quarterly" )
