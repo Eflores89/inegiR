@@ -63,3 +63,36 @@ denue_grid <- function(lat1, lat2, lon1, lon2, token, metros = 5000, keyword = "
   }
  return(df)
 }
+
+
+#' @export
+denue_grid_json <- function(lat1, lat2, lon1, lon2, token, metros = 5000, keyword = "todos", espacio_lat = 0.07, espacio_lon = 0.07, unicos = TRUE){
+  #antes de correr, revisar datos de columnas
+  if(class(lat1)=="numeric"){} else {stop(print("Latitud 1 no es numerica"))}
+  if(class(lat2)=="numeric"){} else {stop(print("Latitud 2 no es numerica"))}
+  if(class(lon1)=="numeric"){} else {stop(print("Longitud 1 no es numerica"))}
+  if(class(lon2)=="numeric"){} else {stop(print("Longitud 2 no es numerica"))}
+  
+  grid <- inegiR::hacer_grid(lat1 = lat1, 
+                             lat2 = lat2, 
+                             lon1 = lon1, 
+                             lon2 = lon2, 
+                             espacio_lat = espacio_lat, espacio_lon = espacio_lon)
+  output <- data.frame()
+  for (i in 1:nrow(grid)){
+    mapa <- tryCatch(inegiR::denue_inegi_json(latitud = grid[i,1], 
+                                         longitud = grid[i,2],
+                                         token = token,
+                                         metros = metros,
+                                         keyword = keyword),
+                     # skip si no hay algo en DENUE
+                     error = function(e){})
+    output <- rbind.data.frame(output, mapa)
+  }
+  if(unicos){
+    df <- unique(output)
+  }else{
+    df <- output
+  }
+  return(df)
+}
