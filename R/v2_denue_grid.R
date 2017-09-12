@@ -33,6 +33,7 @@
 #' }
 #'
 #' @export
+#' @rdname denue_grid
 denue_grid <- function(lat1, lat2, lon1, lon2, token, metros = 5000, keyword = "todos", espacio_lat = 0.07, espacio_lon = 0.07, unicos = TRUE){
   #antes de correr, revisar datos de columnas
   if(class(lat1)=="numeric"){} else {stop(print("Latitud 1 no es numerica"))}
@@ -66,6 +67,7 @@ denue_grid <- function(lat1, lat2, lon1, lon2, token, metros = 5000, keyword = "
 
 
 #' @export
+#' @rdname denue_grid_json
 denue_grid_json <- function(lat1, lat2, lon1, lon2, token, metros = 5000, keyword = "todos", espacio_lat = 0.07, espacio_lon = 0.07, unicos = TRUE){
   #antes de correr, revisar datos de columnas
   if(class(lat1)=="numeric"){} else {stop(print("Latitud 1 no es numerica"))}
