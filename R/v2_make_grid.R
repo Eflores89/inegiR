@@ -43,7 +43,7 @@ make_grid <- function(lat1, lat2, lon1, lon2, espacio_lat = 0.07, espacio_lon = 
   y <- base::abs(base::round((lon1_n-lon2_n)/espacio_lon, digits = 0))+1
   for (i in 1:x){
     for (j in 1:y){
-      la <- lat1_n-((i*espacio_lat)-espacio_lat)
+      la <- lat1_n+((i*espacio_lat)-espacio_lat)
       lo <- lon1_n+((j*espacio_lon)-espacio_lon)
       prev <- cbind.data.frame(la, lo)
       grid_output <- rbind.data.frame(grid_output, prev)
@@ -66,7 +66,7 @@ hacer_grid <- function(lat1, lat2, lon1, lon2, espacio_lat = 0.07, espacio_lon =
   y <- base::abs(base::round((lon1_n-lon2_n)/espacio_lon, digits = 0))+1
   for (i in 1:x){
     for (j in 1:y){
-      la <- lat1_n-((i*espacio_lat)-espacio_lat)
+      la <- lat1_n+((i*espacio_lat)-espacio_lat)
       lo <- lon1_n+((j*espacio_lon)-espacio_lon)
       prev <- cbind.data.frame(la, lo)
       grid_output <- rbind.data.frame(grid_output, prev)

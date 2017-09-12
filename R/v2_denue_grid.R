@@ -90,7 +90,7 @@ denue_grid_json <- function(lat1, lat2, lon1, lon2, token, metros = 5000, keywor
                      # skip si no hay algo en DENUE
                      error = function(e){})
     output <- rbind.data.frame(output, mapa)
-    print(paste0("Processed", i," out of ",nrow(grid)))
+    print(paste0("Processed ", i," out of ",nrow(grid)))
   }
   if(unicos){
     df <- unique(output)
