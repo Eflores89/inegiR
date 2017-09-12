@@ -9,6 +9,8 @@
 inegi_denue(latitud, longitud, token, metros = 250, keyword = "todos")
 
 denue_inegi(latitud, longitud, token, metros = 250, keyword = "todos")
+
+denue_inegi_json(latitud, longitud, token, metros = 250, keyword = "todos")
 }
 \arguments{
 \item{latitud}{Character vector with latitud (in decimals)}
