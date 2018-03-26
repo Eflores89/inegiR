@@ -170,4 +170,3 @@ denue_inegi<-function(latitud, longitud, token, metros = 250, keyword = "todos")
   )
   return(df)
 }
-}
