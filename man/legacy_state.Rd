@@ -2,9 +2,9 @@
 % Please edit documentation in R/v2_legacy.R
 \name{legacy_state}
 \alias{legacy_state}
-\alias{series_ITAE_estados}
 \alias{series_PIB_estados}
 \alias{series_crecimiento_regiones}
+\alias{series_ITAE_estados}
 \title{State functions in spanish}
 \usage{
 series_PIB_estados(token)
@@ -43,4 +43,3 @@ dat <- series_ITAE_estados(token)
 \author{
 Eduardo Flores
 }
-

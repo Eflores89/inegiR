@@ -26,10 +26,9 @@ Ultimos <- ultimos(Inflation, n = 12)
 }
 
 }
-\author{
-Eduardo Flores
-}
 \seealso{
 denue_varios_stats
 }
-
+\author{
+Eduardo Flores
+}

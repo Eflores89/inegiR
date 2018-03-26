@@ -29,4 +29,3 @@ xbycountry <- exports_country(token)
 \author{
 Eduardo Flores
 }
-

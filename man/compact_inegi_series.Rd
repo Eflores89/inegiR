@@ -23,4 +23,3 @@ df <- compact_inegi_series(GDP_seriescode, token)
 \author{
 Eduardo Flores
 }
-

@@ -33,4 +33,3 @@ gdp <- tasa_PIB(token)
 \author{
 Eduardo Flores
 }
-

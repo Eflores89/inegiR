@@ -1,7 +1,7 @@
 #' Terms of trade
 #'
 #' Returns the terms of trade for Mexico, defined as the price index of exports over the price index of imports.
-#' Wrapper for \code{serie_inegi()} and \code{YoY()}.
+#' Wrapper for \code{inegi_series()} and \code{YoY()}.
 #'
 #' @param token API token supplied by INEGI
 #' @author Eduardo Flores 

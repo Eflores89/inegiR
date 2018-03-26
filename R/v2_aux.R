@@ -39,7 +39,7 @@ YoY <- function(serie, lapso, decimal = TRUE){
 }
 #' Order factors by count
 #'
-#' Wrapper for rapid ordering in a data.frame. 
+#' Wrapper for rapid ordering in a data.frame. This is a legacy function.
 #'
 #' @param df Data.frame
 #' @param col Columna with factor. (Bare, no parenthesis).
@@ -59,10 +59,10 @@ ordenar_porconteo <- function(df,col)
   columna<-as.character(eval(substitute(col), df, parent.frame()))
   
   # agrupar
-  set<-stats::aggregate(x = df, by = list(columna), FUN = length)
-  set<-set[,names(set)[1:2]]
+  set <- stats::aggregate(x = df, by = list(columna), FUN = length)
+  set <- set[,names(set)[1:2]]
   # ordenar mayor a menor
-  ordenado<-set[order(set[,names(set[2])], decreasing=TRUE),]
+  ordenado <- set[order(set[,names(set[2])], decreasing=TRUE),]
   # export
   return(ordenado)
 }
@@ -108,7 +108,7 @@ ultimos <- function(serie, col = "Fechas", n = 12)
 }
 #' Grows a series by a set rate 
 #'
-#' When specifying an initial starting value, this "grows" the value by a vector of growth rates.
+#' When specifying an initial starting value, this "grows" the value by a vector of growth rates. This is a legacy function. 
 #' 
 #' @param tasas vector with rates
 #' @param comienzo initial value

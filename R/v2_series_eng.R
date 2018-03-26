@@ -23,11 +23,11 @@
 #' url <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216064/00000/es/false/xml/"
 #' INPC <- inegi_series(url, token)
 #' }
-#' @name series_eng
+#' @name inegi_series
 NULL
 
 #' @export
-#' @rdname series_eng
+#' @rdname inegi_series
 inegi_series <- function(series, token, metadata=FALSE, coerce=TRUE)
 { #detener en error de pegado
   if (grepl(pattern = "xml/$", x = series) | grepl(pattern = "json/$", x = series)){}
@@ -106,7 +106,7 @@ inegi_series <- function(series, token, metadata=FALSE, coerce=TRUE)
 }
 
 #' @export
-#' @rdname series_eng
+#' @rdname inegi_series
 inegi_series_json<-function(series, token, metadata=FALSE, coerce=TRUE)
 {
   serie <- paste0(series, token, "?callback?")

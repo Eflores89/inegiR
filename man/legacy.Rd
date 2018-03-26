@@ -2,8 +2,8 @@
 % Please edit documentation in R/v2_legacy.R
 \name{legacy}
 \alias{legacy}
-\alias{series_actividad_industrial}
 \alias{series_opiniones}
+\alias{series_actividad_industrial}
 \title{Miscellaneous functions in spanish}
 \usage{
 series_opiniones(token)
@@ -21,7 +21,7 @@ Each of these functions return data in the previous (v1.2) format in spanish and
 See the examples for each series meaning.
 }
 \note{
-Legacy functions, will return data in spanish.
+Legacy functions, will return data in spanish and are not actively maintained.
 }
 \examples{
 \dontrun{
@@ -35,4 +35,3 @@ dat <- series_actividad_industrial(token)
 \author{
 Eduardo Flores
 }
-

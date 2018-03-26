@@ -2,8 +2,8 @@
 % Please edit documentation in R/v2_denue.R
 \name{denue}
 \alias{denue}
-\alias{denue_inegi}
 \alias{inegi_denue}
+\alias{denue_inegi}
 \title{Returns DENUE businesses}
 \usage{
 inegi_denue(latitud, longitud, token, metros = 250, keyword = "todos")
@@ -43,4 +43,3 @@ negocios <- denue_inegi(latitut, longitud, token, metros = 100)
 \author{
 Eduardo Flores
 }
-

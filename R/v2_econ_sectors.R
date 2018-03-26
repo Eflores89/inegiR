@@ -69,5 +69,6 @@ tasa_sectoresYoY<-function(token)
   df<-Reduce(function(...) merge(...,all=TRUE),list(t1,
                                                     t2,
                                                     t3))
+  warning("This function is not being maintained. Use rate_econsectors() instead.")
   return(df)
 }

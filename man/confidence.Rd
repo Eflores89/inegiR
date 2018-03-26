@@ -29,4 +29,3 @@ conf <- rate_cconfidence(token)
 \author{
 Eduardo Flores
 }
-

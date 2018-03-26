@@ -34,5 +34,7 @@ inflacion_general<-function (token){
   i<-inegiR::serie_inegi(s, token)
   t<-inegiR::YoY(serie = i$Valores, lapso = 12, decimal = FALSE)
   d<-cbind.data.frame(Fechas=i$Fechas, Valores=t)
+  
+  warning("This function is not being maintained. Use overall_inflation() instead.")
   return(d)
 }

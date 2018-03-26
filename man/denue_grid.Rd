@@ -55,4 +55,3 @@ Negocios <- denue_grid(latitud1, latitud2, longitud1, longitud2, token)
 \author{
 Arturo Cardenas
 }
-

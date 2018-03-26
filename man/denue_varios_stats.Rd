@@ -43,4 +43,3 @@ stats <- denue_varios_stats(data     = df,
 \author{
 Eduardo Flores
 }
-

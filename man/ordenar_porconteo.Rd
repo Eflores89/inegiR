@@ -15,7 +15,7 @@ ordenar_porconteo(df, col)
 data.frame
 }
 \description{
-Wrapper for rapid ordering in a data.frame.
+Wrapper for rapid ordering in a data.frame. This is a legacy function.
 }
 \examples{
 df <- data.frame(factors=c("A","A","B","C","C","D","A","A"),
@@ -24,10 +24,9 @@ df <- data.frame(factors=c("A","A","B","C","C","D","A","A"),
 ByCount <- ordenar_porconteo(df, factors)
 
 }
-\author{
-Eduardo Flores
-}
 \seealso{
 denue_varios_stats
 }
-
+\author{
+Eduardo Flores
+}

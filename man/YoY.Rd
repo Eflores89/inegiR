@@ -33,4 +33,3 @@ Inflation <- YoY(INPC$Valores, 12)
 \author{
 Eduardo Flores
 }
-

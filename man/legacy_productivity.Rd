@@ -2,8 +2,8 @@
 % Please edit documentation in R/v2_legacy.R
 \name{legacy_productivity}
 \alias{legacy_productivity}
-\alias{series_productividad_const}
 \alias{series_productividad_man}
+\alias{series_productividad_const}
 \title{Productivity functions in spanish}
 \usage{
 series_productividad_man(token)
@@ -35,4 +35,3 @@ dat <- series_productividad_const(token)
 \author{
 Eduardo Flores
 }
-

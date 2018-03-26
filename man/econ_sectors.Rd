@@ -30,4 +30,3 @@ sectors <- rate_econsectors(token)
 \author{
 Eduardo Flores
 }
-

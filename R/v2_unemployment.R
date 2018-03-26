@@ -19,8 +19,8 @@ NULL
 #' @rdname unemployment
 rate_unemployment <- function(token)
 { #Retornar el desempleo
-  s<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/444612/00000/en/false/xml/"
-  d<-inegiR::inegi_series(series = s, token)
+  s <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/444612/00000/en/false/xml/"
+  d <- inegiR::inegi_series(series = s, token)
   
   return(d)
 }
@@ -28,8 +28,8 @@ rate_unemployment <- function(token)
 #' @rdname unemployment
 tasa_desempleo<-function(token)
 { #Retornar el desempleo
-  s<-"http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/444612/00000/en/false/xml/"
-  d<-inegiR::serie_inegi(s,token)
+  s <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/444612/00000/en/false/xml/"
+  d <- inegiR::serie_inegi(s,token)
   
   return(d)
 }

@@ -2,7 +2,7 @@
 #' Inflation by city
 #'
 #' Returns monthly year-over-year inflation rates for 46 main cities in Mexico.
-#' Wrapper for \code{serie_inegi()} and \code{YoY()}.
+#' Wrapper for \code{inegi_series()} and \code{YoY()}.
 #'
 #' @param token token API token supplied by INEGI
 #' @author Eduardo Flores 
@@ -201,5 +201,6 @@ inflacion_ciudades<-function(token){
   ts<-as.data.frame(ts)
   # bind
   ts$Fechas<-df$Fechas
+  warning("This function is not being maintained. Use city_inflation() instead.")
   return(ts)
 }

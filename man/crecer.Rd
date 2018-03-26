@@ -15,7 +15,7 @@ crecer(tasas, comienzo)
 numeric
 }
 \description{
-When specifying an initial starting value, this "grows" the value by a vector of growth rates.
+When specifying an initial starting value, this "grows" the value by a vector of growth rates. This is a legacy function.
 }
 \examples{
 rates <- c(1.10,1.20,1.05,1.02,1.10)
@@ -24,10 +24,9 @@ rates <- c(1.10,1.20,1.05,1.02,1.10)
 Results <- crecer(tasas = rates, comienzo = 100)
 
 }
-\author{
-Eduardo Flores
-}
 \seealso{
 series_crecimiento_regiones
 }
-
+\author{
+Eduardo Flores
+}

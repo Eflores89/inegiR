@@ -5,7 +5,7 @@
 #'
 #' @param token API token supplied by INEGI
 #' @author Eduardo Flores
-#' @note Legacy functions, will return data in spanish.
+#' @note Legacy functions, will return data in spanish and are not actively maintained.
 #' @return Data.frame 
 #'
 #' @examples

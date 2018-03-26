@@ -2,6 +2,7 @@
 % Please edit documentation in R/v2_city_inflation.R
 \name{city_inflation}
 \alias{city_inflation}
+\alias{city_inflation}
 \alias{inflacion_ciudades}
 \title{Inflation by city}
 \usage{
@@ -17,7 +18,7 @@ data.frame
 }
 \description{
 Returns monthly year-over-year inflation rates for 46 main cities in Mexico.
-Wrapper for \code{serie_inegi()} and \code{YoY()}.
+Wrapper for \code{inegi_series()} and \code{YoY()}.
 }
 \examples{
 \dontrun{
@@ -28,4 +29,3 @@ cities <- city_inflation(token)
 \author{
 Eduardo Flores
 }
-

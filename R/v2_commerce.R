@@ -1,6 +1,6 @@
 #' Commerce growth rate
 #'
-#' Returns commerce growth rate (terciary activity) vs. same month year earlier. 
+#' Returns commerce growth rate (terciary activity as defined officially by INEGI) vs. same month year earlier. 
 #' Wrapper for \code{serie_inegi()} and \code{YoY()}. 
 #'
 #' @param token API token supplied by INEGI
@@ -36,5 +36,6 @@ tasa_comercio<-function(token)
   d<-cbind.data.frame(Fechas=d$Fechas,Valores=d$Valores,"YoY"=YoY(serie = d$Valores,
                                                                   lapso = 12, 
                                                                   decimal = FALSE))
+  warning("This function is not being maintained. Use rate_commerce() instead.")
   return(d)
 }

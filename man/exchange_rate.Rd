@@ -2,6 +2,7 @@
 % Please edit documentation in R/v2_exchange_rate.R
 \name{exchange_rate}
 \alias{exchange_rate}
+\alias{exchange_rate}
 \alias{series_tipocambio}
 \title{Exchange rate}
 \usage{
@@ -28,4 +29,3 @@ USD <- exchange_rate(token)
 \author{
 Eduardo Flores
 }
-

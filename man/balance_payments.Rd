@@ -2,6 +2,7 @@
 % Please edit documentation in R/v2_balance_payments.R
 \name{balance_payments}
 \alias{balance_payments}
+\alias{balance_payments}
 \alias{series_balanza_pagos}
 \title{Balance of Payments}
 \usage{
@@ -28,4 +29,3 @@ MxBoP <- balance_payments(token)
 \author{
 Eduardo Flores
 }
-

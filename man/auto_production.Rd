@@ -2,6 +2,7 @@
 % Please edit documentation in R/v2_auto_production.R
 \name{auto_production}
 \alias{auto_production}
+\alias{auto_production}
 \alias{series_produccion_autos}
 \title{Auto production}
 \usage{
@@ -28,4 +29,3 @@ Autos <- auto_production(token)
 \author{
 Eduardo Flores
 }
-

@@ -63,5 +63,6 @@ series_exportaciones_pais<-function(token)
   
   df<-Reduce(function(...) merge(..., all = TRUE),
              list(usa_v,can_v,chn_v,cam_v,sur_v))
+  warning("This function is not being maintained. Use exports_country() instead.")
   return(df)
 }

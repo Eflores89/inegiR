@@ -17,7 +17,7 @@ tasa_comercio(token)
 Data.frame
 }
 \description{
-Returns commerce growth rate (terciary activity) vs. same month year earlier. 
+Returns commerce growth rate (terciary activity as defined officially by INEGI) vs. same month year earlier. 
 Wrapper for \code{serie_inegi()} and \code{YoY()}.
 }
 \examples{
@@ -29,4 +29,3 @@ Commerce <- rate_commerce(token)
 \author{
 Eduardo Flores
 }
-

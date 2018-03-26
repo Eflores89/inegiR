@@ -168,5 +168,6 @@ denue_inegi<-function(latitud, longitud, token, metros = 250, keyword = "todos")
     Latitud=LimpiarRapido(":",l_split$'18'),
     stringsAsFactors = FALSE
   )
+  warning("This function is not being maintained. Use inegi_denue() instead.")
   return(df)
 }

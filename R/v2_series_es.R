@@ -24,11 +24,11 @@
 #' url <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/216064/00000/es/false/xml/"
 #' Serie <- serie_inegi(url, token)
 #' }
-#' @name series_es
+#' @name serie_inegi
 NULL
 
 #' @export
-#' @rdname series_es
+#' @rdname serie_inegi
 
 serie_inegi<-function(serie, token, metadata=FALSE, coercionar=TRUE)
 { #detener en error de pegado
@@ -108,9 +108,7 @@ serie_inegi<-function(serie, token, metadata=FALSE, coercionar=TRUE)
 }
 
 #' @export
-#' @rdname series_es
-
-
+#' @rdname serie_inegi
 serie_inegi_json<-function(serie, token, metadata=FALSE, coercionar=TRUE)
 {
   serie <- paste0(serie, token, "?callback?")

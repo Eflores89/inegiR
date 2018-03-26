@@ -32,4 +32,3 @@ igae <- rate_IGAE(token)
 \author{
 Eduardo Flores
 }
-

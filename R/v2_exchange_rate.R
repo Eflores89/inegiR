@@ -33,5 +33,6 @@ series_tipocambio<-function(token)
   s <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/824/00000/en/false/xml/"
   
   d <- inegiR::serie_inegi(s, token)
+  warning("This function is not being maintained. Use exchange_rate() instead.")
   return(d)
 }
