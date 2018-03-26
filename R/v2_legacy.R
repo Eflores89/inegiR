@@ -254,6 +254,7 @@ series_PIB_estados <- function(token)
 #' @rdname legacy_state
 series_crecimiento_regiones <- function(token)
 {
+  # Descargar PIB de todos los estados
   PIB_estados<-inegiR::series_PIB_estados(token)
   
   ##########################################################
@@ -267,65 +268,65 @@ series_crecimiento_regiones <- function(token)
                                SON,NL,TAM))
   
   #ponderacion - se calculan ultimos 4 anios
-  Norte_PIB$Total<-rowSums(x = subset(Norte_PIB,
-                                      select = -c(Fechas)))
+  Norte_PIB$Total<- rowSums(x = subset(Norte_PIB,
+                                       select = -c(Fechas)))
   Norte_l<-inegiR::ultimos(Norte_PIB, n = 4)
   
   #Estados - no se hace loop para dejar todo explicito
-  BajaCalifornia_p<-mean(Norte_l$BC/Norte_l$Total)
-  BajaCaliforniaSur_p<-mean(Norte_l$BCS/Norte_l$Total)
-  Coahuila_p<-mean(Norte_l$COAH/Norte_l$Total)
-  Chihuahua_p<-mean(Norte_l$CHIH/Norte_l$Total)
-  Sinaloa_p<-mean(Norte_l$SIN/Norte_l$Total)
-  Sonora_p<-mean(Norte_l$SON/Norte_l$Total)
-  NuevoLeon_p<-mean(Norte_l$NL/Norte_l$Total)
-  Tamaulipas_p<-mean(Norte_l$TAM/Norte_l$Total)
+  BajaCalifornia_p <- mean(Norte_l$BC/Norte_l$Total)
+  BajaCaliforniaSur_p <- mean(Norte_l$BCS/Norte_l$Total)
+  Coahuila_p <- mean(Norte_l$COAH/Norte_l$Total)
+  Chihuahua_p <- mean(Norte_l$CHIH/Norte_l$Total)
+  Sinaloa_p <- mean(Norte_l$SIN/Norte_l$Total)
+  Sonora_p <- mean(Norte_l$SON/Norte_l$Total)
+  NuevoLeon_p <- mean(Norte_l$NL/Norte_l$Total)
+  Tamaulipas_p <- mean(Norte_l$TAM/Norte_l$Total)
   
   ##########################################################
   # La Region Centro-Norte comprende las entidades de:
   # Aguascalientes, Colima, Durango, Guanajuato, Jalisco,
   # Nayarit, San Luis Potosi y Zacatecas.
-  Centro_Nte_PIB<-subset(x = PIB_estados,
-                         select = c(Fechas, AGS, COL,
+  Centro_Nte_PIB <- subset(x = PIB_estados,
+                          select = c(Fechas, AGS, COL,
                                     DGO, GTO, JAL, NAY, SLP, ZAC))
   #ponderacion
-  Centro_Nte_PIB$Total<-rowSums(x = subset(Centro_Nte_PIB, select = -c(Fechas)))
-  Centro_Nte_l<-inegiR::ultimos(Centro_Nte_PIB, n = 4)
+  Centro_Nte_PIB$Total <- rowSums(x = subset(Centro_Nte_PIB, select = -c(Fechas)))
+  Centro_Nte_l <- inegiR::ultimos(Centro_Nte_PIB, n = 4)
   
   #Estados - no se hace loop para dejar todo explicito
-  Aguascalientes_p<-mean(Centro_Nte_l$AGS/Centro_Nte_l$Total)
-  Colima_p<-mean(Centro_Nte_l$COL/Centro_Nte_l$Total)
-  Durango_p<-mean(Centro_Nte_l$DGO/Centro_Nte_l$Total)
-  Guanajuato_p<-mean(Centro_Nte_l$GTO/Centro_Nte_l$Total)
-  Jalisco_p<-mean(Centro_Nte_l$JAL/Centro_Nte_l$Total)
-  Nayarit_p<-mean(Centro_Nte_l$NAY/Centro_Nte_l$Total)
-  SanLuisPotosi_p<-mean(Centro_Nte_l$SLP/Centro_Nte_l$Total)
-  Zacatecas_p<-mean(Centro_Nte_l$ZAC/Centro_Nte_l$Total)
+  Aguascalientes_p <- mean(Centro_Nte_l$AGS/Centro_Nte_l$Total)
+  Colima_p <- mean(Centro_Nte_l$COL/Centro_Nte_l$Total)
+  Durango_p <- mean(Centro_Nte_l$DGO/Centro_Nte_l$Total)
+  Guanajuato_p <- mean(Centro_Nte_l$GTO/Centro_Nte_l$Total)
+  Jalisco_p <- mean(Centro_Nte_l$JAL/Centro_Nte_l$Total)
+  Nayarit_p <- mean(Centro_Nte_l$NAY/Centro_Nte_l$Total)
+  SanLuisPotosi_p <- mean(Centro_Nte_l$SLP/Centro_Nte_l$Total)
+  Zacatecas_p <- mean(Centro_Nte_l$ZAC/Centro_Nte_l$Total)
   
   ##########################################################
   # La Region Centro comprende las entidades de:
   # El Distrito Federal y Mexico.
-  Centro_PIB<-subset(x = PIB_estados,
-                     select = c(Fechas, MEX, CDMX))
+  Centro_PIB <- subset(x = PIB_estados,
+                      select = c(Fechas, MEX, CDMX))
   #ponderacion
-  Centro_PIB$Total<-rowSums(x = subset(Centro_PIB, 
-                                       select = -c(Fechas)))
+  Centro_PIB$Total <- rowSums(x = subset(Centro_PIB, 
+                                        select = -c(Fechas)))
   Centro_l<-inegiR::ultimos(Centro_PIB, n = 4)
   
   #Estados - no se hace loop para dejar todo explicito
-  EdoMexico_p<-mean(Centro_l$MEX/Centro_l$Total)
-  DF_p<-mean(Centro_l$CDMX/Centro_l$Total)
+  EdoMexico_p <- mean(Centro_l$MEX/Centro_l$Total)
+  DF_p <- mean(Centro_l$CDMX/Centro_l$Total)
   
   ##########################################################
   # La Region Centro-Sur comprende las entidades de:
   # Guerrero, Hidalgo, Michoacan de Ocampo,
   # Morelos, Puebla, Queretaro y Tlaxcala.
-  Centro_Sur_PIB<-subset(x = PIB_estados,
-                         select = c(Fechas, GRO, HGO, MICH, MOR,
-                                    PUE, QRO, TLAX))
+  Centro_Sur_PIB <-subset(x = PIB_estados,
+                          select = c(Fechas, GRO, HGO, MICH, MOR,
+                                     PUE, QRO, TLAX))
   #ponderacion
-  Centro_Sur_PIB$Total<-rowSums(x = subset(Centro_Sur_PIB,select = -c(Fechas)))
-  Centro_Sur_l<-inegiR::ultimos(Centro_Sur_PIB, n = 4)
+  Centro_Sur_PIB$Total <- rowSums(x = subset(Centro_Sur_PIB,select = -c(Fechas)))
+  Centro_Sur_l <- inegiR::ultimos(Centro_Sur_PIB, n = 4)
   
   #Estados - no se hace loop para dejar todo explicito
   Guerrero_p<-mean(Centro_Sur_l$GRO/Centro_Sur_l$Total)
@@ -444,7 +445,7 @@ series_crecimiento_regiones <- function(token)
   
   #Region Centro - Sur
   Centro_Sur_tasas<-subset(x = TasasCambio,
-                           select = c(Fechas, GRO, HGO, MICH, MOR,
+                           select = c(Fechas, GUE, HGO, MICH, MOR,
                                       PUE, QRO, TLAX))
   Centro_Sur_ITAE<-subset(x = ITAEs,
                           select = c(Fechas, GRO, HGO, MICH, MOR,
@@ -560,7 +561,7 @@ series_ITAE_estados<-function(token)
   i11<-inegiR::serie_inegi(s11,token)
   names(i11)<-c("GTO","Fechas")
   i12<-inegiR::serie_inegi(s12,token)
-  names(i12)<-c("GUE","Fechas")
+  names(i12)<-c("GRO","Fechas")
   i13<-inegiR::serie_inegi(s13,token)
   names(i13)<-c("HGO","Fechas")
   i14<-inegiR::serie_inegi(s14,token)

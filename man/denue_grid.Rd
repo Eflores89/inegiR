@@ -6,9 +6,6 @@
 \usage{
 denue_grid(lat1, lat2, lon1, lon2, token, metros = 5000, keyword = "todos",
   espacio_lat = 0.07, espacio_lon = 0.07, unicos = TRUE)
-  
-denue_grid_json(lat1, lat2, lon1, lon2, token, metros = 5000, keyword = "todos",
-  espacio_lat = 0.07, espacio_lon = 0.07, unicos = TRUE)
 }
 \arguments{
 \item{lat1}{First corner (latitud)}
