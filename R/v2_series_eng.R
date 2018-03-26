@@ -41,7 +41,7 @@ inegi_series <- function(series, token, metadata=FALSE, coerce=TRUE)
     #parse xml
     
     serie <- paste0(series, token)
-    s <- xmlToList(serie)
+    s <- XML::xmlToList(serie)
     # revisar que no haya errores de origen
     if(!is.null(s$ErrorInfo)){
       warning(paste0("INEGI error: ", s$ErrorInfo))
@@ -73,7 +73,15 @@ inegi_series <- function(series, token, metadata=FALSE, coerce=TRUE)
         }
       }}
     # Values
-    Valores <- as.numeric(ldply(s$Data$Serie,"[[",'CurrentValue')[,'[['])
+    Valores <- as.numeric(plyr::ldply(s$Data$Serie,"[[",'CurrentValue')[,'[['])
+    
+    # check length of vectors, it is impossible to determine the skipped data
+    if(!(length(Valores)==length(Fechas))){
+      stop("Data error: the number of observations and dates does not match. 
+           The most probable culprit is a null observation anywhere in the data. 
+           Contact INEGI for more information.")
+      
+    }
     
     # df
     df <- cbind.data.frame(as.numeric(Valores), Fechas_Date)
@@ -135,7 +143,7 @@ inegi_series_json<-function(series, token, metadata=FALSE, coerce=TRUE)
       Fechas_Date<-as.Date(zoo::as.yearmon(Fechas, "%Y/%m"))
     } else {
       if(s$MetaData$Freq=="Quincenal")
-      {if(coercionar){
+      {if(coerce){
         Mensaje <- "Important: Bi weekly indicator was coerced to monthly. Use coerce = FALSE to avoid."
         Fechas_Date<-as.Date(zoo::as.yearmon(Fechas, "%Y/%m"))
       } else {
@@ -145,6 +153,14 @@ inegi_series_json<-function(series, token, metadata=FALSE, coerce=TRUE)
         Fechas_Date<-as.Date(zoo::as.yearmon(Fechas, "%Y/%m"))
       }
     }}
+  
+  # check length of vectors, it is impossible to determine the skipped data
+  if(!(length(Valores)==length(Fechas))){
+    stop("Data error: the number of observations and dates does not match. 
+         The most probable culprit is a null observation anywhere in the data. 
+         Contact INEGI for more information.")
+    
+  }
   
   df <- data.frame("Values" = Valores,
                    "Dates" = Fechas_Date)

@@ -34,6 +34,7 @@ inegi_destiny <- function(search, token){
   d$GEO_TYPE <- ldply(geolist, "[")['TYPE']
   d$LAT <- ldply(geolist, "[")['LAT']
   d$LONG <- ldply(geolist, "[")['LONG']
+  
   return(d)
 }
 #' Returns the route between two points in Mexico
