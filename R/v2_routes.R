@@ -34,7 +34,6 @@ inegi_destiny <- function(search, token){
   d$GEO_TYPE <- ldply(geolist, "[")['TYPE']
   d$LAT <- ldply(geolist, "[")['LAT']
   d$LONG <- ldply(geolist, "[")['LONG']
-
   return(d)
 }
 #' Returns the route between two points in Mexico
@@ -88,13 +87,18 @@ inegi_route <- function(from, to, token, pref, vehicle, calc_cost = FALSE, rawJS
   
   if(calc_cost){
     b$TOTAL_COST <- b$KMS/11*inegiR::get_gas(token = token, 
-                                             onlyPremium = TRUE)
+                                             onlyPremium = TRUE)+b$TOLL_COST
   }else{
     b$TOTAL_COST <- NA
   }
   
-  # return a list
-  list("ROUTE" = b, "COORDINATE_PATH" = d)
+  # export
+  if(rawJSON){
+    s
+  }else{
+    # return a list
+    list("ROUTE" = b, "COORDINATE_PATH" = d)  
+  }
 }
 #' Gets gas cost from INEGI API
 #' 
