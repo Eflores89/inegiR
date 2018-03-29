@@ -20,8 +20,6 @@
 #' Inflation <- YoY(INPC$Valores, 12)
 #' }
 #' @export
-#' 
-
 YoY <- function(serie, lapso, decimal = TRUE){
   if(NROW(serie) <= lapso){
     stop("Not enough rows for lapso parameter")
@@ -163,4 +161,25 @@ compact_inegi_series <- function(series, token){
   dat$Indicator <- d$MetaData$Indicators
   dat$Frequency <- d$MetaData$Frequency
   return(dat)
+}
+
+#' INEGI code to call 
+#'
+#' This function is a simple paste0() command that allows you to only pass a unique indicator ID to inegi_series(), instead of the entire URL string.
+#'
+#' @param id numeric INEGI id number
+#' @note Works only for national statistics (00000 geography code)
+#' @author Eduardo Flores 
+#' @return string
+#'
+#' @examples
+#' # Get the corresponding URL for GDP
+#' GPD_ID <- 381016
+#' GDP_CALL_URL <- inegi_code(381016)
+#' @export
+inegi_code <- function(id){
+  a <- "http://www3.inegi.org.mx/sistemas/api/indicadores/v1//Indicador/"
+  b <- "/00000/es/false/xml/"
+  
+  paste0(a, id, b)
 }
