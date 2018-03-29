@@ -35,6 +35,8 @@ inegi_destiny <- function(search, token){
   d$LAT <- ldply(geolist, "[")['LAT']
   d$LONG <- ldply(geolist, "[")['LONG']
   
+  # the resulting data.frame is nested! Thus, we will unnest...
+  d <- as.data.frame(as.list(d))
   return(d)
 }
 #' Returns the route between two points in Mexico
