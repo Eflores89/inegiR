@@ -78,6 +78,8 @@ inegi_route <- function(from, to, token, pref, vehicle, calc_cost = FALSE, rawJS
   a <- jsonlite::fromJSON(txt = s$ruta$geojson, 
                           simplifyDataFrame = T)
   d <- plyr::ldply(a$coordinates, as.data.frame)
+  names(d) <- c("LONGITUD", "LATITUD")
+  d$INDEX <- 1:nrow(d)
   
   # extracting data for route
   b <- data.frame(
