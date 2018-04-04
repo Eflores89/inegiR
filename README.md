@@ -4,11 +4,13 @@
 
 ## Documentación
 
-* [English Vignette](http://www.enelmargen.org/inegiR/vignette_eng.html)
+* [English Vignette (Version 1)](http://www.enelmargen.org/inegiR/vignette_eng.html)
+
+* [English Vignette (Version 2)](http://enelmargen.org/datascience/inegiR-v2/index.html)
 
 * [Vignette Español](http://www.enelmargen.org/inegiR/vignette_spa.html)
 
-* [Manual (Español)](https://cran.r-project.org/web/packages/inegiR/inegiR.pdf)
+* [Manual (pdf)](https://cran.r-project.org/web/packages/inegiR/inegiR.pdf)
 
 * [CRAN](https://cran.r-project.org/web/packages/inegiR/index.html)
 
