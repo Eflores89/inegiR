@@ -1,5 +1,7 @@
+^CRAN-RELEASE$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 Manual_inegiR.pdf
 ^NEWS\.md$
 ^\.travis\.yml$
+^\.httr-oauth$
