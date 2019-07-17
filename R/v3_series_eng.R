@@ -97,6 +97,8 @@ inegi_series <- function(series_id, token,
         }else{
           if(s$Series$FREQ %in% c("4", "5", "7", "10", "11", "12", "13")){
             warning("Time format is not supported. Only Anual, Trimestral, Monthly or Biweekly indicators are supported by this package. Data was downloaded but will be passed on as-is.")
+              d_dates <- ifelse(is.na(d$TIME_PERIOD)|is.null(d$TIME_PERIOD), NA, d$TIME_PERIOD)
+              d_aux <- d_dates
           }
         }
       }
