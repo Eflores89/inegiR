@@ -34,13 +34,12 @@ NULL
 
 #' @export
 #' @rdname inegi_series
-inegi_series <- function(series_id, token, 
-                         geography = "00", database = "BIE", 
-                         metadata = FALSE, lastonly = FALSE, as_tt = FALSE, as_compact = FALSE)
-  { 
+inegi_series <- function (series_id, token, geography = "00", database = "BIE",
+                          metadata = FALSE, lastonly = FALSE, as_tt = FALSE, as_compact = FALSE)
+{
   #### stoping mistakes from previous version breaks
   if(grepl(pattern = "[0-9]", x = series_id, ignore.case = TRUE)){}else{
-  stop("Series id must only be numbers. Adding the entire URL is deprecated in v3. See documentation.")}
+    stop("Series id must only be numbers. Adding the entire URL is deprecated in v3. See documentation.")}
   
   #### Creating the url we are going to call. 
   u <- paste0("https://www.inegi.org.mx/app/api/indicadores/desarrolladores/jsonxml/INDICATOR/",
@@ -52,86 +51,77 @@ inegi_series <- function(series_id, token,
               token, 
               "?type=json")
   
-  #### Download.
+  ### download 
   s <- jsonlite::fromJSON(u)
-  
-  #### If INEGI gives us some error, we will show here:
-    if(!is.null(s$ErrorInfo)){
-      warning(paste0("INEGI error: ", s$ErrorInfo))
-      return(NULL)
-    }
-  
-  #### Creating a data.frame with values
+  if (!is.null(s$ErrorInfo)) {
+    warning(paste0("INEGI error: ", s$ErrorInfo))
+    return(NULL)
+  }
   d <- as.data.frame(s$Series$OBSERVATIONS)
   
   #### Dates will have to be fixed, according to frequency.
   #### These frequency codes are obtained by incat_freq(), they might change if inegi decides to change them!
-  if(s$Series$FREQ %in% c("1", "2", "3")){
-    # Series is anual, then only take out the first four digits, and this will be our year. 
-    d_dates <- gsub(pattern = "/[0-9]{2,5}", replacement = "", x = d$TIME_PERIOD)
+  if (grepl("1", s$Series$FREQ, fixed=TRUE) || grepl("2", s$Series$FREQ, fixed=TRUE)
+      || grepl("3", s$Series$FREQ, fixed=TRUE)) {
+    
+    d_dates <- gsub(pattern = "/[0-9]{2,5}", replacement = "",
+                    x = d$TIME_PERIOD)
     d_aux <- rep(x = "Year", times = length(d$TIME_PERIOD))
-  }else{
-    if(s$Series$FREQ %in% c("6")){
-      # series is trimestral
-      d_dates <- gsub(pattern = "/04", replacement = "/10", x = d$TIME_PERIOD) #this has to go first
+  }
+  else {
+    if (grepl("6", s$Series$FREQ, fixed=TRUE)) {
+      d_dates <- gsub(pattern = "/04", replacement = "/10", x = d$TIME_PERIOD)
       d_dates <- gsub(pattern = "/03", replacement = "/07", x = d_dates)
       d_dates <- gsub(pattern = "/02", replacement = "/04", x = d_dates)
-      
-      d_aux <- ifelse(grepl(pattern = "/10", x = d_dates), "Q4", 
-                      ifelse(grepl(pattern = "/07", x = d_dates), "Q3", 
-                             ifelse(grepl(pattern = "/04", x = d_dates), "Q2", "Q1")))
+      d_aux <- ifelse(grepl(pattern = "/10", x = d_dates), 
+                      "Q4", ifelse(grepl(pattern = "/07", x = d_dates),
+                                   "Q3", ifelse(grepl(pattern = "/04", x = d_dates),
+                                                "Q2", "Q1")))
       d_dates <- as.Date(zoo::as.yearmon(d_dates, "%Y/%m"))
-    }else{
-      if(s$Series$FREQ %in% c("8")){
-        # series is monthly
-        d_dates <- as.Date(zoo::as.yearmon(d$TIME_PERIOD, "%Y/%m"))
+    }
+    else {
+      if (grepl("8", s$Series$FREQ, fixed=TRUE)) {
+        d_dates <- as.Date(zoo::as.yearmon(d$TIME_PERIOD,"%Y/%m"))
         d_aux <- paste0("M", lubridate::month(d_dates))
-        
-      }else{
-        if(s$Series$FREQ %in% c("9")){
-          # series is biweekly
-          
-          d_dates <- as.Date(zoo::as.yearmon(d$TIME_PERIOD, "%Y/%m"))
+      }
+      else {
+        if (grepl("9", s$Series$FREQ, fixed=TRUE)) {
+          d_dates <- as.Date(zoo::as.yearmon(d$TIME_PERIOD,"%Y/%m"))
           d_aux <- 1:length(d$TIME_PERIOD)
           warning("Biweekly data is NOT coerced or forced to a date. Instead, the date_shortcut column is an index of the order of observations (larger N with same date is second half of month).")
-        }else{
-          if(s$Series$FREQ %in% c("4", "5", "7", "10", "11", "12", "13")){
+        }
+        else {
+          if (grepl("4", s$Series$FREQ, fixed=TRUE) ||
+              grepl("5", s$Series$FREQ, fixed=TRUE) ||
+              grepl("7", s$Series$FREQ, fixed=TRUE) ||
+              grepl("10", s$Series$FREQ, fixed=TRUE) ||
+              grepl("11", s$Series$FREQ, fixed=TRUE) ||
+              grepl("12", s$Series$FREQ, fixed=TRUE) ||
+              grepl("13", s$Series$FREQ, fixed=TRUE)) {
             warning("Time format is not supported. Only Anual, Trimestral, Monthly or Biweekly indicators are supported by this package. Data was downloaded but will be passed on as-is.")
-              d_dates <- ifelse(is.na(d$TIME_PERIOD)|is.null(d$TIME_PERIOD), NA, d$TIME_PERIOD)
-              d_aux <- d_dates
           }
         }
       }
     }
-  }  
-  
-  #### DATA
-  data <- data.frame("date" = d_dates, 
-                     "date_shortcut" = d_aux,
-                     "values" = as.numeric(d$OBS_VALUE), 
-                     "notes" = d$OBS_NOTE)
-  
-  if(as_tt){
+  }
+  data <- data.frame(date = d_dates, date_shortcut = d_aux,
+                     values = as.numeric(d$OBS_VALUE), notes = d$OBS_NOTE)
+  if (as_tt) {
     data <- as_tbl_time(x = data, index = "date")
   }
-  
-  if(metadata){
+  if (metadata) {
     warning("Metadata will be passed as-is. Use incat_ functions to download catalogs.")
-    
-    metadata <- data.frame(
-       "source" = s$Series$SOURCE,
-       "topic" = s$Series$TOPIC,
-       "notes" = s$Series$NOTE,
-        "last_update" = s$Series$LASTUPDATE,
-        "region" = geography,
-        "units" = s$Series$UNIT,
-        "indicator_ID" = s$Series$INDICADOR,
-        "frequency" = s$Series$FREQ, 
-       "call_local_time" = Sys.time(),
-       "call_unmasked" = u
-       )
-    
-    if(as_compact){
+    metadata <- data.frame(source = s$Series$SOURCE, 
+                           topic = s$Series$TOPIC,
+                           notes = s$Series$NOTE, 
+                           last_update = s$Series$LASTUPDATE,
+                           region = geography, 
+                           units = s$Series$UNIT, 
+                           indicator_ID = s$Series$INDICADOR,
+                           frequency = s$Series$FREQ, 
+                           call_local_time = Sys.time(),
+                           call_unmasked = u)
+    if (as_compact) {
       data$meta_source <- metadata$source[1]
       data$meta_topic <- metadata$topic[1]
       data$meta_notes <- metadata$notes[1]
@@ -142,14 +132,14 @@ inegi_series <- function(series_id, token,
       data$meta_frequency <- metadata$frequency[1]
       data$meta_calltime <- metadata$call_local_time[1]
       data$meta_call <- u
-      
       return(data)
-    }else{
-      l <- list("metadata" = metadata, "data" = data)
+    }
+    else {
+      l <- list(metadata = metadata, data = data)
       return(l)
     }
-   
-  }else{
+  }
+  else {
     return(data)
   }
 }
