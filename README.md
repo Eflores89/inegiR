@@ -1,5 +1,18 @@
 # InegiR
 
+# ⚠️ = Important =  ⚠️ 
+INEGI has published a breaking change with the current inegiR version (error: `"d_dates does not exist"`) - fix has been provided by a user [here](https://github.com/Eflores89/inegiR/issues/25). However, I still need to test and send an update to CRAN (Work in progress with no ETA yet). 
+
+If you are eager for new version, please use devtools to update the package: 
+~~~~~~~
+library(devtools)
+
+devtools::install_github(repo = "Eflores89/inegiR")
+~~~~~~~
+
+----
+
+
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/inegiR)](http://cran.r-project.org/package=inegiR) ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/inegiR)
 
 # v3
