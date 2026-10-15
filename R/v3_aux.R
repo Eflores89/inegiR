@@ -5,6 +5,11 @@
 #' @param token INEGI API token
 #' @param id Optional id. If NULL, will download entire catalog. 
 #' @author Eduardo Flores 
+#' @details The five legacy catalog adapters retain English/BIE defaults and
+#'   their two-column schemas. incat_topic() retains column order but repairs the
+#'   upstream value swap: topic_description contains descriptions and topic contains IDs.
+#'   Use \code{inegi_catalog()} for language and bank selection.
+#' @seealso \code{\link{inegi_catalog}}
 #' @return data.frame
 #'
 #' @examples
@@ -30,78 +35,37 @@ NULL
 #' @export
 #' @rdname incat_
 incat_freq <- function(token, id = NULL){
-
-  if(is.null(id)){
-    u <- paste0("https://www.inegi.org.mx/app/api/indicadores/desarrolladores/jsonxml/CL_FREQ/null/en/BIE/2.0/", token, "?type=json")
-    s <- jsonlite::fromJSON(u)
-    names(s$CODE) <- c("frequency", "frequency_description")
-    s$CODE
-  }else{
-    u <- paste0("https://www.inegi.org.mx/app/api/indicadores/desarrolladores/jsonxml/CL_FREQ/",id,"/en/BIE/2.0/", token, "?type=json")
-    s <- jsonlite::fromJSON(u)
-    names(s$CODE) <- c("frequency", "frequency_description")
-    s$CODE
-  }
+  inegi_legacy_catalog("CL_FREQ", token, id, c("frequency", "frequency_description"))
 }
 #' @export
 #' @rdname incat_
 incat_source <- function(token, id = NULL){
-  if(is.null(id)){
-    u <- paste0("https://www.inegi.org.mx/app/api/indicadores/desarrolladores/jsonxml/CL_SOURCE/null/en/BIE/2.0/", token, "?type=json")
-    s <- jsonlite::fromJSON(u)
-    names(s$CODE) <- c("source", "source_description")
-    s$CODE
-  }else{
-    u <- paste0("https://www.inegi.org.mx/app/api/indicadores/desarrolladores/jsonxml/CL_SOURCE/", id, "/en/BIE/2.0/", token, "?type=json")
-    s <- jsonlite::fromJSON(u)
-    names(s$CODE) <- c("source", "source_description")
-    s$CODE
-  }
+  inegi_legacy_catalog("CL_SOURCE", token, id, c("source", "source_description"))
 }
 #' @export
 #' @rdname incat_
 incat_notes <- function(token, id = NULL){
-  if(is.null(id)){
-    u <- paste0("https://www.inegi.org.mx/app/api/indicadores/desarrolladores/jsonxml/CL_NOTE/null/en/BIE/2.0/", token, "?type=json")
-    s <- jsonlite::fromJSON(u)
-    names(s$CODE) <- c("notes", "notes_description")
-    s$CODE
-  }else{
-    u <- paste0("https://www.inegi.org.mx/app/api/indicadores/desarrolladores/jsonxml/CL_NOTE/", id, "/en/BIE/2.0/", token, "?type=json")
-    s <- jsonlite::fromJSON(u)
-    names(s$CODE) <- c("notes", "notes_description")
-    s$CODE
-  }
+  inegi_legacy_catalog("CL_NOTE", token, id, c("notes", "notes_description"))
 }
 #' @export
 #' @rdname incat_
 incat_topic <- function(token, id = NULL){
-  if(is.null(id)){
-    u <- paste0("https://www.inegi.org.mx/app/api/indicadores/desarrolladores/jsonxml/CL_TOPIC/null/en/BIE/2.0/", token, "?type=json")
-    s <- jsonlite::fromJSON(u)
-    names(s$CODE) <- c("topic_description", "topic")
-    s$CODE
-  }else{
-    u <- paste0("https://www.inegi.org.mx/app/api/indicadores/desarrolladores/jsonxml/CL_TOPIC/", id, "/en/BIE/2.0/", token, "?type=json")
-    s <- jsonlite::fromJSON(u)
-    names(s$CODE) <- c("topic_description", "topic")
-    s$CODE
-  }
+  # Retain legacy column order, but map by meaning instead of JSON field order.
+  data <- inegi_catalog("CL_TOPIC", id, token, language = "en", database = "BIE")
+  data.frame(topic_description = data$description, topic = data$id,
+    stringsAsFactors = FALSE)
 }
 #' @export
 #' @rdname incat_
 incat_indicator <- function(token, id = NULL){
-  if(is.null(id)){
-    u <- paste0("https://www.inegi.org.mx/app/api/indicadores/desarrolladores/jsonxml/CL_INDICATOR/null/en/BIE/2.0/", token, "?type=json")
-    s <- jsonlite::fromJSON(u)
-    names(s$CODE) <- c("indicator", "indicator_description")
-    s$CODE
-  }else{
-    u <- paste0("https://www.inegi.org.mx/app/api/indicadores/desarrolladores/jsonxml/CL_INDICATOR/", id, "/en/BIE/2.0/", token, "?type=json")
-    s <- jsonlite::fromJSON(u)
-    names(s$CODE) <- c("indicator", "indicator_description")
-    s$CODE
-  }
+  inegi_legacy_catalog("CL_INDICATOR", token, id, c("indicator", "indicator_description"))
+}
+
+inegi_legacy_catalog <- function(catalog, token, id, columns) {
+  data <- inegi_catalog(catalog, id, token, language = "en", database = "BIE")
+  result <- data[, c("id", "description"), drop = FALSE]
+  names(result) <- columns
+  result
 }
 #' Obtains the catalog of economic data neumonics
 #'

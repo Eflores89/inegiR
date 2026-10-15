@@ -4,13 +4,18 @@
 \alias{inegi_series_multiple}
 \title{Returns multiple INEGI data series}
 \usage{
-inegi_series_multiple(series_id, token, names = NULL, geography = "00",
-  database = "BIE")
+inegi_series_multiple(
+  series_id,
+  token = inegi_get_token(),
+  names = NULL,
+  geography = "00",
+  database = "BIE"
+)
 }
 \arguments{
 \item{series_id}{A vector of indicator ID's. These are obtained via the INEGI API documentation.}
 
-\item{token}{API token supplied by INEGI.}
+\item{token}{API token supplied by INEGI; defaults to INEGI_TOKEN.}
 
 \item{names}{Optional vector of names to assign to each id. If NULL, a numerical index is assigned.}
 
@@ -24,6 +29,11 @@ data.frame
 \description{
 Returns a data.frame with multiple time series chosen from INEGI webservice. The output will always be a data.frame (not tibble) with compacted metadata. (See \code{inegi_series} to understand as_tt = FALSE and as_compact = TRUE).
 }
+\details{
+Rows follow requested series order. Repeated legacy series IDs
+  retain separate labeled outputs. Canonical \code{inegi_data()} instead
+  deduplicates IDs and returns the shared provider schema.
+}
 \note{
 Adding the entire INEGI URL as a series is deprecated since v3, due to a change of API specifications in INEGI. INEGI docs can be found at: \url{https://www.inegi.org.mx/servicios/api_indicadores.html}. Coercing biweekly indicators to monthly is also deprecated inside this function. Use tibbletime functions to coerce instead.
 }
@@ -34,6 +44,9 @@ token <- "webservice_token"
 some_series <- c("216064", "216097")
 result <- inegi_series_multiple(some_series, token)
 }
+}
+\seealso{
+\code{\link{inegi_data}}, \code{\link{inegi_series}}
 }
 \author{
 Eduardo Flores

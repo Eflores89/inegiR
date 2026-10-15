@@ -4,14 +4,21 @@
 \alias{inegi_series}
 \title{Returns INEGI data series}
 \usage{
-inegi_series(series_id, token, geography = "00", database = "BIE",
-  metadata = FALSE, lastonly = FALSE, as_tt = FALSE,
-  as_compact = FALSE)
+inegi_series(
+  series_id,
+  token = inegi_get_token(),
+  geography = "00",
+  database = "BIE",
+  metadata = FALSE,
+  lastonly = FALSE,
+  as_tt = FALSE,
+  as_compact = FALSE
+)
 }
 \arguments{
 \item{series_id}{an indicator ID. These are obtained via the INEGI API documentation.}
 
-\item{token}{API token supplied by INEGI.}
+\item{token}{API token supplied by INEGI; defaults to INEGI_TOKEN.}
 
 \item{geography}{Geography code of INEGI. Defaults to 00 (National)}
 
@@ -31,6 +38,15 @@ data.frame or list
 \description{
 Returns a data.frame with the time series chosen from INEGI webservice. If the parameter Metadata is TRUE, a list is returned with two objects: data and metadata.
 }
+\details{
+This legacy English-language interface retains date, date_shortcut,
+  values, and notes columns. Annual dates are character years; quarterly and
+  monthly dates are Date interval starts. Unsupported periods pass through as
+  text with a warning. Ambiguous biweekly periods retain the legacy display;
+  as_tt requires valid unambiguous Date output. Metadata lists contain
+  metadata then data. call_unmasked and meta_call retain redacted URLs.
+  For raw periods, values, and flags use \code{inegi_data()}.
+}
 \note{
 Adding the entire INEGI URL as a series is deprecated since v3, due to a change of API specifications in INEGI. INEGI docs can be found at: \url{https://www.inegi.org.mx/servicios/api_indicadores.html}. Coercing biweekly indicators to monthly is also deprecated inside this function. Use tibbletime functions to coerce instead.
 }
@@ -41,6 +57,9 @@ token <- "webservice_token"
 inpc_id <- "216064"
 INPC <- inegi_series(inpc_id, token)
 }
+}
+\seealso{
+\code{\link{inegi_data}}, \code{\link{inegi_metadata}}
 }
 \author{
 Eduardo Flores

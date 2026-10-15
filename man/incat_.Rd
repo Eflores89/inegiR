@@ -30,6 +30,12 @@ data.frame
 \description{
 Allows you to download the catalogs of frequencies, sources, notes, topics and indicator names. Called in the background in some functions.
 }
+\details{
+The five legacy catalog adapters retain English/BIE defaults and
+  their two-column schemas. incat_topic() retains column order but repairs the
+  upstream value swap: topic_description contains descriptions and topic contains IDs.
+  Use \code{inegi_catalog()} for language and bank selection.
+}
 \examples{
 
 # Get the corresponding frequency for frequency id #8 (monthly)
@@ -47,6 +53,9 @@ incat_notes(token)
 token <- "webservice token"
 incat_source(token)
 }
+}
+\seealso{
+\code{\link{inegi_catalog}}
 }
 \author{
 Eduardo Flores
