@@ -62,11 +62,12 @@ jobs:
           r-version: release
           use-public-rspm: true
       - uses: r-lib/actions/setup-tinytex@v2
-      - name: Install HTML validator
+      - name: Install documentation validators
         run: |
           sudo apt-get update
-          sudo apt-get install --yes tidy
+          sudo apt-get install --yes tidy pandoc
           tidy --version
+          pandoc --version
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::rcmdcheck
