@@ -48,3 +48,10 @@ DENUE, SAKBE/routing, mnemonic XML, and derived-indicator implementations remain
 unverified. Their exports are retained; this repair does not attest to their
 runtime behavior or credential handling. Package check is not a live-service
 validation. Detailed results are recorded in [verification](verification.md).
+
+The submission-preparation follow-up uses candidate version **3.1.0**. It fixes
+six DENUE coordinate guards with offline regressions, preserves the registered
+maintainer through Authors@R, reflects the HTTP dependency's R 4.0 minimum, and
+replaces an unavailable historical documentation link. This candidate has not
+been submitted or accepted by CRAN. See the current verification report for
+full network/incoming checks and the archived-package reinstatement note.

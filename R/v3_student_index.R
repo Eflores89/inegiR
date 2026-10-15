@@ -1,6 +1,8 @@
 #' Student Price Index
 #'
-#' Returns the student price index. See \url{http://enelmargen.org/ds/ipe/} for more information. 
+#' Returns the student price index using the fixed component weights in the
+#' \href{https://github.com/Eflores89/inegiR/blob/64d33221507cce2f86151a96fffc3283526a49cf/R/v3_student_index.R}{original implementation}.
+#' These historical weights have not been revalidated against current methodology.
 #' 
 #' @param token API token supplied by INEGI
 #' @author Eduardo Flores 

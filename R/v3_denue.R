@@ -138,10 +138,10 @@ inegi_denue_grid <- function(lat1, lat2, lon1, lon2, token,
                              space_lon = 0.07, 
                              uniqueonly = TRUE){
   #antes de correr, revisar datos de columnas
-  if(class(lat1)=="numeric"){} else {stop(print("Latitud 1 is not numeric"))}
-  if(class(lat2)=="numeric"){} else {stop(print("Latitud 2 is not numeric"))}
-  if(class(lon1)=="numeric"){} else {stop(print("Longitud 1 is not numeric"))}
-  if(class(lon2)=="numeric"){} else {stop(print("Longitud 2 is not numeric"))}
+  if (!is.numeric(lat1)) stop("Latitud 1 is not numeric", call. = FALSE)
+  if (!is.numeric(lat2)) stop("Latitud 2 is not numeric", call. = FALSE)
+  if (!is.numeric(lon1)) stop("Longitud 1 is not numeric", call. = FALSE)
+  if (!is.numeric(lon2)) stop("Longitud 2 is not numeric", call. = FALSE)
   
   grid <- inegiR::make_grid(lat1 = lat1, 
                             lat2 = lat2, 
@@ -202,8 +202,8 @@ inegi_denue_stats <- function(latitud_vector, longitud_vector, token, meters = 2
   if(length(latitud_vector) == length(longitud_vector)){}else{stop("Latitud and Longitud vectors must be of same length")}
   
   #antes de correr, revisar datos de columnas
-  if(class(latitud_vector)=="numeric"){} else {stop(print("Latitud vector must be numeric"))}
-  if(class(longitud_vector)=="numeric"){} else {stop(print("Longitud vector must be numeric"))}
+  if (!is.numeric(latitud_vector)) stop("Latitud vector must be numeric", call. = FALSE)
+  if (!is.numeric(longitud_vector)) stop("Longitud vector must be numeric", call. = FALSE)
   
   # inicial data.frame
   d <- data.frame(

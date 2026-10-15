@@ -1,7 +1,7 @@
-# inegiR — local development repair
+# inegiR — submission candidate
 
 inegiR retrieves INEGI indicator data through the authenticated JSON API v2.0.
-This workspace contains version **3.0.0.9000**, a local development repair of
+This contribution prepares version **3.1.0**, a submission candidate repairing
 [Eduardo Flores’s inegiR](https://github.com/Eflores89/inegiR), pinned to
 [`64d33221507cce2f86151a96fffc3283526a49cf`](https://github.com/Eflores89/inegiR/commit/64d33221507cce2f86151a96fffc3283526a49cf).
 Eduardo Flores’s authorship and the upstream **CC0** license are retained.
@@ -23,13 +23,15 @@ For a local build, install the supplied source package from this workspace
 (with its dependencies already installed):
 
 ```r
-install.packages("dist/inegiR_3.0.0.9000.tar.gz", repos = NULL, type = "source")
+install.packages("dist/inegiR_3.1.0.tar.gz", repos = NULL, type = "source")
 library(inegiR)
 ```
 
 Installing from CRAN or the upstream GitHub repository does not install these
 local changes. Indicator access uses the API; it does not scrape HTML pages.
-Unrelated legacy services remain available with their original implementations.
+Legacy service entry points remain available. DENUE grid/statistics coordinate
+guards now accept integer and classed numeric inputs; their live responses
+remain unverified.
 
 ## Token and quick start
 

@@ -1,9 +1,9 @@
-# inegiR — reparación local en desarrollo
+# inegiR — versión candidata para revisión
 
-Esta versión **3.0.0.9000** repara el acceso a indicadores de INEGI por su API
+Esta versión **3.1.0** repara el acceso a indicadores de INEGI por su API
 JSON v2.0. Parte de [inegiR de Eduardo Flores](https://github.com/Eflores89/inegiR),
 commit [`64d33221507cce2f86151a96fffc3283526a49cf`](https://github.com/Eflores89/inegiR/commit/64d33221507cce2f86151a96fffc3283526a49cf).
-Conserva su autoría y licencia **CC0**. Es un artefacto local: no se ha publicado
+Conserva su autoría y licencia **CC0**. Es una versión candidata: no se ha publicado
 en CRAN ni aceptado en el proyecto original. [English](README.md).
 
 ## Instalación y token
@@ -20,7 +20,7 @@ original. También puedes instalar el artefacto local desde esta carpeta,
 con las dependencias instaladas:
 
 ```r
-install.packages("dist/inegiR_3.0.0.9000.tar.gz", repos = NULL, type = "source")
+install.packages("dist/inegiR_3.1.0.tar.gz", repos = NULL, type = "source")
 library(inegiR)
 ```
 

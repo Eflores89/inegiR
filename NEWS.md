@@ -1,8 +1,17 @@
-# inegiR 3.0.0.9000 (local development)
+# inegiR 3.1.0 (submission candidate)
 
 This is an unreleased repair of Eduardo Flores’s CC0 package, pinned to
 Eflores89/inegiR commit 64d33221507cce2f86151a96fffc3283526a49cf. It does not claim
 CRAN publication or upstream acceptance. All 28 upstream exports remain.
+
+- Replace the six DENUE coordinate class comparisons with numeric predicates.
+  Integer and classed numeric coordinates are accepted; invalid inputs fail
+  quietly without exposing token-bearing calls. Add offline public-function
+  regression tests.
+- Prepare release metadata with Authors@R, retain the registered maintainer and
+  existing contributor credits, and state the R 4.0 minimum required by the
+  current HTTP dependency. Replace an unavailable historical documentation URL
+  with the pinned original implementation.
 
 - Add `inegi_data()`, `inegi_latest()`, `inegi_metadata()`, `inegi_catalog()`,
   `inegi_set_token()`, and `inegi_get_token()`. Shared verbs, argument order,
@@ -35,4 +44,5 @@ CRAN publication or upstream acceptance. All 28 upstream exports remain.
 - Add English/Spanish quick starts, shared-provider and compatibility guidance,
   mocked offline tests, regenerated help, and source-package verification.
   Namespace-qualify stats::setNames and utils::tail for namespace-only loading. No authenticated
-  live verification or validation of unrelated legacy services is claimed.
+  live verification is claimed; legacy services beyond the targeted DENUE
+  coordinate guards remain outside validation scope.
