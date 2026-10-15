@@ -4,8 +4,7 @@
 \alias{inegi_route}
 \title{Returns the route between two points in Mexico}
 \usage{
-inegi_route(from, to, token, pref, vehicle, calc_cost = FALSE,
-  rawJSON = FALSE)
+inegi_route(from, to, token, pref, vehicle, calc_cost = FALSE, rawJSON = FALSE)
 }
 \arguments{
 \item{from}{Destiny id from where the route begins}

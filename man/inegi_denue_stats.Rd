@@ -4,8 +4,13 @@
 \alias{inegi_denue_stats}
 \title{Returns statistics of coordinate}
 \usage{
-inegi_denue_stats(latitud_vector, longitud_vector, token, meters = 250,
-  keyword = "todos")
+inegi_denue_stats(
+  latitud_vector,
+  longitud_vector,
+  token,
+  meters = 250,
+  keyword = "todos"
+)
 }
 \arguments{
 \item{latitud_vector}{number of column in data with latitud column}

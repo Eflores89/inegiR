@@ -24,36 +24,36 @@ NULL
 #' @rdname inind_
 inind_commerce <- function(token)
 { 
-  inegiR::inegi_series(serie = "383160", token, metadata = TRUE, as_tt = TRUE)
+  inegiR::inegi_series(series_id = "383160", token = token, metadata = TRUE, as_tt = TRUE)
 }
 #' @export
 #' @rdname inind_
 inind_auto <- function(token)
 { 
-  inegiR::inegi_series(serie = "15166", token, metadata = TRUE, as_tt = TRUE)
+  inegiR::inegi_series(series_id = "15166", token = token, metadata = TRUE, as_tt = TRUE)
 }
 #' @export
 #' @rdname inind_
 inind_gdp <- function(token)
 { 
-  inegiR::inegi_series(serie = "381016", token, metadata = TRUE, as_tt = TRUE)
+  inegiR::inegi_series(series_id = "381016", token = token, metadata = TRUE, as_tt = TRUE)
 }
 #' @export
 #' @rdname inind_
 inind_fx <- function(token)
 { 
-  inegiR::inegi_series(serie = "824", token, metadata = TRUE, as_tt = TRUE)
+  inegiR::inegi_series(series_id = "824", token = token, metadata = TRUE, as_tt = TRUE)
 }
 #' @export
 #' @rdname inind_
 inind_unemp <- function(token)
 { 
-  inegiR::inegi_series(serie = "444612", token, metadata = TRUE, as_tt = TRUE)
+  inegiR::inegi_series(series_id = "444612", token = token, metadata = TRUE, as_tt = TRUE)
 }
 
 #' @export
 #' @rdname inind_
 inind_prices <- function(token)
 { 
-  inegiR::inegi_series(serie = "216064", token, metadata = TRUE, as_tt = TRUE)
+  inegiR::inegi_series(series_id = "216064", token = token, metadata = TRUE, as_tt = TRUE)
 }

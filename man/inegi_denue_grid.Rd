@@ -4,9 +4,18 @@
 \alias{inegi_denue_grid}
 \title{Find businesses in a grid larger than 5 kms}
 \usage{
-inegi_denue_grid(lat1, lat2, lon1, lon2, token, meters = 5000,
-  keyword = "todos", space_lat = 0.07, space_lon = 0.07,
-  uniqueonly = TRUE)
+inegi_denue_grid(
+  lat1,
+  lat2,
+  lon1,
+  lon2,
+  token,
+  meters = 5000,
+  keyword = "todos",
+  space_lat = 0.07,
+  space_lon = 0.07,
+  uniqueonly = TRUE
+)
 }
 \arguments{
 \item{lat1}{First corner (latitud)}

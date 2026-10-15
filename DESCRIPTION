@@ -1,8 +1,8 @@
 Package: inegiR
 Type: Package
-Title: Integrate INEGI’s (Mexican Stats Office) API with R
-Version: 3.0.0
-Date: 2019-07-08
+Title: Integrate INEGI's (Mexican Stats Office) API with R
+Version: 3.0.0.9000
+Date: 2026-10-14
 Author: Eduardo Flores
 Depends: R (>= 2.10)
 Maintainer: Eduardo Flores <eduardo@enelmargen.org>
@@ -15,7 +15,14 @@ Imports:
     XML,
     plyr,
     jsonlite,
+    httr2,
     lubridate,
-    tibbletime
+    tibbletime,
+    stats,
+    utils
 Language: es
-RoxygenNote: 6.1.1
+RoxygenNote: 7.3.3
+Suggests:
+    testthat (>= 3.1.7),
+    withr
+Config/testthat/edition: 3
